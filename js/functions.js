@@ -177,6 +177,7 @@ function ajaxCategories(){
 
 function loadCategories(){
 	var option = '';
+	$('#category_select').empty();
 	for (var i=0;i<categories.length;i++){
 	   option += '<option value="'+ categories[i]._id + '">' + categories[i].name + '</option>';
 	}
@@ -672,13 +673,17 @@ function setFormSubmitSaveAsObj(row, selectedItem){
 	}
 }
 
-function showHideEditFormSpinner(row,showSpinner){
+function showHideEditFormSpinner(el,showSpinner){
+	if(!el){
+		el = $('.container');
+	}
 	if(showSpinner){
-		$(row).find(".pad_overlay").css("visibility", "visible");
+		$(el).find(".pad_overlay").css("visibility", "visible");
 	}else{
-		$(row).find(".pad_overlay").css("visibility", "hidden");
+		$(el).find(".pad_overlay").css("visibility", "hidden");
 	}
 }
+
 
 function showEditFormInputErrors(row, inputKey, errorMessage){
 	
@@ -739,7 +744,7 @@ function formSubmitSaveAs(row, selectedItem){
 
 		}
 		catch(err){
-			processAndDisplayError(err, row);
+			processAndDisplayError(err, row, form);
 		}
 	}
 
@@ -747,7 +752,7 @@ function formSubmitSaveAs(row, selectedItem){
 
 }
 
-function processAndDisplayError(err, row){
+function processAndDisplayError(err, row, form){
 	//Hide the spinner
 	showHideEditFormSpinner(row,false);
 
@@ -872,7 +877,7 @@ function deleteItem(row, selectedItem){
 			closeEditFormDiv('', form);
 		}
 		catch(err){
-			processAndDisplayError(err, row);
+			processAndDisplayError(err, row, form);
 		}
 	}
 
@@ -950,7 +955,7 @@ function formSubmitUpdate(e, row, selectedItem){
 			closeEditFormDiv('', form);
 		}
 		catch(err){
-			processAndDisplayError(err, row);
+			processAndDisplayError(err, row, form);
 		}
 	}
 	submitFormSave();
@@ -1237,6 +1242,8 @@ function submitLoginForm(){
 	const form = $('#login_form');
 	
 	removeFormErrors(form);
+
+	showHideEditFormSpinner(form, true);
 	
 	const loginEmail = $(form).find(".login_email").val();
 	const loginPassword = $(form).find(".login_password").val();
@@ -1246,6 +1253,7 @@ function submitLoginForm(){
 		try{
 			const responseData = await ajaxLogin(loginEmail, loginPassword);
 			user = new User(responseData.firstName,responseData.lastName,responseData.id,responseData.email,responseData.token);
+
 		}
 		catch(err){
 			const errorType = err.responseJSON.errorType;
@@ -1274,6 +1282,9 @@ function submitLoginForm(){
 				showFormError(form, errorMessage);
 			}
 			return;
+		}
+		finally{
+			showHideEditFormSpinner(form, false);
 		}
 
 		//Show the search screen
@@ -1486,11 +1497,16 @@ $(document).ready(function(){
 
 		(async function(){
 			try{
+				showHideEditFormSpinner(null, true);
 				await loadInitialData();
+				loadCategories();
 				lookupFunction();
 			}
 			catch(err){
 				showLoginForm();
+			}
+			finally{
+				showHideEditFormSpinner(null, false);
 			}
 		})();
 		
