@@ -1,0 +1,19 @@
+2020-04-03 08:43:12: == Sync Started by User Command
+2020-04-03 08:43:13: Delete File 'ftp://ftp.triangleutility.com:21/.ftpquota'
+2020-04-03 08:43:13: Create Folder 'ftp://ftp.triangleutility.com:21/node-app'
+2020-04-03 08:43:14: Copy Over 'C:/xampp/htdocs/zlookup/css/styles2.css' -> 'ftp://ftp.triangleutility.com:21/css/styles2.css' (2,292)
+2020-04-03 08:43:14: Copy Over 'C:/xampp/htdocs/zlookup/index.html' -> 'ftp://ftp.triangleutility.com:21/index.html' (6,926)
+2020-04-03 08:43:15: Copy Over 'C:/xampp/htdocs/zlookup/js/functions.js' -> 'ftp://ftp.triangleutility.com:21/js/functions.js' (39,422)
+2020-04-03 08:43:15: Copy New 'C:/xampp/htdocs/zlookup/node-app/index.js' -> 'ftp://ftp.triangleutility.com:21/node-app/index.js' (505)
+2020-04-03 08:43:16: Copy New 'C:/xampp/htdocs/zlookup/node-app/package-lock.json' -> 'ftp://ftp.triangleutility.com:21/node-app/package-lock.json' (14,284)
+2020-04-03 08:43:16: Copy New 'C:/xampp/htdocs/zlookup/node-app/package.json' -> 'ftp://ftp.triangleutility.com:21/node-app/package.json' (270)
+2020-04-03 08:43:17: Copy New 'C:/xampp/htdocs/zlookup/node-app/users.js' -> 'ftp://ftp.triangleutility.com:21/node-app/users.js' (0)
+2020-04-03 08:43:18: Copy Over 'C:/xampp/htdocs/zlookup/php/functions.php' -> 'ftp://ftp.triangleutility.com:21/php/functions.php' (299)
+2020-04-03 08:43:18: Copy New 'C:/xampp/htdocs/zlookup/php/resetPassword.php' -> 'ftp://ftp.triangleutility.com:21/php/resetPassword.php' (1,199)
+2020-04-03 08:43:19: Deleted Recycled: ftp://ftp.triangleutility.com:21/_gsdata_/_saved_/css/styles.css
+2020-04-03 08:43:19: Deleted Recycled: ftp://ftp.triangleutility.com:21/_gsdata_/_saved_/database/database.php
+2020-04-03 08:43:19: Deleted Recycled: ftp://ftp.triangleutility.com:21/_gsdata_/_saved_/.htaccess
+2020-04-03 08:43:19: Deleted Recycled: ftp://ftp.triangleutility.com:21/_gsdata_/_saved_/php/lookup.php
+2020-04-03 08:43:19: Deleted Recycled: ftp://ftp.triangleutility.com:21/_gsdata_/_saved_/php/test.php
+2020-04-03 08:43:20: == Sync Complete. Time: 00:00:09, Speed: 19.0 KB/s, OK: 11, Errors: 0
+2020-04-03 08:43:20: 

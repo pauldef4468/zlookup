@@ -1,0 +1,512 @@
+Room / Location / Component,Item Name,Comment,Price,OriginalFlag,Include
+Attic,Attic - Insulation Add or Replace,Add insulation batts to missing areas in attic moved around.,0,0,Y
+Attic,Attic Access Hatch Replace Drywal,"Replace Attic Access Cover with 5/8"" fire rated drywall.",0,0,Y
+Attic,Attic Access Ladder - Replace,Replace damaged attic access ladder and trim.,0,0,Y
+Attic,Attic Electrical Repair/Replace Electric Attic Fan,Repair or replace roof/gable mount fan.,0,0,Y
+Attic,Attic Insulation Add or Replace,Add insulation batts to missing areas in attic moved around.,0,0,Y
+Attic,Attic Insulation replacement Pests,Insulation - Remove and replace contaminated blown insulation throughout attic. remove old and install new in locations as needed.,0,0,Y
+Attic,Attic Stairs,Attic Stairs - Insulate and repair - Add insulation and weatherstripping to pull-down attic stairs.  Ensure stairs are properly installed with required nails/screws and legs are cut to correct length and angle.,0,0,Y
+Roof,Attic- Trusses - Repair Broken / Damaged,"Repair broken, cut or damaged truss found during attic evaluation ( Repair to be done by a framing contractor ).",0,0,Y
+Attic,Attic Trusses - Repair Broken/ Damaged,"Repair broken, cut or damaged truss found during attic evaluation (Repair to be done by a framing contractor).",0,0,Y
+Kitchen,Cabinet - Old English Touch ups,Cabinets to be cleaned and wirped down with Old English to enhance the cabinets and bring back to good condition. Per LnFt,0,0,Y
+Kitchen,Cabinet - Repairs,Repair specific of the cabinets as called out. To include making a new drawer / door / or front to match as close as possible.,0,1,Y
+Kitchen,"Cabinets - Cabinet Front - Refinish (Sand, Paint or Stain)","Refinish cabinet front - sand, paint* or stain to like new condition (*clean with TSP prior to painting) - price per LF",0,0,Y
+Kitchen,Cabinets - Cabinet Front - Repair (surface scratches & chips),Touch-up paint or stain scratches and chips on cabinets to match finish for a like-new condition,0,0,Y
+Bedroom,"Cabinets - Cabinet Front Refinish (Sand, Paint or Stain)","Refinish cabinet front - sand, paint* or stain to like new condition (*clean with TSP prior to painting) - price per LF",0,0,Y
+Bedroom,Cabinets - Cabinet Front Repair (surface scratches & chips),Touch-up paint or stain scratches and chips on cabinets to match finish for a like-new condition,0,0,Y
+Kitchen,Cabinets - Child Safety Locks - Remove,Remove all child safety locks on cabinet doors and drawers,0,0,Y
+Bedroom,Cabinets - Drawer Slides/ Door Hinges - Repair or Replace,Repair/replace drawer slides and hinges to match existing (or similar),0,0,Y
+Kitchen,Cabinets - Drawer Slides/ Door Hinges - Repair or Replace,Repair/replace drawer slides and hinges to match existing (or similar),0,0,Y
+Kitchen,Cabinets - Drawers/ Doors - Replace,Replace drawer box and drawer/door front to match similar - price per box,0,0,Y
+Kitchen,Cabinets - Kitchen Cabinets - Replace,Remove and replace kitchen cabinets (SPEC) to match existing? $140 per LNFT,0,0,Y
+Kitchen,Cabinets - Knobs / Pulls - Replace,Replace cabinet knobs/pulls,0,0,Y
+Kitchen / Bathroom / Bedroom,Cabinets - Repair Cabinets,Repair cabinets and match color paint or stain and cabinet designs,0,1,Y
+Kitchen,Cabinets - Replace Base Cabinets,"Install or Replace Kitchen base cabinets, including door and door hardware.",0,0,Y
+Kitchen,Cabinets - Replace Wall Cabinets,"Install or replace kitchen wall cabinets, including door and door hardware.",0,0,Y
+Kitchen,Cabinets - Sink Base - Cabinet Bottom Replacement,"Replace cabinet bottom with one solid piece of 1/8"" white eucalyptus hardboard (SKU #447562) and seal interior perimeter with white silicone",0,0,Y
+Bedroom,Cabinets - Sink Base Cabinet Bottom Replacement,"Replace cabinet bottom with one solid piece of 1/8"" white eucalyptus hardboard (SKU #447562) and seal interior perimeter with white silicone",0,0,Y
+Bedroom,Cabinets- Child Safety Locks- Remove,Remove all child safety locks on cabinet doors and drawers,0,0,Y
+Bedroom,Cabinets Drawers/ Doors - Replace,Replace drawer box and drawer/door front to match similar - price per box,0,0,Y
+Bedroom,Cabinets Knobs / Pulls - Replace,Replace cabinet knobs/pulls,0,0,Y
+Bedroom,Cabinets Repair Cabinets,Repair cabinets and match color paint or stain and cabinet designs,0,0,Y
+Bedroom,Carpet Repairs,Repair specific areas of the carpet by harvesting like matching from closets or areas we can replace with another flooring type.,0,0,Y
+Kitchen,Carpet Repairs,Repair specific areas of the carpet by harvesting like matching from closets or areas we can replace with another flooring type.,0,0,Y
+Bedroom,Cleaning - Cabinet Interior,Clean Interior Discoloration Inside Cabinet Box,0,0,Y
+Kitchen,Cleaning - Cabinet Interior,Clean Interior Discoloration Inside Cabinet Box,0,0,Y
+Interior,Cleaning- Carpet/ Flooring,"Steam clean carpet and all hard flooring surfaces including tile, vinyl, laminate and wood.",0,0,Y
+Interior,Cleaning Odor Remediation,Pet Odor - Urine and dander treatment on carpet and hard surface flooring. Deep clean to remove hair and skin cells from flooring and apply odor eating enzyme treatment (carpet cleaning must also be scoped).,0,0,Y
+Interior,Cleaning Odor Remediation,Subfloor Treatment - Apply odor eating enzyme treatment to subfloor in all areas where flooring is being replaced. Treatment must be complete prior to the installation of new flooring installation.,0,0,Y
+Interior,Cleaning Odor Remediation,"Thermal Fogging - Treatment for ambient odors (food, smoke, old house smell and ambient pet odor after flooring treatments have been applied).",0,0,Y
+Interior,Cleaning Walls,"Wipe all walls and magic eraser any smudges, hand prints, dust etc. throughout the house.",0,0,Y
+Kitchen,"Closet Hardware - Replace Misc. Items (shelf, bracket, pole)",Replace missing or damaged closet items to match existing style / look and color. Caulk shelving system prior to re-paint with alex caulk,0,0,Y
+Bedroom,"Closet Hardware Replace Misc. Items (shelf, bracket, pole)",Replace missing or damaged closet items to match existing style / look and color. Caulk shelving system prior to re-paint with alex caulk,0,0,Y
+Exterior,"Closet Hardware Replace Misc. Items (shelf, bracket, pole)",Replace missing or damaged closet items to match existing style / look and color. Caulk shelving system prior to re-paint with alex caulk.,0,0,Y
+Exterior,Concrete - Demo existing,Demo and remove existing concrete $2 per sqft,0,0,Y
+Exterior,Concrete - Grind/ Level Trip Hazards,grind concrete walkways with makita all hazardous trip fall concrete $8 per linear ft minimum ?,0,0,Y
+Exterior,Concrete - Patch Cracks,Concrete patch with quickcrete $2 per linear ft minimum price ?,0,0,Y
+Exterior,Concrete - Pour New,"Concrete add up to 4"" thick non rebar $5.50 per sqft/ YD pricing minimum pour?",0,0,Y
+Kitchen,Counters - Back Splash - Repair,Counters - Repair damaged or missing back splash.,0,0,Y
+Bedroom / Bathroom / Kitchen,Counters - Repair Scratches,Repair scratches buff out and or fill with application suitable for surface $65 each unit,0,1,Y
+Bedroom / Kitchen,Counters - Repair Scratches,Re-surface or paint countertops. ,,1,Y
+Bedroom,Counters - Replace Formica,Remove and replace Counter top (SPEC) cut /template new or re-use existing sink/Faucet? $25 per Sqft,0,0,Y
+Kitchen,Counters - Replace Formica,Remove and replace Counter top (SPEC) cut /template new or re-use existing sink/Faucet? $25 per Sqft,0,0,Y
+Bedroom,Counters - Replace Formica,Remove and replace Counter top with new Formica counter to ZG Specs per sqft.,0,0,Y
+Kitchen,Counters - Replace Formica,Remove and replace Counter top with new Formica counter to ZG Specs per sqft.,0,0,Y
+Kitchen,Counters - Replace Granite,Remove and replace counter top with Granite counter top (SPEC) (EDGE-DETAIL) includes standard HGT back splash re-use or replace with undermount sink $55 per SQFT,0,0,Y
+Bedroom,Counters - Replace Solid Surface,Remove and replace with Solid Surface Counter top (SPEC) re-use or replace sink with undermount includes standard HGT back splash $55 per SQFT,0,0,Y
+Kitchen,Counters - Replace Solid Surface,Remove and replace with Solid Surface Counter top (SPEC) re-use or replace sink with undermount includes standard HGT back splash $55 per SQFT,0,0,Y
+Bedroom,Counters Replace Granite,Remove and replace counter top with Granite counter top (SPEC) (EDGE-DETAIL) includes standard HGT back splash re-use or replace with undermount sink $55 per SQFT,0,0,Y
+Crawl Spaces,Crawl Space - Demo,"Demo items left in crawl space, rake out and make sure that they vapor barrier is in place and in good shape.",3.5,0,Y
+Crawl Spaces,Crawl Space - Demo Low Drain,Crawlspace Demo Low Drain & Replace,0,0,Y
+Crawl Spaces,Crawl Space - Demo Vapor Barrier and install,Crawl Space Demo Vapor Barrier and install new. make sure that the ground is raked out and free of debris and has proper drainage per 120 sqft.,0,0,Y
+Crawl Spaces,Crawl Space - Door,Crawlspace Demo Crawl Entry Door &Replace/Rebuild door as needed,0,0,Y
+Crawl Spaces,Crawl Space - Ducts,Crawl Space Secure ducts and wires to make sure that they are functional and will not cause a safety hazard.,0,0,Y
+Crawl Spaces,Crawl Space - Insulation,Crawl Space Replace/Repair loose or missing insulation in crawl space. secure and make sure it will not fall down. Per sqft,0,0,Y
+Crawl Spaces,Crawl Space - Penetrations,Crawlspace/Basement - Seal penetrations throughout (foam),0,0,Y
+Crawl Spaces,Crawl Space - Positive Drainage,Crawlspace - Provide positive drainage in crawlspace area (regrade) dirt with rake and level out as best as possible,0,0,Y
+Crawl Spaces,Crawl Space - Shim Posts,Crawlspace - Shim girders / joists within Crawlspace area to bear full weight on piers use hard wood or plywood shims to secure as needed (3 pier price),0,0,Y
+Crawl Spaces,Crawl Space - Vapor Barrier,"Install vapor barrier. remove old area, rake out ground to drain properly, install new plastic and secure per 120 sqft",0,0,Y
+Crawl Spaces,Crawl Space - Vents ,Replace crawlspace vents as needed.,0,1,Y
+Crawl Spaces,Crawl Space - Vents ,Secure loose crawlspace vents as needed. ,0,1,Y
+Crawl Spaces,Crawl Space - Vents ,*Empty,0,0,Y
+Crawl Spaces,Crawl Space - WDO,WDO - Wood Destroying Organisms - remediate WDO on wood with proper treatment.,0,0,Y
+Decks,Deck Balusters,Decks - Replace wood baluster - each.,0,0,Y
+Decks,Decking - Frame/Support Replace Damaged Stair Stringer / Treads,Replace damaged stair stringers (per Stringer) with new pressure treated stringer (needs treads).,0,0,Y
+Decks,Decking - Surface - Replace Boards (single),Replace single damaged Deck Boards as needed 16 ft boards.,0,0,Y
+Decks,Decking - Surface - Secure / Screw Down Boards,Replace loose or missing screws on decks to tighten up boards and remove trip hazzards.,0,0,Y
+Decks,Decking - Surface Replace Boards (by total sqft),Replace damaged deck boards total sqft replacement with new pressure treated 2x6 boards.,0,0,Y
+Decks,Decking 6x6 Post,Replace 6x6 post with new pressure treated 6x6. price includes post and concrete.,0,0,Y
+Decks,Decking Finish Paint/ Stain Deck,Paint / Stain decks to match existing color. make sure to sand down roughed edges and secure deck as needed before stain/ painting.,0,0,Y
+Decks,Decking Flashing - Replace,Install new flashing at deck.,0,0,Y
+Decks,Decking- Frame/ Support Repair/ Secure Ledger Board,Lag Bolt deck ledger to house and lag bolt to posts as needed to support deck.,0,0,Y
+Decks,Decking Frame/ Support Replace Post,Replace damaged Deck Posts with new 4x4 pressure treated post.,0,0,Y
+Decks,Decking- Frame/Support - Install Joist / Post Support Hangers,Install joist / post support hangers.,0,0,Y
+Decks,Decking- Frame/Support - Replace Joists,replace damaged or missing joist to match existing construction. secured to ledgers with proper hanger and nailing.,0,0,Y
+Decks,Decking Railing - Replace Stair Handrail,Deck railing replacement.,0,0,Y
+Decks,Decking- Railing Replace Handrail,Replace damaged railing with new pressure treated 6 ft hand rails.,0,0,Y
+Kitchen,Demo - Blinds,Remove broken / old blinds and caulk holes and touch up paint,0,0,Y
+Bedroom,Demo - Interior Ceiling Fan,Remove bad ceiling fan and replace with flush mount light,0,0,Y
+Kitchen,Demo - Interior Ceiling Fan,Remove bad ceiling fan and replace with flush mount light,0,0,Y
+Interior,Demo - Laminate Flooring,Demo laminate flooring per sqft of room,0,0,Y
+Bedroom,Demo - Laminate Flooring,Demo laminate flooring per sqft of room,0,0,Y
+Kitchen,Demo - Laminate Flooring,Demo laminate flooring per sqft of room,0,0,Y
+Exterior,Demo - Lights,Demo lights and remove wires back to source and cap off lines. make sure that there is not electrical safety issues.,0,0,Y
+Exterior,Demo - Misc Items / Trash,remove any items from yard or property that was left behind.,0,0,Y
+Kitchen,Demo - Misc Items / Trash,remove any items from yard or property that was left behind.,0,0,Y
+Demo Items,Demo - Misting System,Demo misting system. fill holes and touch up paint to match.,0,0,Y
+Kitchen,Demo - Pet Door,"Demo, Patch, Drywall: Add Insulation, Stucco repair and paint interior and exterior to match and blend patches as to not been noticed,",0,0,Y
+Demo Items,Demo - Security Cameras,Demo Security Cameras off house. caulk holes and touch up paint as needed to match existing.,0,0,Y
+Kitchen,Demo - Shelving,"Demo shelving, patch/texture mounting holes, and paint to match.",0,0,Y
+Demo Items,Demo - Sink in Laundry/ Garage,Demo damaged or non working sink in laundry / Garage. cap off lines and drain and paint to match wall color.,0,0,Y
+Bedroom,Demo - Wallpaper (over 500 sq ft),Additional Wallpaper Removal - Remove wallpaper in excess of 500 sq. ft. per sqft .50,0,0,Y
+Kitchen,Demo - Wallpaper (over 500 sq ft),Additional Wallpaper Removal - Remove wallpaper in excess of 500 sq. ft. per sqft .50,0,0,Y
+Demo Items,Demo - Window Screens,Demo Screens - Remove all screens from home.,0,0,Y
+Exterior,Demo - Window Screens,Demo Screens - Remove all screens from home.,0,0,Y
+Bedroom,Demo Blinds,Remove broken / old blinds and caulk holes and touch up paint,0,0,Y
+Demo Items,Demo Blinds,Remove broken / old blinds and caulk holes and touch up paint.,0,0,Y
+Demo Items,Demo Curtain Rod/Valance,Remove curtain rod and/or valance and patch holes and paint to match.,0,0,Y
+Demo Items,Demo Dumpster/ Hall Away,Demo requires a dumpster to remove all items.,0,0,Y
+Demo Items,Demo Exterior Ceiling Fan,Remove ceiling fan at exterior patio and replace with Flush mount light.,0,0,Y
+Exterior,Demo Exterior Ceiling Fan,Remove ceiling fan at exterior patio and replace with Flush mount light.,0,0,Y
+Bedroom,Demo Misc Items / Trash,remove any items from yard or property that was left behind.,0,0,Y
+Demo Items,Demo Misc Items/ Trash,Remove any items from yard or property that was left behind.,0,0,Y
+Attic,Demo Misc Items/Trash,Remove any items from yard or property that was left behind.,0,0,Y
+Exterior,Demo Misting System,Demo misting system. fill holes and touch up paint to match.,0,0,Y
+Demo Items,Demo Patio Roof/ Plywood,"Demo roof on patio to expose bad plywood, replace plywood and make ready for new roof to be installed 3.00 sqft need to enter in patio measurements.",0,0,Y
+Exterior,Demo Pet Door,"Demo, Patch, Drywall: Add Insulation, Stucco repair and paint interior and exterior to match and blend patches as to not been noticed,",0,0,Y
+Bedroom,Demo Pet Door,"Demo, Patch, Drywall: Add Insulation, Stucco repair and paint interior and exterior to match and blend patches as to not been noticed,",0,0,Y
+Demo Items,Demo Pet Door,"Demo, Patch, Drywall: Add Insulation, Stucco repair and paint interior and exterior to match and blend patches as to not been noticed.",0,0,Y
+Demo Items,Demo Satellite Dish,demo satelite dish from house and patch holes in roof and/or wall and touch up paint to match. remove all coax cables and clips.,0,0,Y
+Exterior,Demo Security Cameras,Demo Security Cameras off house. caulk holes and touch up paint as needed to match existing.,0,0,Y
+Exterior,Demo Security Door,Remove bad security door and fill holes and paint trim to match existing color,0,0,Y
+Demo Items,Demo Shed / Structures,Demo any shed or structures in yard and remove from site. rake out area to make like new conditions.,0,0,Y
+Bedroom,Demo Shelving,"Demo shelving, patch/texture mounting holes, and paint to match.",0,0,Y
+Demo Items,Demo Spa,Remove Spa from property. demo all lines and electrical back to source and rake out area to like new condition.,0,0,Y
+Demo Items,Demo Stone /Bricks,"Demo stones, bricks and other items.",0,0,Y
+Demo Items,"Demo Tool Racks, Cabinets & Peg Board","Remove all peg board, cabinets, shelves and misc items on walls in garage. fill holes with caulk and smooth out.",0,0,Y
+Exterior,"Demo Tool Racks, Cabinets & Peg Board","Remove all peg board, cabinets, shelves and misc items on walls in garage. fill holes with caulk and smooth out.",0,0,Y
+Demo Items,Demo Water Softner,Demo Water Softner and install copper line to connect water lines back together. remove item from house.,0,0,Y
+Exterior,Door Hardware - Dead Bolt Bore,Doors - Bore door for deadbolt in exterior doors that are missing a dead bolt. (dead bolt is in the re-key portion of line Item).,0,0,Y
+Bedroom,Door Hardware Strike Plate,Doors - Hardware - install/replace damaged strike plate,0,0,Y
+Kitchen,Door Hardware Strike Plate,Doors - Hardware - install/replace damaged strike plate,0,0,Y
+Exterior,Doors,Adjust all doors to make sure that they open and close properly.,0,0,Y
+Bedroom,Doors - Ball Catch - Repair or Replace,Repair or replace ball catch on top of door,0,0,Y
+Kitchen,Doors - Ball Catch - Repair or Replace,Repair or replace ball catch on top of door,0,0,Y
+Kitchen,Doors - Ball Catch - Repair or Replace,Repair or replace ball catch on top of door.,0,0,Y
+Kitchen,Doors - Bifold Doors - Install or Replace,Install or replace bifold doors. include handle and hardware. paint to match existing doors,0,0,Y
+Kitchen,Doors - General - Adjustment for Proper Operation,"Adjust door to operate properly, tighten hinge set, sand door edge",0,0,Y
+Bedroom,Doors - General - Replace Interior Door (Slab Only),"remove and replace interior slab door, mortise in hinges and hang door to properly close and latch",0,0,Y
+Kitchen,Doors - General - Replace Interior Door (Slab Only),"remove and replace interior slab door, mortise in hinges and hang door to properly close and latch",0,0,Y
+Kitchen,Doors - General - Replace Threshold,Remove and replace threshold with aluminum/wood unit anchor into concrete silicone and seal,0,0,Y
+Exterior,Doors - Security Door - Change Out Deadbolt / Handle/ Knob,Remove dead bold and add in blank filler and replace bottom knob with a passage knob. match same color as new door locks,0,0,Y
+Exterior / Bedroom / Kitchen / Bathroom,Doors - Service Door - Replace,"Remove and replace door, install proper flashings and sealants to prevent water intrusion.",0,1,Y
+Exterior,Doors - Service Door - Replace,"Replace damaged service door with new door, threshold weather stripping and casing",0,0,Y
+Bedroom,Doors - Service Door - Replace,"Replace damaged service door with new door, threshold weather stripping and casing",0,0,Y
+Kitchen,Doors - Service Door - Replace,"Replace damaged service door with new door, threshold weather stripping and casing",0,0,Y
+Bedroom,Doors Bifold Doors - Install or Replace,Install or replace bifold doors. include handle and hardware. paint to match existing doors,0,0,Y
+Bedroom,"Doors Bypass Door - Replace Door, Track & Guide",Install new bypass door complete set with new track and guides,0,0,Y
+Kitchen,"Doors Bypass Door - Replace Door, Track & Guide",Install new bypass door complete set with new track and guides,0,0,Y
+Exterior,Doors French Doors - Replace,Install new french door system to replace damaged old one. install new interior trim and exterior trim to match existing.,0,0,Y
+Bedroom,Doors French Doors - Replace,Install new french door system to replace damaged old one. install new interior trim and exterior trim to match existing.,0,0,Y
+Kitchen,Doors French Doors - Replace,Install new french door system to replace damaged old one. install new interior trim and exterior trim to match existing.,0,0,Y
+Exterior,Doors Front/ Entry Door - Replace,Remove and replace front door with fiberglass standard (SPEC),0,0,Y
+Exterior,Doors Garage Door - Replace Trim,Replace or add vinyl garage door molding that is either separated or damaged beyond repair,0,0,Y
+Bedroom,Doors General - Add / Replace Weather Stripping,Install weather stripping (spec) sizes matter per each door unit,0,0,Y
+Kitchen,Doors General - Add / Replace Weather Stripping,Install weather stripping (spec) sizes matter per each door unit,0,0,Y
+Exterior,Doors General - Add/ Replace Weather Stripping,Install weather stripping (spec) sizes matter per each door unit,0,0,Y
+Exterior,Doors General - Adjustment for Proper Operation,"Adjust door to operate properly, tighten hinge set, sand door edge",0,0,Y
+Bedroom,Doors General - Adjustment for Proper Operation,"Adjust door to operate properly, tighten hinge set, sand door edge",0,0,Y
+Bedroom,Doors General - Repair Door Jamb,"Door Fix jamb issues and holes as needed, caulk trim, caulk jamb separation, caulk unusually large nail holes",0,0,Y
+Kitchen,Doors General - Repair Door Jamb,"Door Fix jamb issues and holes as needed, caulk trim, caulk jamb separation, caulk unusually large nail holes",0,0,Y
+Exterior,Doors General - Repair Door Jamb,"Replace damaged or missing door casing to match existing home. this is per package of three pieces, so one side of the door. both side will require 2 of these.",0,0,Y
+Exterior,Doors General - Replace Casing & Trim,"Replace damaged or missing door casing to match existing home. this is per package of three pieces, so one side of the door. both side will require 2 of these.",0,0,Y
+Exterior,Doors General - Replace or Install Door Sweep,Install or Replace door sweep.,0,0,Y
+Bedroom,Doors General - Replace Threshold,Remove and replace threshold with aluminum/wood unit anchor into concrete silicone and seal,0,0,Y
+Kitchen,Doors General - Replace Threshold,Remove and replace threshold with aluminum/wood unit anchor into concrete silicone and seal,0,0,Y
+Interior,Doors General Adjustment for Proper Operation (whole home),Adjust all doors to make sure that they open and close properly.,0,0,Y
+Exterior,Doors General Install Bommer Hinges and High Handle,"Install self-closing hinges and high handle on door. Pricing is inclusive of replacing hinges, drilling out holes for high handle, high handle installation and door adjustment.",0,0,Y
+Exterior,Doors General Repair Chips/Holes,Doors - Repair Chips or Holes in door with caulk and or wood filler,0,0,Y
+Bedroom,Doors General Repair Chips/Holes,Doors - Repair Chips or Holes in door with caulk and or wood filler,0,0,Y
+Kitchen,Doors General Repair Chips/Holes,Doors - Repair Chips or Holes in door with caulk and or wood filler,0,0,Y
+Bedroom,Doors General Replace Casing& Trim,"Replace damaged or missing door casing to match existing home. this is per package of three pieces, so one side of the door. both side will require 2 of these.",0,0,Y
+Kitchen,Doors General Replace Casing& Trim,"Replace damaged or missing door casing to match existing home. this is per package of three pieces, so one side of the door. both side will require 2 of these.",0,0,Y
+Exterior,Doors General Replace Hinges,remove and replace missing or mismatched hinges with similar style and color to match home,0,0,Y
+Bedroom,Doors General Replace Hinges,remove and replace missing or mismatched hinges with similar style and color to match home,0,0,Y
+Kitchen,Doors General Replace Hinges,remove and replace missing or mismatched hinges with similar style and color to match home,0,0,Y
+Bedroom,Doors General Replace Knob/ Handle/ Deadbolt,Replace Interior Door Hardware - Passage,0,0,Y
+Kitchen,Doors General Replace Knob/ Handle/ Deadbolt,Replace Interior Door Hardware - Passage,0,0,Y
+Bedroom,Doors General Replace Knob/ Handle/ Deadbolt,Replace Interior Door Hardware - Privacy,0,0,Y
+Kitchen,Doors General Replace Knob/ Handle/ Deadbolt,Replace Interior Door Hardware - Privacy,0,0,Y
+Bedroom,Doors General Replace or Install Door Sweep,Install or Replace door sweep,0,0,Y
+Kitchen,Doors General Replace or Install Door Sweep,Install or Replace door sweep,0,0,Y
+Exterior,Doors General Replace Threshold,Remove and replace threshold with aluminum/wood unit anchor into concrete silicone and seal,0,0,Y
+Bedroom,Doors General Replace with Pre-Hung,Replace interior door with new pre hung door package,0,0,Y
+Kitchen,Doors General Replace with Pre-Hung,Replace interior door with new pre hung door package,0,0,Y
+Bedroom,Doors Sliding Glass Door - Install Self-Closing Mechanism,Install self closing Sliding Glass Door closure to meet Pool Code.,0,0,Y
+Kitchen,Doors Sliding Glass Door - Install Self-Closing Mechanism,Install self closing Sliding Glass Door closure to meet Pool Code.,0,0,Y
+Exterior,Doors Sliding Glass Door Install Self-Closing Mechanism,Install self closing Sliding Glass Door closure to meet Pool Code.,0,0,Y
+Bedroom,Drywall - Specified Area Replace & Texture (between 2'x2' - 4'x4'),Drywall repairs on larger section (between 2'x2' - 4'x4)  of all or ceiling. repair and match texture,0,0,Y
+Kitchen,Drywall - Specified Area Replace & Texture (between 2'x2' - 4'x4'),Drywall repairs on larger section (between 2'x2' - 4'x4)  of all or ceiling. repair and match texture,0,0,Y
+Bedroom,Drywall - Specified Area Replace & Texture (between 2'x2' - 4'x4'),Paint - Touch up paint in selected repair areas,0,0,Y
+Kitchen,Drywall - Specified Area Replace & Texture (between 2'x2' - 4'x4'),Paint - Touch up paint in selected repair areas,0,0,Y
+Bedroom,Drywall Ceiling Remove Popcorn& Re-texture,Paint ceiling to match existing house colors (FLAT paint on ceilings),0,0,Y
+Kitchen,Drywall Ceiling Remove Popcorn& Re-texture,Paint ceiling to match existing house colors (FLAT paint on ceilings),0,0,Y
+Bedroom,Drywall Ceiling Remove Popcorn& Re-texture,Scrape off popcorn ceiling and re-texture ceilings put plastic and drop cloths down on flooring materials !!  Pricing per room,0,0,Y
+Kitchen,Drywall Ceiling Remove Popcorn& Re-texture,Scrape off popcorn ceiling and re-texture ceilings put plastic and drop cloths down on flooring materials !!  Pricing per room,0,0,Y
+Bedroom,Drywall Corner Bead - Replace,Remove and replace corner bead confirm wall hght 8'-10',0,0,Y
+Kitchen,Drywall Corner Bead - Replace,Remove and replace corner bead confirm wall hght 8'-10',0,0,Y
+Bedroom,Drywall Corner Bead Repair,"Repair damaged or dented corner bead, add drywall screw, caulk or drywall mud damaged area",0,0,Y
+Kitchen,Drywall Corner Bead Repair,"Repair damaged or dented corner bead, add drywall screw, caulk or drywall mud damaged area",0,0,Y
+Bedroom,Drywall -Specified Area - Replace & Texture (up to 2'x2'),Repair drywall up to 2x2 section match texture and prep for paint,0,0,Y
+Kitchen,Drywall -Specified Area - Replace & Texture (up to 2'x2'),Repair drywall up to 2x2 section match texture and prep for paint,0,0,Y
+Bedroom,Drywall Specified Area - Replace& Texture (over 4'x4'),Large Drywall - Replace drywall and texture to match existing. prep for paint,0,0,Y
+Kitchen,Drywall Specified Area - Replace& Texture (over 4'x4'),Large Drywall - Replace drywall and texture to match existing. prep for paint,0,0,Y
+Exterior,Drywall Specified Area Replace & Texture (between 2'x2' - 4'x4),Drywall repairs on larger section (between 2'x2' - 4'x4)  of all or ceiling. repair and match texture,0,0,Y
+Exterior,Drywall -Specified Area Replace & Texture (over 4'x4'),Large Drywall - Replace drywall and texture to match existing. prep for paint,0,0,Y
+Interior,Drywall- Whole House - Standard Touch-Ups (minor),"Drywall- Standard touch up whole house cracks, holes and small patches",0,0,Y
+Exterior,Drywall-Specified Area - Replace & Texture (up to 2'x2),Repair drywall up to 2x2 section match texture and prep for paint,0,0,Y
+Exterior,Electrical - Ceiling Fan - Replace,"Remove and Replace 42"" Ceiling Fan w/ Light Kit",0,0,Y
+Exterior / Bedroom / Kitchen,Electrical - Ceiling Fan Light - Replace Globe,Repair or replace bent ceiling fan blades.,0,1,Y
+Exterior / Bedroom / Kitchen,Electrical - Ceiling Fan Light - Replace Globe,Replace damaged or missing ceiling fan globe with like style and color,0,1,Y
+Exterior / Bedroom / Kitchen,Electrical - Ceiling Fan Light - Replace Globe,Secure loose ceiling fan as needed.,0,1,Y
+Bedroom,Electrical - Ceiling Fan Replace,"Remove and Replace 42"" Ceiling Fan w/ Light Kit",0,0,Y
+Kitchen,Electrical - Ceiling Fan Replace,"Remove and Replace 42"" Ceiling Fan w/ Light Kit",0,0,Y
+Bedroom,Electrical - Ceiling Fan Replace,"Remove and Replace 52"" Ceiling Fan Only",0,0,Y
+Kitchen,Electrical - Ceiling Fan Replace,"Remove and Replace 52"" Ceiling Fan Only",0,0,Y
+Bedroom,Electrical - Ceiling Fan Replace,"Remove and Replace 52"" Ceiling Fan w/ Light Kit",0,0,Y
+Kitchen,Electrical - Ceiling Fan Replace,"Remove and Replace 52"" Ceiling Fan w/ Light Kit",0,0,Y
+Exterior,Electrical - Door Bell Replace,replace electrical door chime and or add battery operated door chime,0,0,Y
+Exterior,Electrical - Door Bell Replace Button Only (not chime),replace broken or missing door bell button only,0,0,Y
+Exterior,Electrical - Exterior - Install Weatherproof Outlet Cover,Install water proof outlet cover,0,0,Y
+Exterior,Electrical - Exterior - Replace Mechanical Timer (Water Heater/Pool),Replace mechanical timer and conduit/ whip.,0,0,Y
+Bedroom,Electrical - Lighting - Install Can Light,"install 4"" can light (where required) on existing circuit with remodel box in each room only not whole house",0,0,Y
+Kitchen,Electrical - Lighting - Install Can Light,"install 4"" can light (where required) on existing circuit with remodel box in each room only not whole house",0,0,Y
+Exterior,Electrical - Lighting - Install Can Light,"install 6"" can light (where required) on existing circuit with remodel box in each room only not whole house",0,0,Y
+Bedroom,Electrical - Lighting - Install Can Light,"install 6"" can light (where required) on existing circuit with remodel box in each room only not whole house",0,0,Y
+Kitchen,Electrical - Lighting - Install Can Light,"install 6"" can light (where required) on existing circuit with remodel box in each room only not whole house",0,0,Y
+Exterior,Electrical - Lighting - Replace Can Light Trim Kit,Install missing or damaged can light trim bezel,0,0,Y
+Bedroom,Electrical - Lighting - Replace Can Light Trim Kit,Install missing or damaged can light trim bezel,0,0,Y
+Kitchen,Electrical - Lighting - Replace Can Light Trim Kit,Install missing or damaged can light trim bezel,0,0,Y
+Exterior,Electrical - Lighting - Replace Flush Mount Light,replace flush mount light,0,0,Y
+Bedroom,Electrical - Lighting - Replace Flush Mount Light,replace flush mount light,0,0,Y
+Kitchen,Electrical - Lighting - Replace Flush Mount Light,replace flush mount light,0,0,Y
+Attic,Electrical - Lighting - Replace Light Bulb,Remove and replace light bulb parts and material.,0,0,Y
+Bedroom,Electrical - Lighting - Wall Sconce,Replace missing or damaged wall sconce to match as close as possible to any existing ones.,0,0,Y
+Kitchen,Electrical - Lighting - Wall Sconce,Replace missing or damaged wall sconce to match as close as possible to any existing ones.,0,0,Y
+Exterior,Electrical - Outlet/ Switch Replace,Replace switch/outlet with similar color and style (Deco/Toggle),0,0,Y
+Electrical,Electrical - Panel - Label/ ldentify Breakers,Label electrical panel with sharpie.,0,0,Y
+Electrical,Electrical - Panel - Repair / Secure Loose Wires,Install an approved electrical bond wire for CSST gas line. [100 - 250 - 300],Varies,1,Y
+Electrical,Electrical - Panel - Repair Burnt Wires,"Repair burnt wires in panel, cut back and strip wire to expose good copper when possible.",0,0,Y
+Electrical,Electrical - Panel - Replace Circuit Breaker,Replace electrical panel breaker or make adjustments as needed to ensure a proper wire ampacity. Wire appears to be too small for the breaker.,0,1,Y
+Electrical,Electrical - Panel - Replace Circuit Breaker,Replace breaker,0,0,Y
+Electrical,Electrical - Panel - Replace Double Tap Breaker,Replace improper double tap with correct double pole breaker. Match breaker size and ( maker when possible ).,0,0,Y
+Electrical,Electrical - Panel - Tighten/Secure to Wall,Secure electrical panel with new lag/Screws,0,0,Y
+Electrical,Electrical - Panel - Upgrade/ Replace,Upgrade panel to code compliant panel. Will need a permit pulled for swap out.,0,0,Y
+Bedroom,Electrical - Smoke & CO Detectors Replace Carbon Monoxide Detector,Replace missing carbon monoxide detectors,0,0,Y
+Kitchen,Electrical - Smoke & CO Detectors Replace Carbon Monoxide Detector,Replace missing carbon monoxide detectors,0,0,Y
+Plumbing,Electrical - Water Heater - Repair Electrical Supply/ Conduit,Repair water heater electrical supply/conduit.,0,0,Y
+Interior,Electrical - Whole House Replace All Outlet/ Switch Cover Plates,Remove and replace all outlet and switch cover plates.,0,0,Y
+Interior,Electrical - Whole House Replace Smoke Detectors,Replace whole house smoke detectors,0,0,Y
+Attic,Electrical - Wiring - Repair/ Fix Improper Wiring in Attic,"Repair electrical splices, Open Junction Boxes, Exposed wires in attic. Add junction boxes and replace wires as needed.",0,0,Y
+Electrical,Electrical - Wiring - Replace Aluminum Wiring,Replace aluminum wiring with proper copper wiring to bring up to code. rewire whole house will require permitting. drywall patching and painting as well in multiple areas.,0,0,Y
+Exterior,Electrical Exterior - Replace Exterior Sconce,Replace broken or missing exterior sconce at front and/or side door to match existing style and color,0,0,Y
+Plumbing,Electrical Exterior - Replace Mechanical Timer (Water Heater/Pool),Replace mechanical timer and conduit/ whip.,0,0,Y
+Exterior,Electrical- Lighting - Replace Flush Mount Light,Replace flush mount light.,0,0,Y
+Exterior,Electrical Outlet/ Switch Replace GFCI Outlet,remove and replace GFCI outlet,0,0,Y
+Bedroom,Electrical Outlet/ Switch Replace GFCI Outlet,remove and replace GFCI outlet,0,0,Y
+Kitchen,Electrical Outlet/ Switch Replace GFCI Outlet,remove and replace GFCI outlet,0,0,Y
+Attic,Electrical- Outlet/Switch Replace,Replace switch/outlet with similar color and style (Deco/Toggle).,0,0,Y
+Electrical,Electrical- Panel - Federal Panel Upgrade,Upgrade federal panel with new panel sized to fit the current needs of power. will require an over the counter permit and must be done by licensed electrician.,0,0,Y
+Electrical,Electrical Panel or Box - Install Knockouts,Replace knock outs in electrical box for missing circuits.,0,0,Y
+Electrical,Electrical- Panel Repair / Secure Loose Wires,Repair loose wires at breakers. Make sure panel is safe and wires are tight.,0,1,Y
+Exterior,Electrical- Power / Wiring Replace or Add Whip,Replace / Add Electrical whip to power supply or disconnect - ensure sure sealed and secure.,0,0,Y
+Bedroom,Electrical- Smoke & CO Detectors Replace Smoke Detector,Remove and replace smoke detector,0,0,Y
+Kitchen,Electrical- Smoke & CO Detectors Replace Smoke Detector,Remove and replace smoke detector,0,0,Y
+Interior,Electrical Whole House Install GFCI,Install gfci through out whole house to meet code.,0,0,Y
+Exterior,Exterior - Mailbox / Post - Straighten/ Secure,Straighten mailbox and secure post to ground.,0,0,Y
+Exterior,Exterior Address Numbers - Replace,Remove and Replace Existing Address Numbers,0,0,Y
+Exterior,Exterior- All Surfaces Pressure Wash,"Thorough, Professional Cleaning of Exterior Surfaces and All Flat Concrete Areas",0,0,Y
+Exterior,Exterior Brick and Mortar - Repairs,Repair brick and mortar cracks and joints,0,0,Y
+Exterior,Exterior Deco Drains Replace,Replace lifted or broken deco drains at walk ways that pose a tripping hazard. lift old out and install new to same width and color. make sure that the item is flush and secure,0,0,Y
+Exterior,Exterior Mailbox / Post - Install or Replace,Install or Replace Mailbox and Post,0,0,Y
+Fencing,Fencing - Perimeter - Replace Gate (lIron & Wood),install new wrought iron fence gate with wood slats stained and sealed.,0,0,Y
+Fencing,Fencing- Handrail /Gate - Secure/ Adjust,Adjust gate to prevent binding when closing.,0,0,Y
+Fencing,Fencing- Perimeter - Install new Fence Boards at Gate,Replace cedar boards in gate fence $16 LNFT   includes stain/seal.,0,0,Y
+Fencing,Fencing Perimeter - Install New Wood Gate,Install new wood gate and hardware.,0,0,Y
+Fencing,Fencing Perimeter - Repair / Replace Block Wall Cap,Re-attach fence cap to block wall with Power grab caulking to secure. replace if missing with like color.,0,0,Y
+Fencing,Fencing Perimeter - Repair and Paint Rusted Iron,"Grind wire wheel, prime and paint rusted fence  $4.5 per SQFT",0,0,Y
+Fencing,Fencing Perimeter Replace Damaged Wood Panel,"Replace broken, Damaged or missing wood fencing panels with like material and color.",0,0,Y
+Exterior,Fireplace - Chimney - Cap Paint,Chimney - Scrape and Paint Chimney Cap and Spark Arrestor.,0,0,Y
+Exterior,Fireplace - Seal Gas Line,Fireplace - Seal gas line penetration at fireplace - Caulk around the pipe in the firebox.,0,0,Y
+Interior / Bedroom / Kitchen / Bath,Flooring - Carpet - Remove & Replace,Remove and replace carpet and pad $1.62 sqft. Added 15% for waste.,0,1,Y
+Interior,Flooring - Carpet - Remove & Replace,remove and replace carpet and pad $1.62 sqft,0,0,Y
+Interior,Flooring - Hardwood Refinish Hardwood Flooring,"Buff and coat hardwood flooring. Pricing inclusive of labor, materials and equipment.",0,0,Y
+Interior,Flooring - Hardwood Refinish Hardwood Flooring,"Sand and refinish hardwood flooring. Pricing inclusive of labor, materials and equipment.",0,0,Y
+Bedroom,Flooring - Tile - Install New (Color Scheme B - Grey Tones),Replace tile floor with new color scheme b grey tones  sqft,0,0,Y
+Kitchen,Flooring - Tile - Install New (Color Scheme B - Grey Tones),Replace tile floor with new color scheme b grey tones  sqft,0,0,Y
+Bedroom,Flooring - Tile Demo & Prep,Demo Tile Flooring to include scraping thin set and getting floor prep for new tile per Sqft,0,0,Y
+Kitchen,Flooring - Tile Demo & Prep,Demo Tile Flooring to include scraping thin set and getting floor prep for new tile per Sqft,0,0,Y
+Interior,Flooring - Vinyl Demo & Prep,Demo vinyl flooring to include scraping and patch back floor and prep for new install,0,0,Y
+Interior,Flooring - Vinyl Install New,Empty,0,0,Y
+Bedroom,Flooring - Wood - Install New (engineered wood),Install engineered wood flooring,0,0,Y
+Kitchen,Flooring - Wood - Install New (engineered wood),Install engineered wood flooring,0,0,Y
+Interior,Flooring Carpet - Demo & Prep (to be replaced with alternative flooring type),"Demo carpet, padding and tack strips. Prepare surface for the installation of an alternative flooring type.",0,0,Y
+Bedroom,Flooring Carpet - Demo & Prep (to be replaced with alternative flooring type),"Demo carpet, padding and tack strips. Prepare surface for the installation of an alternative flooring type.",0,0,Y
+Kitchen,Flooring Carpet - Demo & Prep (to be replaced with alternative flooring type),"Demo carpet, padding and tack strips. Prepare surface for the installation of an alternative flooring type.",0,0,Y
+Interior / Bedroom / Kitchen ,Flooring Carpet Stretching & Repairs,Repair/Patch carpet to match existing - price per area,0,1,Y
+Bedroom / Kitchen / Interior,Flooring Carpet Stretching & Repairs,Stretch carpet and re-tack to remove rolls and loose carpet in rooms,0,1,Y
+Interior,Flooring Carpet Stretching & Repairs,Stretch carpet and re-tack to remove rolls and loose carpet in rooms,0,0,Y
+Bedroom,Flooring General - Replace / Repair Transition Strip,Replace or re-attach loose or missing marble transition flooring strip,0,0,Y
+Kitchen,Flooring General - Replace / Repair Transition Strip,Replace or re-attach loose or missing marble transition flooring strip,0,0,Y
+Bedroom,Flooring General - Replace / Repair Transition Strip,Replace or re-attach loose or missing transition flooring strip,0,0,Y
+Kitchen,Flooring General - Replace / Repair Transition Strip,Replace or re-attach loose or missing transition flooring strip,0,0,Y
+Bedroom,Flooring Hardwood - Refinish Hardwood Flooring,"Buff and coat hardwood flooring. Pricing inclusive of labor, materials and equipment.",0,0,Y
+Kitchen,Flooring Hardwood - Refinish Hardwood Flooring,"Buff and coat hardwood flooring. Pricing inclusive of labor, materials and equipment.",0,0,Y
+Bedroom,Flooring Hardwood - Refinish Hardwood Flooring,"Sand and refinish hardwood flooring. Pricing inclusive of labor, materials and equipment.",0,0,Y
+Kitchen,Flooring Hardwood - Refinish Hardwood Flooring,"Sand and refinish hardwood flooring. Pricing inclusive of labor, materials and equipment.",0,0,Y
+Bedroom,Flooring- Tile - Install New (Color Scheme A - Earth Tones),Install new flooring to Scheme A colors (Earth Tones) Sqft,0,0,Y
+Kitchen,Flooring- Tile - Install New (Color Scheme A - Earth Tones),Install new flooring to Scheme A colors (Earth Tones) Sqft,0,0,Y
+Interior,Flooring Tile - Install New (Color Scheme A Earth Tones),Install new flooring to Scheme A colors (Earth Tones) Sqft,0,0,Y
+Bedroom,Flooring Tile - Re-grout,"Re grout floor tile, includes grinding embedded loose grout $2.5 SQFT",0,0,Y
+Kitchen,Flooring Tile - Re-grout,"Re grout floor tile, includes grinding embedded loose grout $2.5 SQFT",0,0,Y
+Interior,Flooring Tile Demo & Prep,Demo Tile Flooring to include scraping thin set and getting floor prep for new tile per Sqft,0,0,Y
+Interior,Flooring Tile Demo & Prep,Demo Tile Flooring to include scraping thin set and getting floor prep for new tile per Sqft,0,0,Y
+Interior,Flooring- Tile Re-grout,"Re grout floor tile, includes grinding embedded loose grout $2.5 SQFT",0,0,Y
+Bedroom,Flooring Tile Repair Cracks,Add matching grout to fill in cracks in tile. make sure that the tile crack is flush to the touch and no sharp edges.,0,0,Y
+Kitchen,Flooring Tile Repair Cracks,Add matching grout to fill in cracks in tile. make sure that the tile crack is flush to the touch and no sharp edges.,0,0,Y
+Bedroom,Flooring Tile Replace Individual Tiles,"Replace individual tiles through tile match. If unable to match, swap mismatched tile with one in less trafficked area (beneath appliance or in pantry)",0,0,Y
+Kitchen,Flooring Tile Replace Individual Tiles,"Replace individual tiles through tile match. If unable to match, swap mismatched tile with one in less trafficked area (beneath appliance or in pantry)",0,0,Y
+Bedroom,Flooring Vinyl - Demo & Prep,Demo vinyl flooring to include scraping and patch back floor and prep for new install,0,0,Y
+Kitchen,Flooring Vinyl - Demo & Prep,Demo vinyl flooring to include scraping and patch back floor and prep for new install,0,0,Y
+Bedroom,Flooring Vinyl - Install New,Empty,0,0,Y
+Kitchen,Flooring Vinyl - Install New,Empty,0,0,Y
+Bedroom,Flooring -Wood - Demo & Prep,Demo wood flooring (floating floor) and prep for new floor install,0,0,Y
+Kitchen,Flooring -Wood - Demo & Prep,Demo wood flooring (floating floor) and prep for new floor install,0,0,Y
+Bedroom,Flooring- Wood - Repair/ Stain Scratches,stain color match floor $25 each area (piece) quantify,0,0,Y
+Kitchen,Flooring- Wood - Repair/ Stain Scratches,stain color match floor $25 each area (piece) quantify,0,0,Y
+Interior,Flooring Wood Demo & Prep,Demo wood flooring (floating floor) and prep for new floor install,0,0,Y
+Interior,Flooring Wood Install New (engineered wood),Install engineered wood flooring,0,0,Y
+Interior,Flooring-Sheet Vinyl - Remove and replace,"Remove and replace sheet vinyl. Includes demo, prep and shoe molding.",0,0,Y
+HVAC,GC - HVAC - AC Freon Lines - Replace Insulation,Replace damaged insulation lines on AC Freon lines. tape ends and make sure lines are covered fully.,0,0,Y
+HVAC,GC - HVAC - Fuse Disconnect Box - Replace,Replace HVAC fuse disconnect box.,0,0,Y
+Bedroom,GC - HVAC Register - Replace,HVAC - Replace Register,0,0,Y
+Kitchen,GC - HVAC Register - Replace,HVAC - Replace Register,0,0,Y
+HVAC,GC - HVAC Register Replace,HVAC - Replace Register,0,0,Y
+Fencing,GC Fencing - Pool Install New Pool Barrier Fence,install new pool barrier fence $35LNFT,0,0,Y
+Fencing,GC Fencing Pool - Install Self-Closing Mechanism on G,Install self closure on pool gate must meet CODE several options consult pool barrier company?,0,0,Y
+Exterior,General - Adjustment for Proper Operation (whole home),Adjust all doors to make sure that they open and close properly.,0,0,Y
+Gutters,Gutter Clean Out - Blow off Roof,Gutters - Clean out - Clean out gutters to include blowing off roof.,0,0,Y
+Gutters,Gutter Seams,Gutters - Seal all gutter seams.,0,0,Y
+Gutters,Gutters Demo Screens,Gutters - Demo screens/gutter guards.,0,0,Y
+Exterior,Gutters Demo Screens,Gutters - Demo screens/gutter guards.,0,0,Y
+Gutters,Gutters Secure,Gutters - Secure gutters to home and ensure they are sloped correctly.,0,0,Y
+HVAC,HVAC - Condensing Unit - Comb Fins,Comb fins on condensing unit and make sure air flow is restored to system.,0,0,Y
+HVAC,HVAC - Temperature Split - Balance System to Factory Standards,Temperature splits are outside of the normal 16-22 degree range. Evaluate and repair system to bring splits to an acceptable range. Amount is NTE to be verified with Supers and Vendors and not to be considered a full amount payable item.,0,0,Y
+HVAC,HVAC Condensate Line - Replace,Replace damaged condensate line.,0,0,Y
+Attic,HVAC Ducting - Route Duct to Exterior,Route exhaust vent duct to the exterior (no existing exterior penetration present). Includes ducting and siding/stucco alterations or roof alterations.,0,0,Y
+HVAC,HVAC Ducting Route Duct to Exterior,Route exhaust vent duct to the exterior ( existing exterior penetration present ).,0,0,Y
+HVAC,HVAC Ducting Route Duct to Exterior,Route exhaust vent duct to the exterior ( no existing exterior penetration present ). Includes ducting and siding/stucco alterations or roof alterations.,0,0,Y
+HVAC,HVAC Gas Flue Add/ Replace Gas Flue Collar,HVAC Gas Flue pipe needs to have collar on top at ceiling. flue pipe needs to maintain 1 gap on all side of flue.,0,0,Y
+Bedroom,HVAC Thermostat - Replace,Install new Honeywell T-6 thermostat,0,0,Y
+Kitchen,HVAC Thermostat - Replace,Install new Honeywell T-6 thermostat,0,0,Y
+HVAC,HVAC Thermostat Replace,Install new Honeywell T-6 thermostat.,0,0,Y
+HVAC,HVAC-Drain Pan (secondary) - Clean or Replace,Clean minor rust stains from secondary drain pan and apply a protective coating to prevent further rusting.,0,0,Y
+HVAC,HVAC-Drain Pan (secondary) - Clean or Replace,Replace rusted secondary drain pan ( major rust / leaking ).,0,0,Y
+Interior,Install New (Color Scheme B - Grey Tones),Replace tile floor with new color scheme b grey tones  sqft,0,0,Y
+Landscape,Landscape - Ground Surface - Grading (minor adjustments),"Adjust grading to slope away from the structure and expose 4-6"" of the stem wall (price per linear foot).",0,0,Y
+Landscape,Landscape - Ground Surface - Install Decomposed Granite,"Install new Decomposed Granite 3/4"" minus to called out locations 2"" thick with weed barrier installed. Color to be Apache Gold 108sqft equals 1 ton at 2"" thick pricing per ton.",0,0,Y
+Landscape,Landscape - Plants - Install New,Install drought tolerant foliage as called out.,0,0,Y
+Landscape,"Landscape - Trees - Removal (Large: 16"" 25"" Diameter)","Removal of large size tree to include cutting down and grinding stump to below dirt 10"", cover with new soil to level condition.",0,0,Y
+Landscape,Landscape - Trees - Remove Stump,"Removal of stump to include cutting down 10"" below ground level and treating with non-growing chemicals and replace dirt to level area.",0,0,Y
+Landscape,Landscape - Trees - Trimming (up to 20),Trim Trees  and remove all items from site and rake out yard.,0,0,Y
+Landscape,"Landscape - Trees Removal (Medium 9"" - 15"" Diameter)","Removal of medium size tree to include cutting down and grinding stump to below dirt 10"", cover with new soil to level condition.",0,0,Y
+Landscape,Landscape - Trees Trimming (up to 10'),"Removal of large size tree to include cutting down and grinding stump to below dirt 10"", cover with new soil to level condition.",0,0,Y
+Landscape,Landscape - Trees Trimming (up to 30),Trim Palms to tight frown and remove all items from site and rake out yard.,0,0,Y
+HVAC,Life Expectancy Allowance,"Non-awarded allowance to account for known maintenance, concessions and warranty purchase potential tied to age of preserved unit during property holding.",0,0,Y
+Interior,Locks - Replace Front Door Handleset,replace handle set front front door each,0,0,Y
+Exterior,Locks - Replace Front Door Handleset,replace handle set front front door each.,0,0,Y
+Exterior,Paint - Exterior - Touch-up,Repair or replace deteriorated support column. Paint or finish as needed.,0,1,Y
+Exterior,Paint - Exterior - Touch-up,Touch-up exterior to match color scheme.,0,0,Y
+Interior,Paint - Interior Baseboards & Doors,"Paint baseboards and doors only (paint grade) - Walls are in good shape and only needing to paint the base, trim and doors to Zillow approved colors",0,0,Y
+Interior,Paint - Interior Baseboards & Doors,"Paint baseboards and doors only (stain Grade) - Walls are in good shape and only needing to paint the base, trim and doors to Zillow approved colors. Doors and base may need to be sanded and prepped to cover stain or other finishes",0,0,Y
+Bedroom,Paint - Interior Wall Corner to Corner Full Paint,"Paint Wall Corner to Corner, includes minor drywall touch ups as to not show through painted finished wall.",0,0,Y
+Kitchen,Paint - Interior Wall Corner to Corner Full Paint,"Paint Wall Corner to Corner, includes minor drywall touch ups as to not show through painted finished wall.",0,0,Y
+Exterior,Paint- Exterior - Additional Prep of Exterior Surface,"Light - Paint and repair patches that are needed for siding, stucco cleaning and prep (power washing or sand blasting) for exterior paint to be applied.",0,0,Y
+Exterior,Paint Exterior Corner-to-Corner,"Single Level - Paint one side of house corner-to-corner. Includes prep and painting of trim, doors and body. Price per side. Colors to be approved by Zillow.",0,0,Y
+Exterior,Paint Exterior Corner-to-Corner,"Two Level - Paint one side of house corner-to-corner. Includes prep and painting of trim, doors and body. Price per side. Colors to be approved by Zillow.",0,0,Y
+Exterior,Paint Exterior Full Exterior (prep & paint),"Get Approved colors from ZG - Paint exterior of house (trim, doors and body) - includes prep (pressure washing, scraping, caulking)",0,0,Y
+Exterior,Paint Exterior Scrape & Patch Loose Paint,scrape/power wash and patch loose paint $5 LNFT,0,0,Y
+Exterior,Paint Exterior Trim Only,"Paint Exterior Trim Only, Scrape and clean, touch up as needed and paint to existing colors",0,0,Y
+Exterior,Paint Front Door - Prep & Paint,"Paint Front door to make like new condition. fill in chips, dents etc. and paint to match existing color",0,0,Y
+Bedroom,Paint Interior Crown Molding,"Paint crown molding, patch any damaged areas, uneven transitions and nail holes (per room).",0,0,Y
+Kitchen,Paint Interior Crown Molding,"Paint crown molding, patch any damaged areas, uneven transitions and nail holes (per room).",0,0,Y
+Interior,Paint Interior Full Interior Paint (Scheme A),"Paint interior of house to ZG color scheme A to include ceilings and garage in  flat # 75 Polar Bear Matte, Walls eggshell PPU7-09 Aged Beige, Doors, trim and base # 75 Polar Bear semi gloss",0,0,Y
+Interior,Paint Interior Full Interior Paint (Scheme A),"Stain Grade Base & Doors - Paint interior of house to ZG color scheme A to include ceilings and garage in  flat #75 Polar Bear Matte, Walls eggshell PPU7-09 Aged Beige, Doors, trim and base #75 Polar Bear semi gloss. Additional sanding and prep included for stained doors and baseboards.",0,0,Y
+Interior,Paint Interior Full Interior Paint (Scheme B),"Paint interior of house to ZG color scheme B to include ceilings and garage in flat # 75 Polar Bear Matte, Walls eggshell N320-1 Campfire Ash, Doors, trim and base # 75 Polar Bear semi gloss",0,0,Y
+Interior,Paint Interior Full Interior Paint (Scheme B),"Stain Grade Base & Doors - Paint interior of house to ZG color scheme B to include ceilings and garage in flat #75 Polar Bear Matte, Walls eggshell N320-1 Campfire Ash, Doors, trim and base #75 Polar Bear semi gloss. Additional sanding and prep included for stained doors and baseboards.",0,0,Y
+Bedroom,Paint Interior Full Room Paint & Drywall (RBR),Full paint and drywall touch ups corner to corner including ceiling.  paint to main house colors,0,0,Y
+Kitchen,Paint Interior Full Room Paint & Drywall (RBR),Full paint and drywall touch ups corner to corner including ceiling.  paint to main house colors,0,0,Y
+Bedroom,Paint Interior High Ceilings - Clear Story,Additional funds for high ceilings (clear story) 16 ft or greater,0,0,Y
+Kitchen,Paint Interior High Ceilings - Clear Story,Additional funds for high ceilings (clear story) 16 ft or greater,0,0,Y
+Bedroom,Paint Interior Touch-up Minor Scuffs and Dents,"Paint Wall Corner to Corner, includes minor drywall touch ups as to not show through painted finished wall.",0,0,Y
+Kitchen,Paint Interior Touch-up Minor Scuffs and Dents,"Paint Wall Corner to Corner, includes minor drywall touch ups as to not show through painted finished wall.",0,0,Y
+Bedroom,Paint Interior Wainscoting,Paint wainscoting. Includes additional prep and costs associated with painting wainscoting a contrasting color. Priced per room.,0,0,Y
+Kitchen,Paint Interior Wainscoting,Paint wainscoting. Includes additional prep and costs associated with painting wainscoting a contrasting color. Priced per room.,0,0,Y
+Bedroom,Paint Wall Touch up paint,Paint touch ups of spots with matching paint color of wall. walls may flash and that is ok with this level of service,0,0,Y
+Kitchen,Paint Wall Touch up paint,Paint touch ups of spots with matching paint color of wall. walls may flash and that is ok with this level of service,0,0,Y
+Bedroom,Paint Whole House Clean Scuffs & Marks (no paint),Room by Room cleaning of scuff marks and hand prints with magic eraser and cleaner to get walls back to clean look.,0,0,Y
+Kitchen,Paint Whole House Clean Scuffs & Marks (no paint),Room by Room cleaning of scuff marks and hand prints with magic eraser and cleaner to get walls back to clean look.,0,0,Y
+Bedroom,Plumbing - Cleanout Cap - Replace,Replace damaged/missing clean out cap,0,0,Y
+Kitchen,Plumbing - Cleanout Cap - Replace,Replace damaged/missing clean out cap,0,0,Y
+Plumbing,Plumbing - Cleanout Cap - Replace,Replace damaged/missing clean out cap.,0,0,Y
+Plumbing,Plumbing - Gas Line - Cap Supply Line,Cap gas supply line.,0,0,Y
+Plumbing,Plumbing - Poly B - Line Replacement,"Replace poly b piping with proper pex or copper piping as accessible. will require permit, patch back drywall and holes needed to convert to new plumbing pipes.",0,0,Y
+Plumbing,Plumbing - Poly B - Replacement,"Replace poly b piping with proper pex or copper piping as accessible. will require permit, patch back drywall and holes needed to convert to new plumbing pipes.",0,0,Y
+Bathroom / Kitchen,Plumbing - Sinks / Tub - Repair Surface Chips,Buff and clean counter top.,0,1,Y
+Bathroom / Kitchen,Plumbing - Sinks / Tub - Repair Surface Chips,Plumbing - Repair Chips at sink and tubs.,0,1,Y
+Plumbing,Plumbing - Sump Pump - Install High Water Alarm,Install high water alarm.,0,0,Y
+Plumbing,Plumbing - Water Heater - Install Sediment Trap,Install sediment trap inline with water heater per new code.,0,0,Y
+Plumbing,Plumbing - Water Heater - Replace Supply Line & Valve (Leaking),,0,0,Y
+Plumbing,Plumbing - Water Heater - Replace Water Heater Pan & Drain Line,Replace damaged or missing water heater pan. make sure connect drain line to not leak in to house.,0,0,Y
+Plumbing,Plumbing - Water Heater Gas Flue Add/ Replace Gas Flue Collar,"Water Heater Gas Flue pipe needs to have colar on top at ceiling. flue pipe needs to maintain 1"" gap on all side of flue.",0,0,Y
+Plumbing,Plumbing - Water Heater Install Expansion Tank,Install new water heater expansion tank.,0,0,Y
+Plumbing,Plumbing - Water Heater Install T&P Line,Plumbing - Install new TP line at water heater.,0,0,Y
+Plumbing,Plumbing - Water Heater Replace Water Heater (Electric),,0,0,Y
+Plumbing,Plumbing - Water Heater Replace Water Heater (Gas),,0,0,Y
+Plumbing,Plumbing - Water Lines - Replace Water Main Shutoff Valve,Replace main shut off with 1/4 turn ball valve.,0,0,Y
+Plumbing,Plumbing - Water Lines Install Pressure Vacuum Breaker / Backflow,Install or replace pressure vacuum breaker.,0,0,Y
+Exterior / Plumbing,Plumbing - Water Lines - Replace Hose Bibb,Install insulated hose bibb covers as needed to prevent freezing. ,5,1,Y
+Exterior / Plumbing,Plumbing - Water Lines - Replace Hose Bibb,Secure loose hose bibb and seal as needed. ,30,1,Y
+Exterior / Plumbing,Plumbing - Water Lines - Replace Hose Bibb,Replace bad hose bibb with new one.,0,1,Y
+Exterior / Plumbing,Plumbing - Water Lines - Replace Hose Bibb,Install missing handle at hose bibb.,0,1,Y
+Kitchen / Bathroom,Plumbing - Water Lines - Replace Angle Stops,Replace sink sprayer.,0,1,Y
+Exterior,Plumbing - Water Lines - Replace Water Main Shutoff Valve,Replace main shut off with 1/4 turn ball valve.,0,1,Y
+Plumbing / Exterior,Plumbing - Water Lines - Replace/ Add PRV at Main Line,Replace / Add pressure reducing valve at main line.,0,1,Y
+Exterior,Plumbing Cleanout Cap - Replace,Replace damaged/missing clean out cap,0,0,Y
+Exterior,Plumbing- Gas Line - Cap Supply Line,Cap gas supply line,0,0,Y
+Plumbing,Plumbing Water Heater Drain and Reinstall,Drain and disconnect water heater to have work done in that area. re-connect and fill tank and check for leaks and operational.,0,0,Y
+Exterior,Plumbing- Water Lines - Install Vacuum Breaker (irrigation),Install vacuum breaker at water hose bib,0,0,Y
+Fencing,Repair Block/Concrete (minor),Concrete repairs on block fence $40per lnft  minor repairs.,0,0,Y
+Bedroom,Replace - Electrical- Outlet/ Switch,Replace switch/outlet with similar color and style (Deco/Toggle),0,0,Y
+Kitchen,Replace - Electrical- Outlet/ Switch,Replace switch/outlet with similar color and style (Deco/Toggle),0,0,Y
+Roof,Roof Flashing - Repair,Roofing repair flashing issues.,0,0,Y
+Gutters,Roof Gutters - Install Elbow,Install gutter downspout elbow.,0,0,Y
+Gutters,Roof Gutters Add / Replace Splash Block,Install new splash block under gutter downspout.,0,0,Y
+Gutters,Roof Gutters Clean Out,Clean out gutters and make sure down spouts and splash pads are clear of debris as well.,0,0,Y
+Gutters,Roof Gutters Repair / Replace Sections,Replace damaged or missing gutter with new.,0,0,Y
+Exterior,Siding Gable Vent,Siding - Replace Gable Vent.,0,0,Y
+Exterior,Siding General Pressure Wash,Thorough and professional cleaning of exterior siding (1story),0,0,Y
+Exterior,Siding General Repair Holes & Cracks,Patch holes in siding with Rock Hard patch. Sand and paint,0,0,Y
+Exterior,Siding Panel - Replace Panel Siding Walls,Replace siding that is damaged with new like matching siding,0,0,Y
+Exterior,"Siding Panel - Replace Water Damaged End (8"" up)","Replace up to 12"" up from bottom damaged siding with like materials",0,0,Y
+Exterior,Siding Stone/ Brick Install Stone Veneer,Replace individual stone / brick veneer siding pieces.,0,0,Y
+Exterior,Siding Stucco Repair Damage & Touch Up Paint,Repair large holes and touch up paint,0,0,Y
+Exterior,Siding Trim,"Trim - Replace 2 x 10 garage wrap - includes demo of existing, installation of new 2 x 10 and vinyl garage door trim, and paint  (per Door).",0,0,Y
+Exterior,Siding Trim - Replace Exterior Trim,"Replace exterior door, window and / or siding trim. To include demo, install, materials, caulk and paint to match.",0,0,Y
+Exterior,Siding -Vinyl/ Metal- Replace Vinyl Siding,Individual Pieces - Replace damaged siding with new vinyl siding to match existing as close as possible.,0,0,Y
+Exterior,Siding -Vinyl/ Metal- Replace Vinyl Siding,Projects Under 100 sqft - Replace damaged siding with new vinyl siding to match existing as close as possible (price per sqft).,0,0,Y
+Exterior,Siding Wood/ Hardie - Replace Wood /Hardie Siding,Individual Pieces - Replace damaged siding with new wood / Hardie siding to match existing as close as possible.,0,0,Y
+Exterior,Siding Wood/ Hardie - Replace Wood /Hardie Siding,Projects Over 100 sqft -  Replace damaged siding with new wood / Hardie siding to match existing as close as possible (price per sqft).,0,0,Y
+Exterior,Siding Wood/ Hardie - Replace Wood /Hardie Siding,Projects Under 100 sqft -  Replace damaged siding with new wood / Hardie siding to match existing as close as possible (price per sqft).,0,0,Y
+Exterior,Stairs Handrail Repair,Repair stair handrail that is coming off. add new wall anchors and re-connect bracket to insure safe usage.,0,0,Y
+Kitchen,Trim - Baseboard - Replace,Install Pre-Primed Base Molding to Match Existing Molding. per lnft.,0,0,Y
+Exterior,Trim - Bird Boards - Replace,Replace bird board with new and caulk in and paint to match,0,0,Y
+Roof,Trim - Fascia Replace,Replace fascia board with new and caulk and paint to match.,0,0,Y
+Exterior,Trim - Fascia Replace Clips & Caulk Joints,Replace fascia clips and caulk tight and paint to match,0,0,Y
+Bedroom,Trim Baseboard Replace,Install Pre-Primed Base Molding to Match Existing Molding. per lnft.,0,0,Y
+Roof,Trim Bird Boards - Replace,Replace bird board with new and caulk in and paint to match.,0,0,Y
+Roof,Trim Eave/Soffit Repairs,Soffit with Wood Repair / Rebuild damaged soffit/eave with matching materials and style. Style is flat soffit with vertical fascia. Price is per 12 foot of length.,0,0,Y
+Exterior,Trim Fascia - Replace,Replace fascia board with new and caulk and paint to match,0,0,Y
+Roof,"Trim Fascia - Replace 1""x3"" Fascia Trim",Replace 1x3 trim fascia with new and paint and caulk to match.,0,0,Y
+Roof,Trim Fascia - Replace Clips & Caulk Joints,Replace fascia clips and caulk tight and paint to match.,0,0,Y
+Exterior,"Trim Fascia Replace 1""x3"" Fascia Trim",Replace 1x3 trim fascia with new and paint and caulk to match,0,0,Y
+Bedroom,Trim Shoe Mold,Trim - install missing shoe mold per LnFt,0,0,Y
+Kitchen,Trim Shoe Mold,Trim - install missing shoe mold per LnFt,0,0,Y
+Bedroom,Windows - Balancers Replace,replace balancers in single Hung windows to make window operate properly,0,0,Y
+Kitchen,Windows - Balancers Replace,replace balancers in single Hung windows to make window operate properly,0,0,Y
+Bedroom,Windows - Complete Window Unit - Replace,replace new window unit to match existing windows as close as possible to color and style,0,0,Y
+Kitchen,Windows - Complete Window Unit - Replace,replace new window unit to match existing windows as close as possible to color and style,0,0,Y
+Exterior,Windows - Complete Window Unit Replace,replace new window unit to match existing windows as close as possible to color and style,0,0,Y
+Bedroom,Windows - Interior - Casing and Trim,"replace interior window casing / trim. replace all casing per window to include existing sides, top and under sill",0,0,Y
+Kitchen,Windows - Interior - Casing and Trim,"replace interior window casing / trim. replace all casing per window to include existing sides, top and under sill",0,0,Y
+Bedroom,Windows - Lock (Latch) - Repair,Windows - Repair latching Lock with matching existing style and color,0,0,Y
+Kitchen,Windows - Lock (Latch) - Repair,Windows - Repair latching Lock with matching existing style and color,0,0,Y
+Bedroom / Bathroom / Kitchen,Windows - Panes (Individual) - Replace,Replace window pane that has a broken thermoseal with a new unit to match existing style and color.,0,1,Y
+Bedroom,Windows - Panes (Individual) - Replace,Replace broken window pane with new unit to match existing style and color,0,0,Y
+Kitchen,Windows - Panes (Individual) - Replace,Replace broken window pane with new unit to match existing style and color,0,0,Y
+Exterior,Windows - Screen - Repair,replace missing or damaged window screen to match existing color and style,0,0,Y
+Bedroom,Windows - Screen - Repair,replace missing or damaged window screen to match existing color and style,0,0,Y
+Kitchen,Windows - Screen - Repair,replace missing or damaged window screen to match existing color and style,0,0,Y
+Exterior,Windows - Screen - Replace,Windows - Screen Replace with new screen and repair rails as needed,0,0,Y
+Exterior,Windows - Shutters - Paint,Paint touch up of existing shutters to match existing colors.,0,0,Y
+Exterior,Windows - Shutters - Replace,Replace shutters missing or damaged with new matching existing and paint to match colors,0,0,Y
+Exterior,Windows - Sliding Door Replace Screen,Replace screen at sliding glass door - pick matching color.,0,0,Y
+Bedroom,Windows - Sliding Glass Door - Replace,Replace damaged Sliding Glass Door with new one,0,0,Y
+Kitchen,Windows - Sliding Glass Door - Replace,Replace damaged Sliding Glass Door with new one,0,0,Y
+Bedroom,Windows - Sliding Glass Door - Replace Glass Only,Replace broken glass at sliding glass door 6' tall,0,0,Y
+Kitchen,Windows - Sliding Glass Door - Replace Glass Only,Replace broken glass at sliding glass door 6' tall,0,0,Y
+Bedroom,Windows - Sliding Glass Door Repair,"Repair sliding glass door to roll, lock and seal properly.",0,0,Y
+Kitchen,Windows - Sliding Glass Door Repair,"Repair sliding glass door to roll, lock and seal properly.",0,0,Y
+Exterior,Windows - Tint Remove,Remove window tint on glass. use water solution as to not scratch the windows. make sure all material and glue is removed and glass is clean,0,0,Y
+Bedroom,Windows Blinds - Add New/ Replace,"Replace blinds with 2"" faux wood blinds. color to match existing if not existing default is white.",0,0,Y
+Kitchen,Windows Blinds - Add New/ Replace,"Replace blinds with 2"" faux wood blinds. color to match existing if not existing default is white.",0,0,Y
+Bedroom,Windows Blinds- Repair,Windows - Repair window blinds and make sure that they are fucntional,0,0,Y
+Kitchen,Windows Blinds- Repair,Windows - Repair window blinds and make sure that they are fucntional,0,0,Y
+Exterior,Windows- Panes (Individual) - Replace,Replace broken window pane with new unit to match existing style and color,0,0,Y
+Bedroom,Windows Screen- Replace,Windows - Screen Replace with new screen and repair rails as needed,0,0,Y
+Kitchen,Windows Screen- Replace,Windows - Screen Replace with new screen and repair rails as needed,0,0,Y
+Exterior,Windows Shutters - Secure/ Re-attach,Replace shutters missing or damaged with new matching existing and paint to match colors,0,0,Y
+Bedroom,Windows Sliding Door Replace Screen,Replace screen at sliding glass door - pick matching color.,0,0,Y
+Kitchen,Windows Sliding Door Replace Screen,Replace screen at sliding glass door - pick matching color.,0,0,Y
+Exterior,Windows Sliding Glass Door - Repair,"Repair sliding glass door to roll, lock and seal properly.",0,0,Y
+Exterior,Windows Sliding Glass Door - Replace Glass Only,Replace broken glass at sliding glass door 6' tall,0,0,Y
+Exterior,Windows- Sliding Glass Door Replace,Replace damaged Sliding Glass Door with new one,0,0,Y
+Bedroom,Windows Tint Remove,Remove window tint on glass. use water solution as to not scratch the windows. make sure all material and glue is removed and glass is clean,0,0,Y
+Kitchen,Windows Tint Remove,Remove window tint on glass. use water solution as to not scratch the windows. make sure all material and glue is removed and glass is clean,0,0,Y
+Bedroom,Windows Track Rollers - Repair & Adjust,Repair window rollers and adjust window to close and lock properly,0,0,Y
+Kitchen,Windows Track Rollers - Repair & Adjust,Repair window rollers and adjust window to close and lock properly,0,0,Y
+Bathroom,Plumbing - Toilets - Replace,"Replace toilet with new one. Includes wax ring, check flange and nuts and level toilet in place.",0,1,Y
+Bathroom,Plumbing - Toilets - Secure Toilet,Secure toilet that is loose / out of level with plastic wedge and caulk to floor.,0,1,Y
+Bathroom,Plumbing - Toilets - Secure Toilet,Remove and re-install toilet. Include new wax ring installation.,0,1,Y
+Bathroom,Plumbing - Toilets - Secure Toilet,Repair tank to toilet bowl connection where leaking or possible leak. ,0,1,Y
+Bathroom,Plumbing - Toilets - Secure Toilet,Secure loose tank to toilet bowl connection. Replace any gaskets as needed.,0,1,Y

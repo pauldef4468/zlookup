@@ -1,0 +1,9 @@
+2020-04-03 10:35:20: == Sync Started by User Command
+2020-04-03 10:35:21: Delete File 'ftp://ftp.triangleutility.com:21/.htaccess'
+2020-04-03 10:35:21: Delete File 'ftp://ftp.triangleutility.com:21/node-app/index.js'
+2020-04-03 10:35:21: Delete File 'ftp://ftp.triangleutility.com:21/node-app/package-lock.json'
+2020-04-03 10:35:21: Delete File 'ftp://ftp.triangleutility.com:21/node-app/package.json'
+2020-04-03 10:35:21: Delete File 'ftp://ftp.triangleutility.com:21/node-app/users.js'
+2020-04-03 10:35:22: Delete Folder 'ftp://ftp.triangleutility.com:21/node-app'
+2020-04-03 10:35:22: == Sync Complete. Time: 00:00:03, Speed: 13.3 KB/s, OK: 6, Errors: 0
+2020-04-03 10:35:22: 

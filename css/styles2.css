@@ -1,0 +1,190 @@
+
+
+p.touch{
+	cursor: pointer;
+}
+
+p{
+	margin-bottom: 2px;
+}
+
+.edit_icon{
+	cursor: pointer;
+}
+
+.price_display{
+	color: blue;
+}
+
+.standard_err_message{
+	margin-bottom: 8px;
+	border-radius: 3px;
+	display: none;
+}
+
+/* .caret {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #000000;
+} */
+
+/* .caret.caret-up {
+    border-top-width: 0;
+    border-bottom: 4px solid #fff;
+  } */
+
+.component{
+	/* color: blue; */
+	color: #F06018;
+}
+
+.navbar{
+/* 	background-color: #3861FD;
+	border-color: #3861FD; */
+
+}
+
+
+
+#category_select{
+	margin-bottom: 5px;
+}
+
+#lookupText{
+	margin-bottom: 5px;
+}
+
+.save_button{
+	margin-right: 5px;
+}
+
+.save_new_button{
+	margin-right: 5px;
+}
+
+.renowalk_component{
+	color: #F06018;
+}
+
+.renowalk_comment_label{
+	color: #F06018;
+}
+
+p.name{
+	font-weight: bold;
+	/* padding: 0px; */
+	
+}
+
+.pad_form{
+	border-style: solid;
+	border-color: gray;
+	padding: 10px;
+}
+
+#user_info{
+	margin: 0px;
+	padding: 0px;
+}
+
+.checkbox{
+	margin: 0px;
+	padding: 0px;
+}
+
+.navbar-inverse{
+	margin: 0px;
+}
+
+.component_name{
+	/* color: blue; */
+	font-weight: bold;
+}
+
+.first_table_column{
+	width: 30px;
+}
+
+#lookup_error{
+	display: none;
+	color: red;
+}
+
+#logout_menu_item{
+	display: none;
+}
+
+#search_block{
+	display: none;
+}
+
+#sign_up_form{
+	display: none;
+}
+
+#reset_password_form{
+	display: none;
+}
+
+#forgot_password_form{
+	display: none;
+}
+
+.highlight{
+	background-color: yellow;
+}
+
+#login_form{
+	display: none;
+}
+
+/* .third_table_column{
+	width: 50px;
+} */
+
+.pad_overlay{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: gray;
+	opacity: 0.5;
+	z-index: 1;
+	visibility: hidden;
+	padding: 70px 0;
+	text-align: center;
+
+}
+
+.database_id_label{
+	font-weight: bold;
+}
+
+
+.pad_form{
+	
+	position:relative;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  z-index: 10;
+  /* margin: 0 auto; */
+  display: inline-block; 
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* .pad_form{
+	background-color: green;
+	display:none;
+} */
