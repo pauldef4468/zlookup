@@ -50,7 +50,7 @@ function ajaxItems(){
 
 		//=============================
 		//$.ajax({url: "http://localhost:5000/zlookup-api/items", 
-		$.ajax({url: "https://zlookup-api.herokuapp.com/zlookup-api/items", 
+		$.ajax({url: `${apiServer}/zlookup-api/items`, 
 			type: "GET",
 			//This below was messing with CORS (Cross Origin Resource Sharing) somehow
 			// xhrFields: {
@@ -156,8 +156,9 @@ function ajaxCategories(){
 		}
 
 		//Make web call to get all initial data
+
 		// $.ajax({url: "http://localhost:5000/zlookup-api/categories", 
-		$.ajax({url: "https://zlookup-api.herokuapp.com/zlookup-api/categories",
+		$.ajax({url: `${apiServer}/zlookup-api/categories`,
 		type: "GET",
 		headers: { 'x-auth-token': token },
 		dataType: "json", 
@@ -179,7 +180,7 @@ function loadCategories(){
 	var option = '';
 	$('#category_select').empty();
 	for (var i=0;i<categories.length;i++){
-	   option += '<option value="'+ categories[i]._id + '">' + categories[i].name + '</option>';
+	   option += `<option value="${categories[i]._id}">${categories[i].name}</option>`;
 	}
 	$('#category_select').append(option);
 }
@@ -256,8 +257,8 @@ function lookupFunction() {
 		//If the original flag is zero and all checked 
 		if(!allChecked && originalFlag == "0"){continue;}
 		
-		//If a single asterisk then add it no matter what. 
-		if(lookupText == "*"){
+		//Lookup everything if nothing there 
+		if(lookupText == ""){
 			resultItems.push(items[i]);
 			continue;
 		}
@@ -787,7 +788,7 @@ function ajaxPostNewItem(formDataItem){
 
 		//=============================
 		// $.ajax({url: `http://localhost:5000/zlookup-api/items`, 
-		$.ajax({url: `https://zlookup-api.herokuapp.com/zlookup-api/items`, 
+		$.ajax({url: `${apiServer}/zlookup-api/items`, 
 			type: "POST",
 			headers: { 'x-auth-token': token },
 			dataType: "json", 
@@ -833,7 +834,7 @@ function ajaxDeleteItem(itemID){
 
 		//=============================
 		//$.ajax({url: `http://localhost:5000/zlookup-api/items/${itemID}`, 
-		$.ajax({url: `https://zlookup-api.herokuapp.com/zlookup-api/items/${itemID}`,
+		$.ajax({url: `${apiServer}/zlookup-api/items/${itemID}`,
 			type: "DELETE",
 			headers: { 'x-auth-token': token },
 			dataType: "json", 
@@ -897,7 +898,7 @@ function ajaxItemUpdate(itemID, formDataItem){
 
 		//=============================
 		// $.ajax({url: `http://localhost:5000/zlookup-api/items/${itemID}`, 
-		$.ajax({url: `https://zlookup-api.herokuapp.com/zlookup-api/items/${itemID}`,
+		$.ajax({url: `${apiServer}/zlookup-api/items/${itemID}`,
 			type: "PUT",
 			headers: { 'x-auth-token': token },
 			dataType: "json", 
@@ -1203,7 +1204,7 @@ function ajaxLogin(email, password){
 	
 	return new Promise((resolve, reject) => {
 		// $.ajax({url: "http://localhost:5000/zlookup-api/auth", 
-		$.ajax({url: "https://zlookup-api.herokuapp.com/zlookup-api/auth", 
+		$.ajax({url: `${apiServer}/zlookup-api/auth`, 
 		type: "POST",
 		data: JSON.stringify(formData), 
 		dataType: "json", 
@@ -1482,6 +1483,14 @@ $(document).ready(function(){
 	
 	//Initialize a global selected paragraph var
 	selectedParId = '';
+
+	apiServer = 'https://zlookup-api.herokuapp.com';
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === ""){
+		console.log('using local host');
+		apiServer = 'http://localhost:5000'
+	}else{
+		console.log('Using Heroku');
+	}
 	
 	//Initialize user to null because we don't have one yet
 	//If we start using cookies or have a way to store the JWT 
