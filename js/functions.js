@@ -816,13 +816,21 @@ function ajaxPostNewItem(formDataItem){
 function deleteItemByRecordID(id){
 	
 	//Find the item and remove from the array
-	$.each(items, function(index, value){
+	// $.each(items, function(index, value){
+	// 	console.log(value);
+	// 	if(value.id == id){
+	// 		items.splice(index, 1);
+	// 	}
 		
-		if(value.id == id){
-			items.splice(index, 1);
+	// })
+
+
+	for (let i = 0; i < items.length; i++) {
+		if(items[i].id == id){
+			items.splice(i,1);
 		}
-		
-	})
+	}
+
 	
 }
 
