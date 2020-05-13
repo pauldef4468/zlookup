@@ -1108,6 +1108,34 @@ function hideSearchBlock(){
 
 }
 
+function ajaxSignup(firstName, lastName, email, password, confirmPassword){
+
+	var formData = {
+		'firstName':firstName,
+		'lastName':lastName,
+		'email':email,
+		'password':password,
+		'confirmPassword':confirmPassword
+	}
+	
+	return new Promise((resolve, reject) => {
+		$.ajax({url: `${apiServer}/zlookup-api/users`, 
+		type: "POST",
+		data: JSON.stringify(formData), 
+		dataType: "json", 
+		contentType:"application/json; charset=utf-8"
+		})
+		.done(function(responseData, status, xhr){
+			//*** All is good ***
+			resolve(responseData);
+		})
+		.fail(function(responseData, textStatus, error){
+			reject(responseData);
+		})
+	});
+
+}
+
 function submitSignUpForm(){
 	
 	//*** SIGN UP SUBMIT FUNCTION ***
@@ -1124,74 +1152,71 @@ function submitSignUpForm(){
 	var password = $(form).find(".password").val();
 	var confirmPassword = $(form).find(".confirm_password").val();
 	
-	var formData = {
-		'firstName':firstName,
-		'lastName':lastName,
-		'email':email,
-		'password':password,
-		'confirmPassword':confirmPassword
+	async function submitAjaxRequests(){
+		try{
+			const responseData = await ajaxSignup(firstName, lastName, email, password, confirmPassword);
+		}
+		catch{
+			
+		}
+		
 	}
 	
-	// *** Ajax post the form data ***
 	
-/* 	$.ajax({url: "php/register.php", 
-		type: "POST",
-		data: formData,  
-		dataType: "json" */
-	
-	$.ajax({url: "http://localhost:5000/zlookup-api/users", 
-		type: "POST",
-		data: JSON.stringify(formData), 
-		dataType: "json", 
-		contentType:"application/json; charset=utf-8"
-	})
-	.done(function(responseData){
-		//All is good here because status code will be 200 else it will drop down to .fail below
-		showLoginForm();
-	})
-	.fail(function(responseData, textStatus, error){
+	// // *** Ajax post the form data ***
+	// $.ajax({url: "http://localhost:5000/zlookup-api/users", 
+	// 	type: "POST",
+	// 	data: JSON.stringify(formData), 
+	// 	dataType: "json", 
+	// 	contentType:"application/json; charset=utf-8"
+	// })
+	// .done(function(responseData){
+	// 	//All is good here because status code will be 200 else it will drop down to .fail below
+	// 	showLoginForm();
+	// })
+	// .fail(function(responseData, textStatus, error){
 
-		const statusCode = responseData.status;
-		if(statusCode === 400){
-			const propertyKey = responseData.responseJSON.context.key; //property name on server (JOI validation, look at the model)
-			const errorMessage = responseData.responseJSON.message;
-			switch(propertyKey){
-				case 'firstName':
-					const firstNameGroup = $(form).find(".reg_first_name");
-					$(firstNameGroup).addClass('has-error'); 
-					$(firstNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-					break;
-				case 'lastName':
-					const lastNameGroup = $(form).find(".reg_last_name");
-					$(lastNameGroup).addClass('has-error'); // add the error class to show red input
-					$(lastNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-					break;
-				case 'email':
-					const emailGroup = $(form).find(".reg_email");
-					$(emailGroup).addClass('has-error'); // add the error class to show red input
-					$(emailGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-					break;
-				case 'password':
-					var confirmPasswordGroup = $(form).find(".reg_password");
-					$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
-					$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-					break;
-				case 'confirmPassword':
-					var confirmPasswordGroup = $(form).find(".reg_confirm_password");
-					$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
-					$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-					break;
-				default:
-					// TODO Handle some other error here
-					break;
-			}
+	// 	const statusCode = responseData.status;
+	// 	if(statusCode === 400){
+	// 		const propertyKey = responseData.responseJSON.context.key; //property name on server (JOI validation, look at the model)
+	// 		const errorMessage = responseData.responseJSON.message;
+	// 		switch(propertyKey){
+	// 			case 'firstName':
+	// 				const firstNameGroup = $(form).find(".reg_first_name");
+	// 				$(firstNameGroup).addClass('has-error'); 
+	// 				$(firstNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+	// 				break;
+	// 			case 'lastName':
+	// 				const lastNameGroup = $(form).find(".reg_last_name");
+	// 				$(lastNameGroup).addClass('has-error'); // add the error class to show red input
+	// 				$(lastNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+	// 				break;
+	// 			case 'email':
+	// 				const emailGroup = $(form).find(".reg_email");
+	// 				$(emailGroup).addClass('has-error'); // add the error class to show red input
+	// 				$(emailGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+	// 				break;
+	// 			case 'password':
+	// 				var confirmPasswordGroup = $(form).find(".reg_password");
+	// 				$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
+	// 				$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+	// 				break;
+	// 			case 'confirmPassword':
+	// 				var confirmPasswordGroup = $(form).find(".reg_confirm_password");
+	// 				$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
+	// 				$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+	// 				break;
+	// 			default:
+	// 				// TODO Handle some other error here
+	// 				break;
+	// 		}
  
-		}else{
-			// TODO finish this
-			console.log('Status code: ' + statusCode);
-		}
+	// 	}else{
+	// 		// TODO finish this
+	// 		console.log('Status code: ' + statusCode);
+	// 	}
 
-	})
+	// })
 	
 }
 
