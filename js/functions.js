@@ -649,7 +649,9 @@ function setFormDataObj(row, selectedItem){
 		'itemName':$(row).find(".comment_name").val(),
 		'comment':$(row).find(".item_comment").val(),
 		'price':anRawPrice,
-		'categoryID':formCategorySelectValue
+		'categoryID':formCategorySelectValue,
+		//'createdByUserID':user.id,
+		//'modifiedByUserID': user.id
 	}
 }
 
@@ -669,8 +671,9 @@ function setFormSubmitSaveAsObj(row, selectedItem){
 		'comment':$(row).find(".item_comment").val(),
 		'price':anRawPrice,
 		'categoryID':formCategorySelectValue,
-		'createdByUserID':selectedItem.createdByUser._id,
-		'modifiedByUserID': user.id
+		//'createdByUserID':selectedItem.createdByUser._id,
+		//'createdByUserID':user.id,
+		//'modifiedByUserID': user.id
 	}
 }
 
@@ -1141,6 +1144,10 @@ function submitSignUpForm(){
 	//*** SIGN UP SUBMIT FUNCTION ***
 	
 	var form = $('#sign_up_form');
+
+	removeFormErrors(form);
+
+	showHideEditFormSpinner(form, true);
 	
 	//Remove any errors if there are some
 	$(form).find(".form-group").removeClass('has-error');
@@ -1155,13 +1162,58 @@ function submitSignUpForm(){
 	async function submitAjaxRequests(){
 		try{
 			const responseData = await ajaxSignup(firstName, lastName, email, password, confirmPassword);
+			showLoginForm();
 		}
-		catch{
-			
+		catch(err){
+			const errorType = err.responseJSON.errorType;
+			const errorMessage = err.responseJSON.message;
+			if(errorType === 'validation'){
+				const inputKey = err.responseJSON.inputKey;
+				switch(inputKey){
+					case 'firstName':
+						const firstNameGroup = $(form).find(".reg_first_name");
+						$(firstNameGroup).addClass('has-error'); 
+						$(firstNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						break;
+					case 'lastName':
+						const lastNameGroup = $(form).find(".reg_last_name");
+						$(lastNameGroup).addClass('has-error'); // add the error class to show red input
+						$(lastNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						break;
+					case 'email':
+						const emailGroup = $(form).find(".reg_email");
+						$(emailGroup).addClass('has-error'); // add the error class to show red input
+						$(emailGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						break;
+					case 'password':
+						var confirmPasswordGroup = $(form).find(".reg_password");
+						$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
+						$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						break;
+					case 'confirmPassword':
+						var confirmPasswordGroup = $(form).find(".reg_confirm_password");
+						$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
+						$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						break;
+					default:
+						//Handle non form validation error here
+						showFormError(form, errorMessage);
+						break;
+				}
+	
+			}else{
+				// TODO Finish this
+				showFormError(form, errorMessage);
+			}
+			return;
+		}
+		finally{
+			showHideEditFormSpinner(form, false);
 		}
 		
 	}
 	
+	submitAjaxRequests();
 	
 	// // *** Ajax post the form data ***
 	// $.ajax({url: "http://localhost:5000/zlookup-api/users", 
