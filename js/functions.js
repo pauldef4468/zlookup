@@ -177,12 +177,35 @@ function ajaxCategories(){
 }
 
 function loadCategories(){
-	var option = '';
+	let option = '';
 	$('#category_select').empty();
-	for (var i=0;i<categories.length;i++){
-	   option += `<option value="${categories[i]._id}">${categories[i].name}</option>`;
+	for (let i=0;i<categories.length;i++){
+		let itemCount = getItemCountPerCategory(categories[i]);
+		option += `<option value="${categories[i]._id}">${categories[i].name} - ${itemCount}</option>`;
 	}
 	$('#category_select').append(option);
+}
+
+function updateCategoryCounts(){
+	$("#category_select > option").each(function() {
+		let category = getCategoryByID(this.value);
+		let itemCount = getItemCountPerCategory(category);
+		this.text = `${category.name} - ${itemCount}`;
+
+	});
+}
+
+function getCategoryByID(id){
+	return categories.find(category => category._id === id);
+}
+
+
+function getItemCountPerCategory(category){
+	let count = 0;
+	for (let i=0;i<items.length;i++){
+		if(items[i].category._id === category._id) count++;
+	}
+	return count;
 }
 
 function loadFormCategories(categoryID){
@@ -816,21 +839,11 @@ function ajaxPostNewItem(formDataItem){
 function deleteItemByRecordID(id){
 	
 	//Find the item and remove from the array
-	// $.each(items, function(index, value){
-	// 	console.log(value);
-	// 	if(value.id == id){
-	// 		items.splice(index, 1);
-	// 	}
-		
-	// })
-
-
 	for (let i = 0; i < items.length; i++) {
 		if(items[i].id == id){
 			items.splice(i,1);
 		}
 	}
-
 	
 }
 
@@ -984,6 +997,10 @@ function closeEditFormDiv(e, editFormDiv){
 	
 	$(editFormDiv).slideUp("", function() { 
 		$(this).remove(); 
+		//Reload categories so the counts are updated
+		//loadCategories();
+		updateCategoryCounts();
+		//Re-run the lookup 
 		lookupFunction();
 	} );
 
@@ -1619,7 +1636,7 @@ $(document).ready(function(){
 	});
 
 	$('#edit_menu_item').on('click', function(e){
-		alert('Temporarilly disabled');
+		alert('Temporarily disabled');
 		//editFunction();
 	})
 
