@@ -794,6 +794,7 @@ function processAndDisplayError(err, row, form){
 		if(tokenErrorMessage){
 			// This is a token error. They must log in
 			showFormError(form, 'Token issue. Please login');
+			logout();
 		}else{
 			//This is some other issue
 			console.error(err);
@@ -1406,6 +1407,7 @@ function submitLoginForm(){
 		}
 
 		loadCategories();
+		lookupFunction();
 
 		//Show logout menu button
 		$('#logout_menu_item').css("display", "block");
@@ -1495,8 +1497,9 @@ function logout(){
 	resultItems = [];
 	//Empty the main items array
 	items = [];
-	//Empty the categories array
+	//Empty the categories array and select list
 	categories = [];
+	$('#category_select').empty();
 	//Remove the logout menu button
 	$('#logout_menu_item').css("display", "none");
 	//Show the login menu button
@@ -1624,6 +1627,10 @@ $(document).ready(function(){
 	})
 	
 	//Event handlers
+	// $(window).on('focus', function(){
+	// 	console.log('Focus Window');
+	// }); 
+
 	$('#all_checkbox').on('click', function(e){
 		lookupFunction();
 	});
