@@ -50,6 +50,8 @@ p{
 
 #category_select{
 	margin-bottom: 5px;
+	padding-top: 3px;
+	padding-bottom: 4px;
 }
 
 #lookupText{
@@ -129,6 +131,10 @@ p.name{
 }
 
 #forgot_password_form{
+	display: none;
+}
+
+#comments_form{
 	display: none;
 }
 

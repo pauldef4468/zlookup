@@ -42,6 +42,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 		  <ul class="nav navbar-nav">
 			<!-- <li class="active"><a href="#">Home</a></li> -->
+			<li><a href="#" id="comments_menu_item">Comments</a></li>
 			<li><a href="#" id="load_menu_item">Load</a></li>
 			<li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
 		  </ul>
@@ -211,6 +212,85 @@
 		  
 		</form>
 	</div>
+
+	<!-- Forgot Password -->
+	<div id="comments_form" class="view">
+		<h2>Comments</h2>
+			<form action="" method="post">
+				<div class="form-group">
+					<label for="spec_level_input">Spec Level:</label>
+					<input type="text" class="form-control comment_input" id="spec_level_input">
+				</div>
+				<div class="form-group">
+					<label for="sf1_input">Sq Ft Listed:</label>
+					<input type="text" class="form-control comment_input" id="sf1_input">
+				</div>
+				<div class="form-group">
+					<label for="sf2_input">Sq Ft Measured:</label>
+					<input type="text" class="form-control comment_input" id="sf2_input">
+				</div>
+				<div class="form-group">
+					<label for="beds_input">Bedrooms:</label>
+					<input type="text" class="form-control comment_input" id="beds_input">
+				</div>
+				<div class="form-group">
+					<label for="baths_input">Bathrooms:</label>
+					<input type="text" class="form-control comment_input" id="baths_input">
+				</div>
+				<div class="form-group">
+					<label for="delta-t1_input">Temp Split 1st Floor:</label>
+					<input type="text" class="form-control comment_input" id="delta-t1_input">
+				</div>
+				<div class="form-group">
+					<label for="delta-t2_input">Temp Split 2nd Floor:</label>
+					<input type="text" class="form-control comment_input" id="delta-t2_input">
+				</div>
+				<div class="form-group">
+					<label for="delta-t3_input">Temp Split 3rd Floor:</label>
+					<input type="text" class="form-control comment_input" id="delta-t3_input">
+				</div>
+				<div class="form-group">
+					<label for="wood_windows_input">Wood Windows Present?:</label>
+					<input type="text" class="form-control comment_input" id="wood_windows_input">
+				</div>
+				<div class="form-group">
+					<label for="gas_input">Gas On/Off?:</label>
+					<input type="text" class="form-control comment_input" id="gas_input">
+				</div>
+				<div class="form-group">
+					<label for="heat_tested_input">Heat Tested?:</label>
+					<input type="text" class="form-control comment_input" id="heat_tested_input">
+				</div>
+				<div class="form-group">
+					<label for="cool_tested_input">Cool Tested?:</label>
+					<input type="text" class="form-control comment_input" id="cool_tested_input">
+				</div>
+				<div class="form-group">
+					<label for="appliances_input">Appliances Being Taken?:</label>
+					<input type="text" class="form-control comment_input" id="appliances_input">
+				</div>
+				<div class="form-group">
+					<label for="garage_input">Garage Remotes:</label>
+					<input type="text" class="form-control comment_input" id="garage_input">
+				</div>
+				<div class="form-group">
+					<label for="attendance_input">In Attendance:</label>
+					<input type="text" class="form-control comment_input" id="attendance_input">
+				</div>
+				<div class="form-group">
+					<label for="externalities_input">Externalities:</label>
+					<textarea class="form-control rounded-0" id="externalities_input" rows="4"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="notes_input">Externalities:</label>
+					<textarea class="form-control rounded-0" id="notes_input" rows="4"></textarea>
+				</div>
+
+				<button type="button" class="btn btn-success" id="save_comments_button">Save</button>
+				<button type="button" class="btn btn-success" id="show_comments_button">Show</button>
+				
+			</form>
+		</div>
 
 	<div class="pad_overlay">
 		<div class="loader" >

@@ -1086,6 +1086,24 @@ function showForgotPasswordForm(){
 	
 }
 
+function showCommentForm(){
+	View.clearView('#comments_form');
+	View.showView('#comments_form');
+	loadCommentView();
+
+}
+function loadCommentView(){
+	const formInputs = $('.comment_input').toArray();
+	//console.log(formInputs);
+	let inputId = '';
+	for(let i=0; i < formInputs.length; i++){
+		inputId = formInputs[i].id;
+		//console.log(inputId);
+		$(`#${inputId}`).val(localStorage.getItem(inputId));
+	}
+	//$('#spec_level_input').val(window.localStorage.getItem('specLevel'));
+}
+
 /* function clearSignUpForm(){
 	
  	form = $('#sign_up_form');
@@ -1673,6 +1691,10 @@ $(document).ready(function(){
 	$('#forgot_password').on('click', function(e){
 		showForgotPasswordForm();
 	})
+	$('#comments_menu_item').on('click', function(){
+		showCommentForm();
+	})
+		
 	
 	$('#lookup_menu_item').on('click', function(e){
 		showSearchBlock();
@@ -1700,9 +1722,38 @@ $(document).ready(function(){
 		submitResetPasswordForm();
 	});
 	
-	
-	
-	
+	$('#save_comments_button').on('click', function(){
+		
+		const specLevel = $('#spec_level_input').val();
+		//console.log(`Clicked on save with value ${specLevel}`);
+		window.localStorage.setItem('specLevel', specLevel);
+
+	});
+	$('#show_comments_button').on('click', function(){
+		
+		const specLevel = window.localStorage.getItem('specLevel');
+		//console.log(`Clicked on show ${specLevel}`);
+
+	});
+
+	$('.comment_input').on('keyup', function(e){
+		//console.log(e.target.id);
+		const id = e.target.id;
+		localStorage.setItem(id,$(`#${id}`).val());
+		// localStorage.setItem('specLevel', $('#spec_level_input').val());
+		// localStorage.setItem('sf1', $('#sf1_input').val());
+		// localStorage.setItem('sf2', $('#sf2_input').val());
+		// localStorage.setItem('beds', $('#beds_input').val());
+		// localStorage.setItem('baths', $('#baths_input').val());
+		// localStorage.setItem('deltaT1', $('#delta-t1_input').val());
+		// localStorage.setItem('deltaT2', $('#delta-t2_input').val());
+		// localStorage.setItem('deltaT3', $('#delta-t3_input').val());
+		// localStorage.setItem('woodWindows', $('#wood_windows_input').val());
+		// localStorage.setItem('gasOnOff', $('#gas_input').val());
+		// localStorage.setItem('heatTested', $('#heat_tested_input').val());
+		// localStorage.setItem('coolTested', $('#cool_tested_input').val());
+	});
+
 
 	
 });
