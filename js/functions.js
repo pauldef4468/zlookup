@@ -1,6 +1,6 @@
 
+
 function commentClick2(par,text){
-	
 	
 	//If something already selected then unselect it
 	if(selectedParId){
@@ -568,11 +568,11 @@ function showEditForm2(spanElement){
 			'<div class="col-sm-6 text-right created_by"></div>' +
 		'</div>' +
 		
-		'<button type="button" class="btn btn-success save_button">Save</button>' +
-		'<button type="button" class="btn btn-success save_new_button">Save As</button>' +
-		'<button type="button" class="btn btn-danger delete_button">Delete</button>' +
+		'<button type="button" class="btn btn-success btn-sm save_button">Save</button>' +
+		'<button type="button" class="btn btn-success btn-sm save_new_button">Save As</button>' +
+		'<button type="button" class="btn btn-danger btn-sm delete_button">Delete</button>' +
 		
-		'<button type="button" class="btn btn-warning pull-right cancel_button">Cancel</button>' +
+		'<button type="button" class="btn btn-warning pull-right btn-sm cancel_button">Cancel</button>' +
 		'<div class="bg-danger text-danger panel-body standard_err_message"></div>' +
 
 	  
@@ -1008,7 +1008,6 @@ function closeEditFormDiv(e, editFormDiv){
 	
 	
 }
-
 
 class Item{
 	constructor(componentName, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime){
@@ -1537,40 +1536,48 @@ var htmlspecialchars = function(string) {
 	return escapedString;
 };
 
-	// A collection of special characters and their entities.
-	htmlspecialchars.specialchars = [
-	  [ '&', '&amp;' ],
-	  [ '<', '&lt;' ],
-	  [ '>', '&gt;' ],
-	  [ '"', '&quot;' ]
-	];
-	
-	var htmlspecialchars_decode = function(string) {
-	  //*** I got this function from a google search ***
-	  // Our finalized string will start out as a copy of the initial string.
-	  var unescapedString = string;
+function clearLookupText(){
+	//If already empty then don't do anything
+	if(!$('#lookupText').val().length) return;
+	//Clear out the text and run the lookup
+	$('#lookupText').val('');
+	lookupFunction();
+}
 
-	  // For each of the special characters,
-	  var len = htmlspecialchars_decode.specialchars.length;
-	  for (var x = 0; x < len; x++) {
+// A collection of special characters and their entities.
+htmlspecialchars.specialchars = [
+	[ '&', '&amp;' ],
+	[ '<', '&lt;' ],
+	[ '>', '&gt;' ],
+	[ '"', '&quot;' ]
+];
 
-		// Replace all instances of the entity with the special character.
-		unescapedString = unescapedString.replace(
-		  new RegExp(htmlspecialchars_decode.specialchars[x][1], 'g'),
-		  htmlspecialchars_decode.specialchars[x][0]
-		);
-	  }
+var htmlspecialchars_decode = function(string) {
+	//*** I got this function from a google search ***
+	// Our finalized string will start out as a copy of the initial string.
+	var unescapedString = string;
 
-	  // Return the unescaped string.
-	  return unescapedString;
-	};
+	// For each of the special characters,
+	var len = htmlspecialchars_decode.specialchars.length;
+	for (var x = 0; x < len; x++) {
 
-	htmlspecialchars_decode.specialchars = [
-	  [ '"', '&quot;' ],
-	  [ '>', '&gt;' ],
-	  [ '<', '&lt;' ],
-	  [ '&', '&amp;' ]
-	];
+	// Replace all instances of the entity with the special character.
+	unescapedString = unescapedString.replace(
+		new RegExp(htmlspecialchars_decode.specialchars[x][1], 'g'),
+		htmlspecialchars_decode.specialchars[x][0]
+	);
+	}
+
+	// Return the unescaped string.
+	return unescapedString;
+};
+
+htmlspecialchars_decode.specialchars = [
+	[ '"', '&quot;' ],
+	[ '>', '&gt;' ],
+	[ '<', '&lt;' ],
+	[ '&', '&amp;' ]
+];
 
 $(document).ready(function(){
 	
@@ -1641,6 +1648,12 @@ $(document).ready(function(){
 	$('#category_select').change('keyup', function(e){
 		lookupFunction();
 	});
+
+	$('#clear_button').on('click', function(e){
+		clearLookupText();
+	});
+
+	
 
 	$('#edit_menu_item').on('click', function(e){
 		alert('Temporarily disabled');
