@@ -28,14 +28,18 @@ function commentClick2(par,text){
 	
 }
 
-function updateClipboard(newClip) {
-	navigator.clipboard.writeText(newClip).then(function() {
-	  /* clipboard successfully set */
-	  console.log('It worked');
-	}, function() {
-	  console.log('It failed');
-	  /* clipboard write failed */
-	});
+function updateClipboard(text) {
+	const el = document.createElement('textarea');
+	//el.value = par.innerHTML;
+	el.value = text;
+	el.setAttribute('readonly', '');
+	el.style.position = 'absolute';
+	el.style.left = '-9999px';
+	document.body.appendChild(el);
+	el.select();
+	//el.setSelectionRange(0, 99999); //It doesn't look like I need this
+	document.execCommand('copy');
+	document.body.removeChild(el);
   }
 
 
@@ -1738,7 +1742,7 @@ $(document).ready(function(){
 	});
 
 	$('#copy_comments_button').on('click', function(){
-		//Loop each 
+		//Loop all comments and add keys and values to an object
 		let commentObj = {};
 		const elements = $('.comment_input').toArray();
 		for(let i=0; i < elements.length; i++){
