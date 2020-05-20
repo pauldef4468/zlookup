@@ -1101,7 +1101,6 @@ function loadCommentView(){
 		//console.log(inputId);
 		$(`#${inputId}`).val(localStorage.getItem(inputId));
 	}
-	//$('#spec_level_input').val(window.localStorage.getItem('specLevel'));
 }
 
 /* function clearSignUpForm(){
