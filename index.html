@@ -219,74 +219,74 @@
 			<form >
 				<div class="form-group">
 					<label for="spec_level_input">Spec Level:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="spec_level_input">
+					<input data-property-name="specLevel" data-label="Spec Level" type="text" inputmode="numeric" class="form-control comment_input" id="spec_level_input">
 				</div>
 				<div class="form-group">
 					<label for="sf1_input">Sq Ft Listed:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="sf1_input">
+					<input data-property-name="squareFeetListed" data-label="Sq Ft" type="text" inputmode="numeric" class="form-control comment_input" id="sf1_input">
 				</div>
 				<div class="form-group">
 					<label for="sf2_input">Sq Ft Measured:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="sf2_input">
+					<input data-property-name="squareFeetMeasured" type="text" inputmode="numeric" class="form-control comment_input" id="sf2_input">
 				</div>
 				<div class="form-group">
 					<label for="beds_input">Bedrooms:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="beds_input">
+					<input data-property-name="beds" type="text" inputmode="numeric" class="form-control comment_input" id="beds_input">
 				</div>
 				<div class="form-group">
 					<label for="baths_input">Bathrooms:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="baths_input">
+					<input data-property-name="baths" type="text" inputmode="numeric" class="form-control comment_input" id="baths_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t1_input">Temp Split 1st Floor:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="delta-t1_input">
+					<input data-property-name="deltaT1" type="text" inputmode="numeric" class="form-control comment_input" id="delta-t1_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t2_input">Temp Split 2nd Floor:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="delta-t2_input">
+					<input data-property-name="deltaT2" type="text" inputmode="numeric" class="form-control comment_input" id="delta-t2_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t3_input">Temp Split 3rd Floor:</label>
-					<input type="text" inputmode="numeric" class="form-control comment_input" id="delta-t3_input">
+					<input data-property-name="deltaT3" type="text" inputmode="numeric" class="form-control comment_input" id="delta-t3_input">
 				</div>
 				<div class="form-group">
 					<label for="wood_windows_input">Wood Windows Present?:</label>
-					<input type="text" class="form-control comment_input" id="wood_windows_input">
+					<input data-property-name="woodWindows" type="text" class="form-control comment_input" id="wood_windows_input">
 				</div>
 				<div class="form-group">
 					<label for="gas_input">Gas On/Off?:</label>
-					<input type="text" class="form-control comment_input" id="gas_input">
+					<input data-property-name="gas" type="text" class="form-control comment_input" id="gas_input">
 				</div>
 				<div class="form-group">
 					<label for="heat_tested_input">Heat Tested?:</label>
-					<input type="text" class="form-control comment_input" id="heat_tested_input">
+					<input data-property-name="heatTested" type="text" class="form-control comment_input" id="heat_tested_input">
 				</div>
 				<div class="form-group">
 					<label for="cool_tested_input">Cool Tested?:</label>
-					<input type="text" class="form-control comment_input" id="cool_tested_input">
+					<input data-property-name="coolTested" type="text" class="form-control comment_input" id="cool_tested_input">
 				</div>
 				<div class="form-group">
 					<label for="appliances_input">Appliances Being Taken?:</label>
-					<input type="text" class="form-control comment_input" id="appliances_input">
+					<input data-property-name="appliancesTaken" type="text" class="form-control comment_input" id="appliances_input">
 				</div>
 				<div class="form-group">
 					<label for="garage_input">Garage Remotes:</label>
-					<input type="text" class="form-control comment_input" id="garage_input">
+					<input data-property-name="garageRemotes" type="text" class="form-control comment_input" id="garage_input">
 				</div>
 				<div class="form-group">
 					<label for="attendance_input">In Attendance:</label>
-					<input type="text" class="form-control comment_input" id="attendance_input">
+					<input data-property-name="inAttendance" type="text" class="form-control comment_input" id="attendance_input">
 				</div>
 				<div class="form-group">
 					<label for="externalities_input">Externalities:</label>
-					<textarea class="form-control rounded-0" id="externalities_input" rows="4"></textarea>
+					<textarea data-property-name="externalities" class="form-control rounded-0 comment_input" id="externalities_input" rows="4"></textarea>
 				</div>
 				<div class="form-group">
-					<label for="notes_input">Externalities:</label>
-					<textarea class="form-control rounded-0" id="notes_input" rows="4"></textarea>
+					<label for="notes_input">Notes:</label>
+					<textarea data-property-name="notes" class="form-control rounded-0 comment_input" id="notes_input" rows="4"></textarea>
 				</div>
 
-				<button type="button" class="btn btn-success" id="save_comments_button">Save</button>
+				<button type="button" class="btn btn-info" id="copy_comments_button">Copy</button>
 				<button type="button" class="btn btn-success" id="show_comments_button">Show</button>
 				
 			</form>
@@ -299,8 +299,6 @@
 
 </div>
   
-
-
 
 </body>
 </html>

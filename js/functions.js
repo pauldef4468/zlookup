@@ -28,6 +28,15 @@ function commentClick2(par,text){
 	
 }
 
+function updateClipboard(newClip) {
+	navigator.clipboard.writeText(newClip).then(function() {
+	  /* clipboard successfully set */
+	  console.log('It worked');
+	}, function() {
+	  console.log('It failed');
+	  /* clipboard write failed */
+	});
+  }
 
 
 function reloadFunction(){
@@ -1093,13 +1102,10 @@ function showCommentForm(){
 
 }
 function loadCommentView(){
-	const formInputs = $('.comment_input').toArray();
-	//console.log(formInputs);
-	let inputId = '';
-	for(let i=0; i < formInputs.length; i++){
-		inputId = formInputs[i].id;
-		//console.log(inputId);
-		$(`#${inputId}`).val(localStorage.getItem(inputId));
+	const elements = $('.comment_input').toArray();
+	for(let i=0; i < elements.length; i++){
+		const propertyName = $(elements[i]).attr('data-property-name');
+		$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
 	}
 }
 
@@ -1721,36 +1727,50 @@ $(document).ready(function(){
 		submitResetPasswordForm();
 	});
 	
+
+
 	$('#save_comments_button').on('click', function(){
 		
-		const specLevel = $('#spec_level_input').val();
+		const externalities = $('#externalities_input').val();
 		//console.log(`Clicked on save with value ${specLevel}`);
-		window.localStorage.setItem('specLevel', specLevel);
+		localStorage.setItem('externalities', externalities);
 
 	});
-	$('#show_comments_button').on('click', function(){
-		
-		const specLevel = window.localStorage.getItem('specLevel');
-		//console.log(`Clicked on show ${specLevel}`);
 
+	$('#copy_comments_button').on('click', function(){
+		//Loop each 
+		let commentObj = {};
+		const elements = $('.comment_input').toArray();
+		for(let i=0; i < elements.length; i++){
+			const propertyName = $(elements[i]).attr('data-property-name');
+			const label = $(elements[i]).attr('data-label');
+			const value = localStorage.getItem(propertyName);
+			commentObj[propertyName] = value;
+			//if(!value) continue;
+		}
+		const formattedComment = `[Spec Level: ${commentObj.specLevel}]` + 
+		` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured} ]` +
+		` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]` +
+		` - [Temp split (1st floor): ${commentObj.deltaT1}]` +
+		` - [Temp split (2nd floor): ${commentObj.deltaT2}]` +
+		` - [Temp split (3rd floor): ${commentObj.deltaT3}]` +
+		` - [Wood Windows Present?: ${commentObj.woodWindows}]` + 
+		` - [Gas on/off: ${commentObj.gas}]` +
+		` - [Heat Tested?: ${commentObj.heatTested}]` +
+		` - [Cool Tested?: ${commentObj.coolTested}]` +
+		` - [Appliances Being Taken: ${commentObj.appliancesTaken}]` +
+		` - [Garage Remotes: ${commentObj.garageRemotes}]` +
+		` - [In Attendance: ${commentObj.inAttendance}]` +
+		` - [Noted externalities: ${commentObj.externalities}]` +
+		` - [Add Notes: ${commentObj.notes}]`;
+		console.log(formattedComment);
+		updateClipboard(formattedComment);
 	});
 
 	$('.comment_input').on('keyup', function(e){
-		//console.log(e.target.id);
-		const id = e.target.id;
-		localStorage.setItem(id,$(`#${id}`).val());
-		// localStorage.setItem('specLevel', $('#spec_level_input').val());
-		// localStorage.setItem('sf1', $('#sf1_input').val());
-		// localStorage.setItem('sf2', $('#sf2_input').val());
-		// localStorage.setItem('beds', $('#beds_input').val());
-		// localStorage.setItem('baths', $('#baths_input').val());
-		// localStorage.setItem('deltaT1', $('#delta-t1_input').val());
-		// localStorage.setItem('deltaT2', $('#delta-t2_input').val());
-		// localStorage.setItem('deltaT3', $('#delta-t3_input').val());
-		// localStorage.setItem('woodWindows', $('#wood_windows_input').val());
-		// localStorage.setItem('gasOnOff', $('#gas_input').val());
-		// localStorage.setItem('heatTested', $('#heat_tested_input').val());
-		// localStorage.setItem('coolTested', $('#cool_tested_input').val());
+		const el = $(e.target);
+		const propertyName = el.attr('data-property-name');
+		localStorage.setItem(propertyName,$(el).val());
 	});
 
 
