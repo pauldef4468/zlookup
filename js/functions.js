@@ -1733,12 +1733,9 @@ $(document).ready(function(){
 	
 
 
-	$('#save_comments_button').on('click', function(){
-		
-		const externalities = $('#externalities_input').val();
-		//console.log(`Clicked on save with value ${specLevel}`);
-		localStorage.setItem('externalities', externalities);
-
+	$('#clear_comments_button').on('click', function(){
+		localStorage.clear();
+		loadCommentView();
 	});
 
 	$('#copy_comments_button').on('click', function(){

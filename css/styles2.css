@@ -134,6 +134,15 @@ p.name{
 	display: none;
 }
 
+#copy_comments_button{
+	margin-bottom: 20px;
+}
+
+#clear_comments_button{
+	margin-bottom: 20px;
+	margin-left: 30px;
+}
+
 #comments_form{
 	display: none;
 }
