@@ -37,21 +37,21 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" id="lookup_menu_item" href="#">Comment Lookup</a>
+		  <a class="navbar-brand" id="lookup_menu_item" href="#">Search</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 		  <ul class="nav navbar-nav">
 			<!-- <li class="active"><a href="#">Home</a></li> -->
 			<li><a href="#" id="comments_menu_item">Comments</a></li>
-			<li><a href="#" id="load_menu_item">Load</a></li>
-			<li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Settings</a></li>
+		  <li><a href="#">Settings</a></li>
+		  <li><a href="#" id="load_menu_item">Load</a></li>
+		  <li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
           <li id="forgot_password"><a href="#">Forgot Password</a></li>
           <li id="reset_password"><a href="#">Reset Password</a></li>
         </ul>
@@ -279,15 +279,15 @@
 				</div>
 				<div class="form-group">
 					<label for="externalities_input">Externalities:</label>
-					<textarea data-property-name="externalities" class="form-control rounded-0 comment_input" id="externalities_input" rows="4"></textarea>
+					<textarea data-property-name="externalities" class="form-control rounded-0 comment_input comment_input_list" id="externalities_input" rows="6"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="notes_input">Notes:</label>
-					<textarea data-property-name="notes" class="form-control rounded-0 comment_input" id="notes_input" rows="4"></textarea>
+					<textarea data-property-name="notes" class="form-control rounded-0 comment_input comment_input_list" id="notes_input" rows="6"></textarea>
 				</div>
 
 				<button type="button" class="btn btn-info" id="copy_comments_button">Copy</button>
-				<button type="button" class="btn btn-warning" id="clear_comments_button">Clear</button>
+				<button type="button" class="btn btn-warning pull-right" id="clear_comments_button">Clear</button>
 				
 			</form>
 		</div>

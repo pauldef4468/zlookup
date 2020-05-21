@@ -1113,6 +1113,21 @@ function loadCommentView(){
 	}
 }
 
+function numberLinesofText(text){
+	let textLines = text.split('\n');
+	//Make sure to trim each line
+	//console.log(textLines);
+	let formattedText = '';
+	let lineNumber = 0;
+	for(let i=0; i < textLines.length; i++){
+		lineNumber++;
+		formattedText = formattedText.concat(`${lineNumber}. ${textLines[i]}\n`);
+	}
+	formattedText.trim();
+	return formattedText;
+
+}
+
 /* function clearSignUpForm(){
 	
  	form = $('#sign_up_form');
@@ -1266,61 +1281,6 @@ function submitSignUpForm(){
 	}
 	
 	submitAjaxRequests();
-	
-	// // *** Ajax post the form data ***
-	// $.ajax({url: "http://localhost:5000/zlookup-api/users", 
-	// 	type: "POST",
-	// 	data: JSON.stringify(formData), 
-	// 	dataType: "json", 
-	// 	contentType:"application/json; charset=utf-8"
-	// })
-	// .done(function(responseData){
-	// 	//All is good here because status code will be 200 else it will drop down to .fail below
-	// 	showLoginForm();
-	// })
-	// .fail(function(responseData, textStatus, error){
-
-	// 	const statusCode = responseData.status;
-	// 	if(statusCode === 400){
-	// 		const propertyKey = responseData.responseJSON.context.key; //property name on server (JOI validation, look at the model)
-	// 		const errorMessage = responseData.responseJSON.message;
-	// 		switch(propertyKey){
-	// 			case 'firstName':
-	// 				const firstNameGroup = $(form).find(".reg_first_name");
-	// 				$(firstNameGroup).addClass('has-error'); 
-	// 				$(firstNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-	// 				break;
-	// 			case 'lastName':
-	// 				const lastNameGroup = $(form).find(".reg_last_name");
-	// 				$(lastNameGroup).addClass('has-error'); // add the error class to show red input
-	// 				$(lastNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-	// 				break;
-	// 			case 'email':
-	// 				const emailGroup = $(form).find(".reg_email");
-	// 				$(emailGroup).addClass('has-error'); // add the error class to show red input
-	// 				$(emailGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-	// 				break;
-	// 			case 'password':
-	// 				var confirmPasswordGroup = $(form).find(".reg_password");
-	// 				$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
-	// 				$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-	// 				break;
-	// 			case 'confirmPassword':
-	// 				var confirmPasswordGroup = $(form).find(".reg_confirm_password");
-	// 				$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
-	// 				$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
-	// 				break;
-	// 			default:
-	// 				// TODO Handle some other error here
-	// 				break;
-	// 		}
- 
-	// 	}else{
-	// 		// TODO finish this
-	// 		console.log('Status code: ' + statusCode);
-	// 	}
-
-	// })
 	
 }
 
@@ -1744,34 +1704,41 @@ $(document).ready(function(){
 		const elements = $('.comment_input').toArray();
 		for(let i=0; i < elements.length; i++){
 			const propertyName = $(elements[i]).attr('data-property-name');
-			const label = $(elements[i]).attr('data-label');
-			const value = localStorage.getItem(propertyName);
-			commentObj[propertyName] = value;
-			//if(!value) continue;
+			let value = localStorage.getItem(propertyName);
+			if(!value) value = '';
+			//If this is a list type field then add numbers
+			if($(elements[i]).hasClass( 'comment_input_list' ) && value){
+				value = numberLinesofText(value);
+			}
+			commentObj[propertyName] = value; //Add property and value to the comment object
+
 		}
-		const formattedComment = `[Spec Level: ${commentObj.specLevel}]` + 
-		` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured} ]` +
-		` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]` +
-		` - [Temp split (1st floor): ${commentObj.deltaT1}]` +
-		` - [Temp split (2nd floor): ${commentObj.deltaT2}]` +
-		` - [Temp split (3rd floor): ${commentObj.deltaT3}]` +
-		` - [Wood Windows Present?: ${commentObj.woodWindows}]` + 
-		` - [Gas on/off: ${commentObj.gas}]` +
-		` - [Heat Tested?: ${commentObj.heatTested}]` +
-		` - [Cool Tested?: ${commentObj.coolTested}]` +
-		` - [Appliances Being Taken: ${commentObj.appliancesTaken}]` +
-		` - [Garage Remotes: ${commentObj.garageRemotes}]` +
-		` - [In Attendance: ${commentObj.inAttendance}]` +
-		` - [Noted externalities: ${commentObj.externalities}]` +
-		` - [Add Notes: ${commentObj.notes}]`;
-		console.log(formattedComment);
+
+		let formattedComment = '';
+		if(commentObj.specLevel) formattedComment = formattedComment.concat(`[Spec Level: ${commentObj.specLevel}]`);
+		if(commentObj.squareFeetListed) formattedComment = formattedComment.concat(` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured}]`);
+		if(commentObj.beds) formattedComment = formattedComment.concat(` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]`);
+		if(commentObj.deltaT1) formattedComment = formattedComment.concat(` - [Temp split (1st floor): ${commentObj.deltaT1}]`);
+		if(commentObj.deltaT2) formattedComment = formattedComment.concat(` - [Temp split (2nd floor): ${commentObj.deltaT2}]`);
+		if(commentObj.deltaT3) formattedComment = formattedComment.concat(` - [Temp split (3rd floor): ${commentObj.deltaT3}]`);
+		if(commentObj.woodWindows) formattedComment = formattedComment.concat(` - [Wood Windows Present?: ${commentObj.woodWindows}]`);
+		if(commentObj.gas) formattedComment = formattedComment.concat(` - [Gas on/off: ${commentObj.gas}]`);
+		if(commentObj.heatTested) formattedComment = formattedComment.concat(` - [Heat Tested?: ${commentObj.heatTested}]`);
+		if(commentObj.coolTested) formattedComment = formattedComment.concat(` - [Cool Tested?: ${commentObj.coolTested}]`);
+		if(commentObj.appliancesTaken) formattedComment = formattedComment.concat(` - [Appliances Being Taken: ${commentObj.appliancesTaken}]`);
+		if(commentObj.garageRemotes) formattedComment = formattedComment.concat(` - [Garage Remotes: ${commentObj.garageRemotes}]`);
+		if(commentObj.inAttendance) formattedComment = formattedComment.concat(` - [In Attendance: ${commentObj.inAttendance}]`);
+		if(commentObj.externalities) formattedComment = formattedComment.concat(` - [Noted externalities: ${commentObj.externalities}]`);
+		if(commentObj.notes) formattedComment = formattedComment.concat(` - [Add Notes: ${commentObj.notes}]`);
+
 		updateClipboard(formattedComment);
 	});
 
 	$('.comment_input').on('keyup', function(e){
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
-		localStorage.setItem(propertyName,$(el).val());
+		const value = $.trim($(el).val());
+		localStorage.setItem(propertyName,value);
 	});
 
 
