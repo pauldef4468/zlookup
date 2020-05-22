@@ -1131,12 +1131,19 @@ function showCommentForm(){
 	loadCommentView();
 
 }
+
 function loadCommentView(){
 	const elements = $('.comment_input').toArray();
 	for(let i=0; i < elements.length; i++){
 		const propertyName = $(elements[i]).attr('data-property-name');
 		$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
 	}
+}
+
+function showPreChecklistForm(){
+	View.clearView('#pre_checklist_form');
+	View.showView('#pre_checklist_form');
+
 }
 
 function numberLinesofText(text){
@@ -1765,7 +1772,15 @@ $(document).ready(function(){
 		localStorage.setItem(propertyName,value);
 	});
 
-
+	$('#pre_checklist_menu').on('click', function(){
+		showPreChecklistForm();
+	})
+	$('#susan_checklist_menu').on('click', function(){
+		console.log('Susan Checklist');
+	})
+	$('#main_checklist_menu').on('click', function(){
+		console.log('Main Checklist');
+	})
 	
 });
 

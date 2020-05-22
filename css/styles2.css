@@ -12,7 +12,6 @@ p{
 	cursor: pointer;
 }
 
-
 .price_display{
 	color: blue;
 }
@@ -97,6 +96,13 @@ p.name{
 	padding: 0px;
 }
 
+.checklist_checkbox{
+	margin-bottom: 10px;
+	
+}
+.checklist_checkbox_label{
+	font-size: large;
+}
 .navbar-inverse{
 	margin: 0px;
 }

@@ -44,6 +44,15 @@
 					<ul class="nav navbar-nav">
 						<!-- <li class="active"><a href="#">Home</a></li> -->
 						<li><a href="#" id="comments_menu_item">Comments</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Checklists
+								<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#" id="pre_checklist_menu">Pre-Checklist</a></li>
+								<li><a href="#" id="susan_checklist_menu">Discussion</a></li>
+								<li><a href="#" id="main_checklist_menu">Main Checklist</a></li>
+							</ul>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -221,7 +230,6 @@
 			</form>
 		</div>
 
-		<!-- Forgot Password -->
 		<div id="comments_form" class="view">
 			<h2>Comments</h2>
 			<form>
@@ -320,6 +328,47 @@
 				<button type="button" class="btn btn-info" id="copy_comments_button">Copy</button>
 				<button type="button" class="btn btn-warning pull-right" id="clear_comments_button">Clear</button>
 
+			</form>
+		</div>
+
+		<div id="pre_checklist_form" class="view">
+			<h2>Pre-Checklist</h2>
+			<form>
+				<div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Check Slack
+					</label>
+				  </div>
+				  <div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Thank You Note
+					</label>
+				  </div>
+				  <div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Review FSL / RPM Notes
+					</label>
+				  </div>
+				  <div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Add Initial Items to RenoWalk
+					</label>
+				  </div>
+				  <div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Check Outside Temp
+					</label>
+				  </div>
+				  <div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Delete Photos in Camera and iPad
+					</label>
+				  </div>
+				  <div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+					  <input type="checkbox">Enter Externalities
+					</label>
+				  </div>
 			</form>
 		</div>
 
