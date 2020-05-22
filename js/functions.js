@@ -351,19 +351,11 @@ function lookupFunction() {
 		
 		//Insert cell
 		var cell0 = row.insertCell(0);
-		//var selectCheckbox = document.createElement("INPUT");
-		//selectCheckbox.setAttribute("type", "checkbox");
-		//selectCheckbox.setAttribute("class", "row_checkbox");
-		//$(cell0).append(selectCheckbox);
-		
-		//Create edit pencil icon link 
-		//var editIcon = document.createElement("a");
-		//editIcon.setAttribute("href","#");
-		//var span = $("<span class='glyphicon glyphicon-pencil edit_icon'></span>");
 		var span = $("<span class='glyphicon glyphicon-chevron-down edit_icon'></span>");
 		//$(editIcon).html(span);
 		//$(cell0).append(editIcon);
 		$(cell0).append(span);
+		//$(cell0).append(plus);
 		
 		//Event handler for pencil click
 		$(span).on('click', (function(span){
@@ -424,6 +416,40 @@ function lookupFunction() {
 				commentClick2(par,commentText); 
 			});
 		}(par,commentText);
+
+		const resultItem = resultItems[i];
+
+		if(resultItem.category.name === 'Externalities' || resultItem.category.name === 'Internalities' || resultItem.category.name === 'Notes'){
+			//Add the plus icon to add this note to appropriate section
+			let plus = $('<button type="button" class="btn btn-success btn-sm" id="add_comment_button">Add to List</button>');
+			$(cell1).append(plus);
+			$(plus).on('click', (function(resultItem){
+				return(function() { 
+					if(resultItem.category.name === 'Externalities'){
+						let externalitiesValue = localStorage.getItem('externalities');
+						if(!externalitiesValue){
+							localStorage.setItem('externalities',resultItem.comment);
+						}else{
+							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
+							localStorage.setItem('externalities',externalitiesValue);
+						}
+						
+					}else if(resultItem.category.name === 'Internalities'){
+						
+					}else if(resultItem.category.name === 'Notes'){
+						let notesValue = localStorage.getItem('notes');
+						if(!notesValue){
+							localStorage.setItem('notes',resultItem.comment);
+						}else{
+							notesValue = notesValue.concat('\n' + resultItem.comment);
+							localStorage.setItem('notes',notesValue);
+						}
+					}
+					
+				});
+			})(resultItem));
+		}
+
 			
 		
 		
@@ -1690,8 +1716,6 @@ $(document).ready(function(){
 	$('#reset_password_button').on('click', function(){
 		submitResetPasswordForm();
 	});
-	
-
 
 	$('#clear_comments_button').on('click', function(){
 		localStorage.clear();

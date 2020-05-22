@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<title>Comment Lookup</title>
+	<title>Comment Lookup</title>
 
-<link rel="shortcut icon" href="#" />
+	<link rel="shortcut icon" href="#" />
 
-<meta charset="utf-8">
+	<meta charset="utf-8">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/styles2.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-<script src="js/functions.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles2.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+	<script src="js/functions.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
 
-<!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
  -->
@@ -27,231 +28,264 @@
 
 <body>
 
-<div class="container">
+	<div class="container">
 
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-		  <a class="navbar-brand" id="lookup_menu_item" href="#">Search</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-		  <ul class="nav navbar-nav">
-			<!-- <li class="active"><a href="#">Home</a></li> -->
-			<li><a href="#" id="comments_menu_item">Comments</a></li>
-		  </ul>
-		  <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-		  <li><a href="#">Settings</a></li>
-		  <li><a href="#" id="load_menu_item">Load</a></li>
-		  <li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
-          <li id="forgot_password"><a href="#">Forgot Password</a></li>
-          <li id="reset_password"><a href="#">Reset Password</a></li>
-        </ul>
-      </li>
-			<li id="sign_up_menu_item"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-			<li id="login_menu_item"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-			<li id="logout_menu_item"><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-		  </ul>
-		</div>
-	  </div>
-
-	</nav>
-
-	<p id="user_info">
-		<!-- This gets filled in when logging in -->
-		
-	</p>
-	
-	<!-- The search block. Not displayed initially until data loaded at start-up -->
-	<div id="search_block" class="view">
-		
-		<!-- Filter checkbox -->
-		<div class="checkbox">
-			<label><input type="checkbox" id="all_checkbox" value="">All</label>
-			<br>
-		</div>
-		<!-- Lookup select and input -->
-		<div class="row">
-			<div class="col-sm-2">
-				<!-- <label for="category_select">Category:</label> -->
-				<select id="category_select">
-				<!-- Items filled in with code -->
-				  <!-- ie. <option value="Electrical">Electrical</option> -->
-				</select>
-			</div>
-			<div class="col-sm-10">
-				<input  autocomplete="off" type="text" id="lookupText" name="lookupText" >
-				<button type="button" id="clear_button" class="btn btn-light btn-sm">X</button>
-				<span id= "result_count"></span>
-			</div>
-		</div>
-
-		<p id="lookup_error"></p>
-		
-		
-		<!-- Results table -->
-		<div class="result_table">
-			<table id="resultTable" class="table table-bordered">
-				<thead>
-					<tr>
-						<th class="first_table_column"></th>
-						<th>Comment</th>
-						<!-- <th class="third_table_column">Price</th> -->
-					</tr>
-				</thead>
-				<tbody id="tbody">
-					<!-- Rows filled in dynamically here -->
-				</tbody>
-			</table>
-
-
-		</div>
-	</div>
-	
-	<!-- Sign up form -->
-	<div id="sign_up_form" class="view">
-	<h2>Sign Up</h2>
-	<p>Fill in form to create account.</p>
-		<form action="" method="post">
-		
-			<div class="form-group reg_first_name">
-				<label for="first_name">First Name:</label>
-				<input type="text" class="form-control first_name" id="first_name">
-			</div>
-			 
-			<div class="form-group reg_last_name">
-				<label for="last_name">Last Name:</label>
-				<input type="text" class="form-control last_name" id="last_name">
-			</div>
-			<div class="form-group reg_email">
-				<label for="your_email">Your Email:</label>
-				<input type="text" class="form-control your_email" id="your_email">
-			</div>
-			<div class="form-group reg_password">
-				<label for="password">Password:</label>
-				<input type="password" class="form-control password" id="password">
-			</div>
-			<div class="form-group reg_confirm_password">
-				<label for="confirm_password">Re-enter Password:</label>
-				<input type="password" class="form-control confirm_password" id="confirm_password">
-			</div>
-			<div class="bg-danger text-danger panel-body standard_err_message"></div>
-			<button type="button" class="btn btn-success submit_button" id="submit_button">Submit</button>
-			<p>Already have an account? <a id="login_here_link" href="javascript:void(0)">Login here</a>.
-			<div class="pad_overlay">
-				<div class="loader" >
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" id="lookup_menu_item" href="#">Search</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<!-- <li class="active"><a href="#">Home</a></li> -->
+						<li><a href="#" id="comments_menu_item">Comments</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
+								<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Settings</a></li>
+								<li><a href="#" id="load_menu_item">Load</a></li>
+								<li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
+								<li id="forgot_password"><a href="#">Forgot Password</a></li>
+								<li id="reset_password"><a href="#">Reset Password</a></li>
+							</ul>
+						</li>
+						<li id="sign_up_menu_item"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
+						</li>
+						<li id="login_menu_item"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+						</li>
+						<li id="logout_menu_item"><a href="#"><span
+									class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+					</ul>
 				</div>
 			</div>
-		</form>
-	</div>
-	
-	<!-- Login form -->
-	<div id="login_form" class="view">
-	<h2>Log In</h2>
-		<form action="" method="post">
-			<div class="form-group log_login_email">
-				<label for="login_email">Email:</label>
-				<input type="text" class="form-control login_email" id="login_email">
-			</div>
-			 
-			<div class="form-group log_login_password">
-				<label for="login_password">Password:</label>
-				<input type="password" class="form-control login_password" id="login_password">
-			</div>
 
-			<div class="bg-danger text-danger panel-body standard_err_message"></div>
-			
-			<button type="button" class="btn btn-success login_submit_button" id="login_submit_button">Submit</button>
-			<div class="pad_overlay">
-				<div class="loader" >
+		</nav>
+
+		<p id="user_info">
+			<!-- This gets filled in when logging in -->
+
+		</p>
+
+		<!-- The search block. Not displayed initially until data loaded at start-up -->
+		<div id="search_block" class="view">
+
+			<!-- Filter checkbox -->
+			<div class="checkbox">
+				<label><input type="checkbox" id="all_checkbox" value="">All</label>
+				<br>
+			</div>
+			<!-- Lookup select and input -->
+			<div class="row">
+				<div class="col-sm-2">
+					<!-- <label for="category_select">Category:</label> -->
+					<select id="category_select">
+						<!-- Items filled in with code -->
+						<!-- ie. <option value="Electrical">Electrical</option> -->
+					</select>
+				</div>
+				<div class="col-sm-10">
+					<input autocomplete="off" type="text" id="lookupText" name="lookupText">
+					<button type="button" id="clear_button" class="btn btn-light btn-sm">X</button>
+					<span id="result_count"></span>
 				</div>
 			</div>
-		  
-		</form>
+
+			<p id="lookup_error"></p>
 
 
-	</div>
-	
-	<!-- Reset Password -->
-	<div id="reset_password_form" class="view">
-	<h2>Reset Password</h2>
-		<form action="" method="post">
-			<div class="form-group enter_password_group">
-				<label for="enter_password_input">New Password:</label>
-				<input type="password" class="form-control enter_password_input" id="enter_password_input">
-			</div>
-			 
-			<div class="form-group reenter_password_group">
-				<label for="reenter_password_input">Confirm Password:</label>
-				<input type="password" class="form-control reenter_password_input" id="reenter_password_input">
-			</div>
-			
-			<button type="button" class="btn btn-success reset_password_button" id="reset_password_button">Submit</button>
-		  
-		</form>
-	</div>
-	
-	<!-- Forgot Password -->
-	<div id="forgot_password_form" class="view">
-	<h2>Forgot Password</h2>
-		<form action="" method="post">
-			<div class="form-group forgot_password_email_group">
-				<label for="forgot_password_email_input">Enter Email:</label>
-				<input type="text" class="form-control forgot_password_email_input" id="forgot_password_email_input">
-			</div>
-			
-			<button type="button" class="btn btn-success forgot_password_button" id="forgot_password_button">Submit</button>
-		  
-		</form>
-	</div>
+			<!-- Results table -->
+			<div class="result_table">
+				<table id="resultTable" class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="first_table_column"></th>
+							<th>Comment</th>
+							<!-- <th class="third_table_column">Price</th> -->
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						<!-- Rows filled in dynamically here -->
+					</tbody>
+				</table>
 
-	<!-- Forgot Password -->
-	<div id="comments_form" class="view">
-		<h2>Comments</h2>
-			<form >
+
+			</div>
+		</div>
+
+		<!-- Sign up form -->
+		<div id="sign_up_form" class="view">
+			<h2>Sign Up</h2>
+			<p>Fill in form to create account.</p>
+			<form action="" method="post">
+
+				<div class="form-group reg_first_name">
+					<label for="first_name">First Name:</label>
+					<input type="text" class="form-control first_name" id="first_name">
+				</div>
+
+				<div class="form-group reg_last_name">
+					<label for="last_name">Last Name:</label>
+					<input type="text" class="form-control last_name" id="last_name">
+				</div>
+				<div class="form-group reg_email">
+					<label for="your_email">Your Email:</label>
+					<input type="text" class="form-control your_email" id="your_email">
+				</div>
+				<div class="form-group reg_password">
+					<label for="password">Password:</label>
+					<input type="password" class="form-control password" id="password">
+				</div>
+				<div class="form-group reg_confirm_password">
+					<label for="confirm_password">Re-enter Password:</label>
+					<input type="password" class="form-control confirm_password" id="confirm_password">
+				</div>
+				<div class="bg-danger text-danger panel-body standard_err_message"></div>
+				<button type="button" class="btn btn-success submit_button" id="submit_button">Submit</button>
+				<p>Already have an account? <a id="login_here_link" href="javascript:void(0)">Login here</a>.
+				<div class="pad_overlay">
+					<div class="loader">
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- Login form -->
+		<div id="login_form" class="view">
+			<h2>Log In</h2>
+			<form action="" method="post">
+				<div class="form-group log_login_email">
+					<label for="login_email">Email:</label>
+					<input type="text" class="form-control login_email" id="login_email">
+				</div>
+
+				<div class="form-group log_login_password">
+					<label for="login_password">Password:</label>
+					<input type="password" class="form-control login_password" id="login_password">
+				</div>
+
+				<div class="bg-danger text-danger panel-body standard_err_message"></div>
+
+				<button type="button" class="btn btn-success login_submit_button"
+					id="login_submit_button">Submit</button>
+				<div class="pad_overlay">
+					<div class="loader">
+					</div>
+				</div>
+
+			</form>
+
+
+		</div>
+
+		<!-- Reset Password -->
+		<div id="reset_password_form" class="view">
+			<h2>Reset Password</h2>
+			<form action="" method="post">
+				<div class="form-group enter_password_group">
+					<label for="enter_password_input">New Password:</label>
+					<input type="password" class="form-control enter_password_input" id="enter_password_input">
+				</div>
+
+				<div class="form-group reenter_password_group">
+					<label for="reenter_password_input">Confirm Password:</label>
+					<input type="password" class="form-control reenter_password_input" id="reenter_password_input">
+				</div>
+
+				<button type="button" class="btn btn-success reset_password_button"
+					id="reset_password_button">Submit</button>
+
+			</form>
+		</div>
+
+		<!-- Forgot Password -->
+		<div id="forgot_password_form" class="view">
+			<h2>Forgot Password</h2>
+			<form action="" method="post">
+				<div class="form-group forgot_password_email_group">
+					<label for="forgot_password_email_input">Enter Email:</label>
+					<input type="text" class="form-control forgot_password_email_input"
+						id="forgot_password_email_input">
+				</div>
+
+				<button type="button" class="btn btn-success forgot_password_button"
+					id="forgot_password_button">Submit</button>
+
+			</form>
+		</div>
+
+		<!-- Forgot Password -->
+		<div id="comments_form" class="view">
+			<h2>Comments</h2>
+			<form>
+				<div class="form-group">
+					<label for="externalities_input">Externalities:</label>
+					<textarea data-property-name="externalities"
+						class="form-control rounded-0 comment_input comment_input_list" id="externalities_input"
+						rows="6"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="notes_input">Notes:</label>
+					<textarea data-property-name="notes" class="form-control rounded-0 comment_input comment_input_list"
+						id="notes_input" rows="6"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="extra_notes_input">Extra Notes:</label>
+					<textarea data-property-name="extraNotes"
+						class="form-control rounded-0 comment_input comment_input_list" id="extra_notes_input"
+						rows="6"></textarea>
+				</div>
 				<div class="form-group">
 					<label for="spec_level_input">Spec Level:</label>
-					<input data-property-name="specLevel" type="text" inputmode="numeric" class="form-control comment_input" id="spec_level_input">
+					<input data-property-name="specLevel" type="text" inputmode="numeric"
+						class="form-control comment_input" id="spec_level_input">
 				</div>
 				<div class="form-group">
 					<label for="sf1_input">Sq Ft Listed:</label>
-					<input data-property-name="squareFeetListed" type="text" inputmode="numeric" class="form-control comment_input" id="sf1_input">
+					<input data-property-name="squareFeetListed" type="text" inputmode="numeric"
+						class="form-control comment_input" id="sf1_input">
 				</div>
 				<div class="form-group">
 					<label for="sf2_input">Sq Ft Measured:</label>
-					<input data-property-name="squareFeetMeasured" type="text" inputmode="numeric" class="form-control comment_input" id="sf2_input">
+					<input data-property-name="squareFeetMeasured" type="text" inputmode="numeric"
+						class="form-control comment_input" id="sf2_input">
 				</div>
 				<div class="form-group">
 					<label for="beds_input">Bedrooms:</label>
-					<input data-property-name="beds" type="text" inputmode="numeric" class="form-control comment_input" id="beds_input">
+					<input data-property-name="beds" type="text" inputmode="numeric" class="form-control comment_input"
+						id="beds_input">
 				</div>
 				<div class="form-group">
 					<label for="baths_input">Bathrooms:</label>
-					<input data-property-name="baths" type="text" inputmode="numeric" class="form-control comment_input" id="baths_input">
+					<input data-property-name="baths" type="text" inputmode="numeric" class="form-control comment_input"
+						id="baths_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t1_input">Temp Split 1st Floor:</label>
-					<input data-property-name="deltaT1" type="text" inputmode="numeric" class="form-control comment_input" id="delta-t1_input">
+					<input data-property-name="deltaT1" type="text" inputmode="numeric"
+						class="form-control comment_input" id="delta-t1_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t2_input">Temp Split 2nd Floor:</label>
-					<input data-property-name="deltaT2" type="text" inputmode="numeric" class="form-control comment_input" id="delta-t2_input">
+					<input data-property-name="deltaT2" type="text" inputmode="numeric"
+						class="form-control comment_input" id="delta-t2_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t3_input">Temp Split 3rd Floor:</label>
-					<input data-property-name="deltaT3" type="text" inputmode="numeric" class="form-control comment_input" id="delta-t3_input">
+					<input data-property-name="deltaT3" type="text" inputmode="numeric"
+						class="form-control comment_input" id="delta-t3_input">
 				</div>
 				<div class="form-group">
 					<label for="wood_windows_input">Wood Windows Present?:</label>
-					<input data-property-name="woodWindows" type="text" class="form-control comment_input" id="wood_windows_input">
+					<input data-property-name="woodWindows" type="text" class="form-control comment_input"
+						id="wood_windows_input">
 				</div>
 				<div class="form-group">
 					<label for="gas_input">Gas On/Off?:</label>
@@ -259,46 +293,44 @@
 				</div>
 				<div class="form-group">
 					<label for="heat_tested_input">Heat Tested?:</label>
-					<input data-property-name="heatTested" type="text" class="form-control comment_input" id="heat_tested_input">
+					<input data-property-name="heatTested" type="text" class="form-control comment_input"
+						id="heat_tested_input">
 				</div>
 				<div class="form-group">
 					<label for="cool_tested_input">Cool Tested?:</label>
-					<input data-property-name="coolTested" type="text" class="form-control comment_input" id="cool_tested_input">
+					<input data-property-name="coolTested" type="text" class="form-control comment_input"
+						id="cool_tested_input">
 				</div>
 				<div class="form-group">
 					<label for="appliances_input">Appliances Being Taken?:</label>
-					<input data-property-name="appliancesTaken" type="text" class="form-control comment_input" id="appliances_input">
+					<input data-property-name="appliancesTaken" type="text" class="form-control comment_input"
+						id="appliances_input">
 				</div>
 				<div class="form-group">
 					<label for="garage_input">Garage Remotes:</label>
-					<input data-property-name="garageRemotes" type="text" inputmode="numeric" class="form-control comment_input" id="garage_input">
+					<input data-property-name="garageRemotes" type="text" inputmode="numeric"
+						class="form-control comment_input" id="garage_input">
 				</div>
 				<div class="form-group">
 					<label for="attendance_input">In Attendance:</label>
-					<input data-property-name="inAttendance" type="text" class="form-control comment_input" id="attendance_input">
-				</div>
-				<div class="form-group">
-					<label for="externalities_input">Externalities:</label>
-					<textarea data-property-name="externalities" class="form-control rounded-0 comment_input comment_input_list" id="externalities_input" rows="6"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="notes_input">Notes:</label>
-					<textarea data-property-name="notes" class="form-control rounded-0 comment_input comment_input_list" id="notes_input" rows="6"></textarea>
+					<input data-property-name="inAttendance" type="text" class="form-control comment_input"
+						id="attendance_input">
 				</div>
 
 				<button type="button" class="btn btn-info" id="copy_comments_button">Copy</button>
 				<button type="button" class="btn btn-warning pull-right" id="clear_comments_button">Clear</button>
-				
+
 			</form>
 		</div>
 
-	<div class="pad_overlay">
-		<div class="loader" >
+		<div class="pad_overlay">
+			<div class="loader">
+			</div>
 		</div>
+
 	</div>
 
-</div>
-  
 
 </body>
+
 </html>
