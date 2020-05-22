@@ -419,13 +419,14 @@ function lookupFunction() {
 
 		const resultItem = resultItems[i];
 
-		if(resultItem.category.name === 'Externalities' || resultItem.category.name === 'Internalities' || resultItem.category.name === 'Notes'){
+		if(resultItem.category._id === '5eb465afd494f76768b4c3e7' || resultItem.category._id === '5ec1d85a7411d74c5c6e8ecc' || resultItem.category._id === '5ec65c9e7411d74c5c6e8ece' || resultItem.category._id === '5ebc3ea6e89c345de4e74976'){
 			//Add the plus icon to add this note to appropriate section
 			let plus = $('<button type="button" class="btn btn-success btn-sm" id="add_comment_button">Add to List</button>');
 			$(cell1).append(plus);
 			$(plus).on('click', (function(resultItem){
 				return(function() { 
-					if(resultItem.category.name === 'Externalities'){
+					//Check if Externality
+					if(resultItem.category._id === '5eb465afd494f76768b4c3e7'){
 						let externalitiesValue = localStorage.getItem('externalities');
 						if(!externalitiesValue){
 							localStorage.setItem('externalities',resultItem.comment);
@@ -433,16 +434,32 @@ function lookupFunction() {
 							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
 							localStorage.setItem('externalities',externalitiesValue);
 						}
-						
-					}else if(resultItem.category.name === 'Internalities'){
-						
-					}else if(resultItem.category.name === 'Notes'){
+						//Check if Limitation
+					}else if(resultItem.category._id === '5ec1d85a7411d74c5c6e8ecc'){
+						let externalitiesValue = localStorage.getItem('notes');
+						if(!externalitiesValue){
+							localStorage.setItem('notes',resultItem.comment);
+						}else{
+							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
+							localStorage.setItem('notes',externalitiesValue);
+						}
+						//Check if a general note
+					}else if(resultItem.category._id === '5ec65c9e7411d74c5c6e8ece'){
 						let notesValue = localStorage.getItem('notes');
 						if(!notesValue){
 							localStorage.setItem('notes',resultItem.comment);
 						}else{
 							notesValue = notesValue.concat('\n' + resultItem.comment);
 							localStorage.setItem('notes',notesValue);
+						}
+						//Check for internalities
+					}else if(resultItem.category._id === '5ebc3ea6e89c345de4e74976'){
+						let externalitiesValue = localStorage.getItem('externalities');
+						if(!externalitiesValue){
+							localStorage.setItem('externalities',resultItem.comment);
+						}else{
+							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
+							localStorage.setItem('externalities',externalitiesValue);
 						}
 					}
 					
@@ -1662,14 +1679,6 @@ $(document).ready(function(){
 	
 	//Initialize a global selected paragraph var
 	selectedParId = '';
-
-	apiServer = 'https://zlookup-api.herokuapp.com';
-	if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === ""){
-		console.log('using local host');
-		apiServer = 'http://localhost:5000'
-	}else{
-		console.log('Using Heroku');
-	}
 	
 	//Initialize user to null because we don't have one yet
 	//If we start using cookies or have a way to store the JWT 
@@ -1678,6 +1687,16 @@ $(document).ready(function(){
 	// The global user object is not set when not logged in
 	if(!user){
 		showLoginForm();
+	}
+
+	apiServer = 'https://zlookup-api.herokuapp.com';
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === ""){
+		console.log('Using local host');
+		//$
+		$('#login_email').val('pauld@zillowgroup.com');
+		apiServer = 'http://localhost:5000'
+	}else{
+		console.log('Using Heroku');
 	}
 
 	//Attempt to load data. If not logged in it will show login instead
@@ -1695,6 +1714,7 @@ $(document).ready(function(){
 			}
 			finally{
 				showHideEditFormSpinner(null, false);
+				$('#myNavbar').collapse('hide');
 			}
 		})();
 		
@@ -1736,17 +1756,20 @@ $(document).ready(function(){
 	})
 	$('#reset_password').on('click', function(e){
 		showResetPasswordForm();
+		$('#myNavbar').collapse('hide');
 	})
 	$('#forgot_password').on('click', function(e){
 		showForgotPasswordForm();
+		$('#myNavbar').collapse('hide');
 	})
 	$('#comments_menu_item').on('click', function(){
 		showCommentForm();
+		$('#myNavbar').collapse('hide');
 	})
 		
-	
 	$('#lookup_menu_item').on('click', function(e){
 		showSearchBlock();
+		$('#myNavbar').collapse('hide');
 	})
 	$('#login_menu_item').on('click', function(e){
 		showLoginForm();
@@ -1825,12 +1848,15 @@ $(document).ready(function(){
 	//* CHECKLIST MENU EVENTS */
 	$('#pre_checklist_menu').on('click', function(){
 		showChecklistForm('pre_checklist_form','checklist_pre');
+		$('#myNavbar').collapse('hide');
 	})
 	$('#susan_checklist_menu').on('click', function(){
 		showChecklistForm('discussion_checklist_form','checklist_discussion');
+		$('#myNavbar').collapse('hide');
 	})
 	$('#main_checklist_menu').on('click', function(){
 		showChecklistForm('main_checklist_form','checklist_main')
+		$('#myNavbar').collapse('hide');
 	})
 	/* CLEAR CHECKLIST BUTTON EVENTS */
 	$('#clear_pre-checklist_button').on('click', function(){
