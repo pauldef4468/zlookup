@@ -1072,7 +1072,6 @@ class View {
 				$(this).css("display", "none");
 			}
 		);
-
 		//Show the wanted view
 		$(displayFormID).css("display", "block");
 
@@ -1140,10 +1139,29 @@ function loadCommentView(){
 	}
 }
 
-function showPreChecklistForm(){
-	View.clearView('#pre_checklist_form');
-	View.showView('#pre_checklist_form');
+// function showPreChecklistForm(){
+// 	View.clearView('#pre_checklist_form');
+// 	View.showView('#pre_checklist_form');
+// 	loadChecklistForm();
+// }
 
+function showChecklistForm(formID, inputClass){
+	View.clearView(`#${formID}`);
+	View.showView(`#${formID}`);
+	loadChecklistForm(inputClass);
+}
+
+function loadChecklistForm(inputClass){
+	const elements = $(`.${inputClass}`).toArray();
+	for(let i=0; i < elements.length; i++){
+		const propertyName = $(elements[i]).attr('data-property-name');
+		const isChecked = localStorage.getItem(propertyName);
+		if(isChecked === 'true'){
+			$( elements[i] ).prop( "checked", true );
+		}else{
+			$( elements[i] ).prop( "checked", false );
+		}
+	}
 }
 
 function numberLinesofText(text){
@@ -1599,6 +1617,35 @@ htmlspecialchars_decode.specialchars = [
 	[ '&', '&amp;' ]
 ];
 
+function saveChecklistItemValue(el){
+	//Use this function to handle all checklist type saves when checked
+	const propertyName = el.attr('data-property-name');
+	let isChecked = 'false';
+	if ($(el).is(":checked"))
+	{
+		isChecked = 'true';
+	}
+	localStorage.setItem(propertyName,isChecked);
+}
+
+function clearCommentsFromLocalStorage(){
+	const elements = $('.comment_input').toArray();
+	for(let i=0; i < elements.length; i++){
+		const propertyName = $(elements[i]).attr('data-property-name');
+		//let value = localStorage.getItem(propertyName);
+		localStorage.removeItem(propertyName);
+	}
+}
+
+function clearChecklistItemFromLocalStorage(inputClass){
+	const elements = $(`.${inputClass}`).toArray();
+	for(let i=0; i < elements.length; i++){
+		const propertyName = $(elements[i]).attr('data-property-name');
+		//let value = localStorage.getItem(propertyName);
+		localStorage.removeItem(propertyName);
+	}
+}
+
 $(document).ready(function(){
 	
 	//Make sure the edit form is hidden
@@ -1725,9 +1772,12 @@ $(document).ready(function(){
 	});
 
 	$('#clear_comments_button').on('click', function(){
-		localStorage.clear();
+		clearCommentsFromLocalStorage();
 		loadCommentView();
 	});
+
+
+	//clearChecklistItemFromLocalStorage
 
 	$('#copy_comments_button').on('click', function(){
 		//Loop all comments and add keys and values to an object
@@ -1772,14 +1822,33 @@ $(document).ready(function(){
 		localStorage.setItem(propertyName,value);
 	});
 
+	//* CHECKLIST MENU EVENTS */
 	$('#pre_checklist_menu').on('click', function(){
-		showPreChecklistForm();
+		showChecklistForm('pre_checklist_form','checklist_pre');
 	})
 	$('#susan_checklist_menu').on('click', function(){
-		console.log('Susan Checklist');
+		showChecklistForm('discussion_checklist_form','checklist_discussion');
 	})
 	$('#main_checklist_menu').on('click', function(){
-		console.log('Main Checklist');
+		showChecklistForm('main_checklist_form','checklist_main')
+	})
+	/* CLEAR CHECKLIST BUTTON EVENTS */
+	$('#clear_pre-checklist_button').on('click', function(){
+		clearChecklistItemFromLocalStorage('checklist_pre');
+		loadChecklistForm('checklist_pre');
+	});
+	$('#clear_discussion_button').on('click', function(){
+		clearChecklistItemFromLocalStorage('checklist_discussion');
+		loadChecklistForm('checklist_discussion');
+	});
+	$('#clear_main_checklist_button').on('click', function(){
+		clearChecklistItemFromLocalStorage('checklist_main');
+		loadChecklistForm('checklist_main');
+	});
+	/* CHECKLIST ITEMS HANDLER - WHEN CLICKED */
+	$('.checklist_checkbox_input').on('change', function(){
+		const el = $(this);
+		saveChecklistItemValue(el);
 	})
 	
 });
