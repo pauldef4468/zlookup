@@ -91,6 +91,16 @@ p.name{
 	padding: 0px;
 }
 
+#result_count{
+	margin-left: 5px;
+	background-color: green;
+	font-weight: bold;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 7px;
+	padding-right: 7px;
+	color: white;
+}
 .checkbox{
 	margin: 0px;
 	padding: 0px;

@@ -240,6 +240,20 @@ function notReadyFunction(){
 	alert("Sorry! This doesn't do anything yet.");
 }
 
+function categoryLookup(){
+	const lookupText = $('#category_lookup').val().toLowerCase();
+	const cat = categories.find((category) => {
+		let n = category.name.toLowerCase().indexOf(lookupText);
+		if(n > -1) return true;
+	})
+	if(cat){
+		$('#category_select').val(cat._id);
+		lookupFunction();
+	}else{
+		$('#category_select').val('');
+	}
+}
+
 
 function lookupFunction() {
 
@@ -266,7 +280,7 @@ function lookupFunction() {
 	
 	
 	//See if the all checkbox is checked.
-	var allChecked = document.getElementById("all_checkbox").checked;
+	//var allChecked = document.getElementById("all_checkbox").checked;
 	
 	//Get the lookup textbox value for each key stroke
 	//var lookupText = document.getElementById("lookupText").value;
@@ -291,7 +305,7 @@ function lookupFunction() {
 		//if(originalFlag == "0"){continue;}
 		
 		//If the original flag is zero and all checked 
-		if(!allChecked && originalFlag == "0"){continue;}
+		//if(!allChecked && originalFlag == "0"){continue;}
 		
 		//Lookup everything if nothing there 
 		if(lookupText == ""){
@@ -306,7 +320,8 @@ function lookupFunction() {
 			if(!lookupWords[icount]){continue;} //Check for empty string
 			
 			//Search for this lookup word case insensitive
-			var combined = name + " " + comment + " " + componentName;
+			//var combined = name + " " + comment + " " + componentName;
+			var combined = name + " " + comment;
 			
 			//var n = combined.toLowerCase().search(lookupWords[icount].toLowerCase()); //I took this out (looks for regular expression
 			var n = combined.toLowerCase().indexOf(lookupWords[icount].toLowerCase());
@@ -1599,6 +1614,14 @@ function clearLookupText(){
 	lookupFunction();
 }
 
+function clearCatLookup(){
+	//If already empty then don't do anything
+	if(!$('#category_lookup').val().length) return;
+	//Clear out the text and run the lookup
+	$('#category_lookup').val('');
+	lookupFunction();
+}
+
 // A collection of special characters and their entities.
 htmlspecialchars.specialchars = [
 	[ '&', '&amp;' ],
@@ -1731,6 +1754,10 @@ $(document).ready(function(){
 	$('#lookupText').on('keyup', function(e){
 		lookupFunction();
 	});
+
+	$('#category_lookup').on('keyup', function(){
+		categoryLookup();
+	});
 	
 	$('#category_select').change('keyup', function(e){
 		lookupFunction();
@@ -1739,8 +1766,9 @@ $(document).ready(function(){
 	$('#clear_button').on('click', function(e){
 		clearLookupText();
 	});
-
-	
+	$('#clear_cat_button').on('click', function(e){
+		clearCatLookup();
+	});
 
 	$('#edit_menu_item').on('click', function(e){
 		alert('Temporarily disabled');
@@ -1773,10 +1801,12 @@ $(document).ready(function(){
 	})
 	$('#login_menu_item').on('click', function(e){
 		showLoginForm();
+		$('#myNavbar').collapse('hide');
 	})
 	//========================
 	$('#logout_menu_item').on('click', function(e){
 		logout();
+		$('#myNavbar').collapse('hide');
 	})
 	
 	

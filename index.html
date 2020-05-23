@@ -91,8 +91,14 @@
 				<label><input type="checkbox" id="all_checkbox" value="">All</label>
 				<br>
 			</div>
+
 			<!-- Lookup select and input -->
 			<div class="row">
+				<div class="col-sm-4">
+					<!-- <label for="category_select">Category:</label> -->
+					<input autocomplete="off" type="text" id="category_lookup" name="categoryLookup">
+					<button type="button" id="clear_cat_button" class="btn btn-danger btn-sm">Clr</button>
+				</div>
 				<div class="col-sm-2">
 					<!-- <label for="category_select">Category:</label> -->
 					<select id="category_select">
@@ -100,7 +106,7 @@
 						<!-- ie. <option value="Electrical">Electrical</option> -->
 					</select>
 				</div>
-				<div class="col-sm-10">
+				<div class="col-sm-6">
 					<input autocomplete="off" type="text" id="lookupText" name="lookupText">
 					<span id="result_count"></span>
 					<button type="button" id="clear_button" class="btn btn-danger btn-sm">Clr</button>
