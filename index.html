@@ -64,6 +64,7 @@
 								<li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
 								<li id="forgot_password"><a href="#">Forgot Password</a></li>
 								<li id="reset_password"><a href="#">Reset Password</a></li>
+								<li class="warning_menu_item"><a href="#" id="clear_checklists">Clear All Checklists</a></li>
 							</ul>
 						</li>
 						<li id="sign_up_menu_item"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
@@ -77,20 +78,21 @@
 			</div>
 
 		</nav>
+		<div>
+			<p id="user_info">
+	
+			</p>
+		</div>
 
-		<p id="user_info">
-			<!-- This gets filled in when logging in -->
-
-		</p>
 
 		<!-- The search block. Not displayed initially until data loaded at start-up -->
 		<div id="search_block" class="view">
 
 			<!-- Filter checkbox -->
-			<div class="checkbox">
+			<!--			<div class="checkbox">
 				<label><input type="checkbox" id="all_checkbox" value="">All</label>
 				<br>
-			</div>
+			</div>-->
 
 			<!-- Lookup select and input -->
 			<div class="row">
@@ -98,6 +100,7 @@
 					<!-- <label for="category_select">Category:</label> -->
 					<input autocomplete="off" type="text" id="category_lookup" name="categoryLookup">
 					<button type="button" id="clear_cat_button" class="btn btn-danger btn-sm">Clr</button>
+					<button type="button" id="clear_cat_button_all" class="btn btn-danger btn-sm">ClrA</button>
 				</div>
 				<div class="col-sm-2">
 					<!-- <label for="category_select">Category:</label> -->
@@ -251,7 +254,7 @@
 						id="notes_input" rows="6"></textarea>
 				</div>
 				<div class="form-group">
-					<label for="extra_notes_input">Extra Notes:</label>
+					<label for="extra_notes_input">Extra Notes (not copied):</label>
 					<textarea data-property-name="extraNotes"
 						class="form-control rounded-0 comment_input comment_input_list" id="extra_notes_input"
 						rows="6"></textarea>
@@ -330,16 +333,39 @@
 					<input data-property-name="inAttendance" type="text" class="form-control comment_input"
 						id="attendance_input">
 				</div>
+				<div class="form-group">
+					<label for="outside_temp">Outside Temperature:</label>
+					<input data-property-name="outsideTemp" type="text" class="form-control comment_input"
+						id="outside_temp">
+				</div>
 
 				<button type="button" class="btn btn-info" id="copy_comments_button">Copy</button>
 				<button type="button" class="btn btn-warning pull-right" id="clear_comments_button">Clear</button>
 
 			</form>
+			<div class="mySpacer">
+
+			</div>
 		</div>
 
 		<div id="pre_checklist_form" class="view">
 			<h2>Pre-Checklist</h2>
 			<form>
+				<div class="form-group">
+					<label for="susan_name_input">Susan Name:</label>
+					<input data-property-name="susanName" type="text"
+						class="form-control header_info" id="susan_name_input">
+				</div>
+				<div class="form-group">
+					<label for="zat_name_input">ZAT Name:</label>
+					<input data-property-name="zatName" type="text"
+						class="form-control header_info" id="zat_name_input">
+				</div>
+				<div class="form-group">
+					<label for="property_address">Address:</label>
+					<input data-property-name="propertyAddress" type="text"
+						class="form-control header_info" id="property_address">
+				</div>
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_pre"
@@ -395,6 +421,15 @@
 		<div id="discussion_checklist_form" class="view">
 			<h2>Discussion</h2>
 			<form>
+				<p>
+					S Name:<span id:"susan_name_input_info"></span>
+				</p>
+				<p>
+					ZAT Name:<span id:"zat_name_input_info"></span>
+				</p>
+				<p>
+					Address:<span id:"property_address_info"></span>
+				</p>
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_discussion"
@@ -628,6 +663,12 @@
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_main"
 							data-property-name="reviewScopeMain">Review Scope
+					</label>
+				</div>
+				<div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+						<input type="checkbox" class="checklist_checkbox_input checklist_main"
+							data-property-name="completeUnpause">Complete Unpause G-Form
 					</label>
 				</div>
 				<button type="button" class="btn btn-warning" id="clear_main_checklist_button">Clear</button>

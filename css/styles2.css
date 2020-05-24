@@ -105,6 +105,14 @@ p.name{
 	margin: 0px;
 	padding: 0px;
 }
+.mySpacer{
+	height:50px;
+	background-color: blue;
+}
+
+.warning_menu_item{
+	background-color: red;
+}
 
 .checklist_checkbox{
 	margin-bottom: 10px;
