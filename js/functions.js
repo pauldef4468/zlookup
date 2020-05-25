@@ -1947,7 +1947,7 @@ $(document).ready(function(){
 		clearChecklistItemFromLocalStorage('checklist_main');
 		loadChecklistForm('checklist_main', '');
 	});
-	$('#clear_checklists').on('click', function(){
+	$('#clear_all').on('click', function(){
 		clearChecklistItemFromLocalStorage('checklist_pre');
 		clearChecklistItemFromLocalStorage('header_info');
 		clearChecklistItemFromLocalStorage('checklist_discussion');
@@ -1955,6 +1955,8 @@ $(document).ready(function(){
 		loadChecklistForm('checklist_pre','header_info');
 		loadChecklistForm('checklist_discussion', '');
 		loadChecklistForm('checklist_main', '');
+		clearCommentsFromLocalStorage();
+		loadCommentView();
 		$('#myNavbar').collapse('hide');
 	});
 	/* CHECKLIST ITEMS HANDLER - WHEN CLICKED */
