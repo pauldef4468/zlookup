@@ -421,6 +421,7 @@ function lookupFunction() {
 		var nameText = resultItems[i].name;
 		parHeading.onclick = function(parHeading, nameText){
 			return(function() { 
+				//Copy to clipboard
 				commentClick2(parHeading, nameText); 
 			});
 		}(parHeading, nameText);
@@ -428,7 +429,9 @@ function lookupFunction() {
 		var commentText = resultItems[i].comment;
 		par.onclick = function(par,commentText){
 			return(function() { 
-				commentClick2(par,commentText); 
+				$("#myModal").modal();
+				//Copy to clipboard
+				//commentClick2(par,commentText); 
 			});
 		}(par,commentText);
 
@@ -1775,13 +1778,16 @@ $(document).ready(function(){
 
 	$('#clear_button').on('click', function(e){
 		clearLookupText();
+		$("#lookupText").focus();
 	});
-	$('#clear_cat_button').on('click', function(e){
+	$('#clear_cat_button').on('click', function(){
 		clearCatLookup();
+		$("#category_lookup").focus();
 	});
-	$('#clear_cat_button_all').on('click', function(e){
+	$('#clear_cat_button_all').on('click', function(){
 		clearCatLookup();
 		clearLookupText();
+		$("#category_lookup").focus();
 	});
 
 	$('#edit_menu_item').on('click', function(e){
@@ -1904,6 +1910,16 @@ $(document).ready(function(){
 	})
 	$('#susan_checklist_menu').on('click', function(){
 		showChecklistForm('discussion_checklist_form','checklist_discussion', '');
+
+		let susanName = localStorage.getItem('susanName');
+		susanName = susanName ? susanName : '';
+		let zatName = localStorage.getItem('zatName');
+		zatName = zatName ? zatName : '';
+		let propertyAddress = localStorage.getItem('propertyAddress');
+		propertyAddress = propertyAddress ? propertyAddress : '';
+		$('#susan_name_input_info').html(susanName);
+		$('#zat_name_input_info').html(zatName);
+		$('#property_address_info').html(propertyAddress);
 		$('#myNavbar').collapse('hide');
 	})
 	$('#main_checklist_menu').on('click', function(){
@@ -1932,6 +1948,7 @@ $(document).ready(function(){
 		loadChecklistForm('checklist_pre','header_info');
 		loadChecklistForm('checklist_discussion', '');
 		loadChecklistForm('checklist_main', '');
+		$('#myNavbar').collapse('hide');
 	});
 	/* CHECKLIST ITEMS HANDLER - WHEN CLICKED */
 	$('.checklist_checkbox_input').on('change', function(){

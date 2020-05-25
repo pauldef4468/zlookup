@@ -64,7 +64,8 @@
 								<li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
 								<li id="forgot_password"><a href="#">Forgot Password</a></li>
 								<li id="reset_password"><a href="#">Reset Password</a></li>
-								<li class="warning_menu_item"><a href="#" id="clear_checklists">Clear All Checklists</a></li>
+								<li class="warning_menu_item"><a href="#" id="clear_checklists">Clear All Checklists</a>
+								</li>
 							</ul>
 						</li>
 						<li id="sign_up_menu_item"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
@@ -80,7 +81,7 @@
 		</nav>
 		<div>
 			<p id="user_info">
-	
+
 			</p>
 		</div>
 
@@ -104,10 +105,7 @@
 				</div>
 				<div class="col-sm-2">
 					<!-- <label for="category_select">Category:</label> -->
-					<select id="category_select">
-						<!-- Items filled in with code -->
-						<!-- ie. <option value="Electrical">Electrical</option> -->
-					</select>
+					<select id="category_select"></select>
 				</div>
 				<div class="col-sm-6">
 					<input autocomplete="off" type="text" id="lookupText" name="lookupText">
@@ -353,18 +351,18 @@
 			<form>
 				<div class="form-group">
 					<label for="susan_name_input">Susan Name:</label>
-					<input data-property-name="susanName" type="text"
-						class="form-control header_info" id="susan_name_input">
+					<input data-property-name="susanName" type="text" class="form-control header_info"
+						id="susan_name_input">
 				</div>
 				<div class="form-group">
 					<label for="zat_name_input">ZAT Name:</label>
-					<input data-property-name="zatName" type="text"
-						class="form-control header_info" id="zat_name_input">
+					<input data-property-name="zatName" type="text" class="form-control header_info"
+						id="zat_name_input">
 				</div>
 				<div class="form-group">
 					<label for="property_address">Address:</label>
-					<input data-property-name="propertyAddress" type="text"
-						class="form-control header_info" id="property_address">
+					<input data-property-name="propertyAddress" type="text" class="form-control header_info"
+						id="property_address">
 				</div>
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
@@ -421,15 +419,17 @@
 		<div id="discussion_checklist_form" class="view">
 			<h2>Discussion</h2>
 			<form>
-				<p>
-					S Name:<span id:"susan_name_input_info"></span>
-				</p>
-				<p>
-					ZAT Name:<span id:"zat_name_input_info"></span>
-				</p>
-				<p>
-					Address:<span id:"property_address_info"></span>
-				</p>
+				<div class="info_header">
+					<p>
+						S Name: <span id="susan_name_input_info" class="header_text"></span>
+					</p>
+					<p>
+						ZAT Name: <span id="zat_name_input_info" class="header_text"></span>
+					</p>
+					<p>
+						Address: <span id="property_address_info" class="header_text"></span>
+					</p>
+				</div>
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_discussion"
@@ -679,6 +679,26 @@
 			<div class="loader">
 			</div>
 		</div>
+
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Enter Placeholder Info</h4>
+				</div>
+				<div class="modal-body">
+				  <p>Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
 
 	</div>
 
