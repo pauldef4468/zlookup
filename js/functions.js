@@ -429,9 +429,16 @@ function lookupFunction() {
 		var commentText = resultItems[i].comment;
 		par.onclick = function(par,commentText){
 			return(function() { 
-				$("#myModal").modal();
-				//Copy to clipboard
-				//commentClick2(par,commentText); 
+				//Get array of curly brace matches
+				const matches = commentText.match(/[^{]+(?=\})/g);
+				if(!matches){
+					//Highlight text and copy to clipboard
+					commentClick2(par,commentText);
+				}else{
+					$('#modal_text_input').val(commentText);
+					$("#myModal").modal();
+				}
+				 
 			});
 		}(par,commentText);
 
@@ -1955,6 +1962,11 @@ $(document).ready(function(){
 		const el = $(this);
 		saveChecklistItemValue(el);
 	})
-	
+	$('#copy_item_button').on('click', function(){
+		//Copy text to clipboard
+		const newValue = $('#modal_text_input').val();
+		updateClipboard(newValue);
+	});
+
 });
 
