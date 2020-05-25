@@ -1503,7 +1503,7 @@ function submitLoginForm(){
 		//Hide login menu button
 		$('#login_menu_item').css("display", "none");
 		//display user name id is user_info
-		const displayName = "Hello " + user.getFullName();
+		const displayName = user.getFullName();
 		$('#user_info').html(displayName);
 		
 	}
