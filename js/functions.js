@@ -435,7 +435,9 @@ function lookupFunction() {
 					//Highlight text and copy to clipboard
 					commentClick2(par,commentText);
 				}else{
-					$('#modal_text_input').val(commentText);
+					//Remove the curly brackets
+					const stripped = commentText.replace(/{|}/gi, '');
+					$('#modal_text_input').val(stripped);
 					$("#myModal").modal();
 				}
 				 
