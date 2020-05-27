@@ -1162,41 +1162,27 @@ function showResetPasswordForm(){
 }
 
 function showForgotPasswordForm(){
-	
 	View.clearView('#forgot_password_form');
 	View.showView('#forgot_password_form');
-	
 }
 
 function showCommentForm(){
 	View.clearView('#comments_form');
 	View.showView('#comments_form');
-	loadCommentView();
-
-}
-
-function loadCommentView(){
-	const elements = $('.comment_input').toArray();
-	for(let i=0; i < elements.length; i++){
-		const propertyName = $(elements[i]).attr('data-property-name');
-		$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
-	}
+	loadTextbxes('comment_input');
 }
 
 
-// function showPreChecklistForm(){
-// 	View.clearView('#pre_checklist_form');
-// 	View.showView('#pre_checklist_form');
-// 	loadChecklistForm();
-// }
 
 function showChecklistForm(formID, checkboxClass, textBoxClass){
 	View.clearView(`#${formID}`);
 	View.showView(`#${formID}`);
-	loadChecklistForm(checkboxClass, textBoxClass);
+	if(checkboxClass) loadCheckboxes(checkboxClass);
+	if(textBoxClass) loadTextboxes(textBoxClass);
+	
 }
 
-function loadChecklistForm(checkboxClass, textBoxClass){
+function loadCheckboxes(checkboxClass){
 	let elements = $(`.${checkboxClass}`).toArray();
 	for(let i=0; i < elements.length; i++){
 		const propertyName = $(elements[i]).attr('data-property-name');
@@ -1207,15 +1193,14 @@ function loadChecklistForm(checkboxClass, textBoxClass){
 			$( elements[i] ).prop( "checked", false );
 		}
 	}
-	if(textBoxClass){
-		elements = $(`.${textBoxClass}`).toArray();
-		for(let i=0; i < elements.length; i++){
-			const propertyName = $(elements[i]).attr('data-property-name');
-			$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
-		}
+
+}
+function loadTextboxes(textBoxClass){
+	elements = $(`.${textBoxClass}`).toArray();
+	for(let i=0; i < elements.length; i++){
+		const propertyName = $(elements[i]).attr('data-property-name');
+		$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
 	}
-
-
 }
 
 function numberLinesofText(text){
@@ -1233,15 +1218,6 @@ function numberLinesofText(text){
 
 }
 
-/* function clearSignUpForm(){
-	
- 	form = $('#sign_up_form');
-	form.find('.first_name').val('');
-	form.find('.last_name').val('');
-	form.find('.your_email').val('');
-	form.find('.password').val('');
-	form.find('.confirm_password').val('');
-} */
 
 function showLoginForm(){
 	
@@ -1249,13 +1225,6 @@ function showLoginForm(){
 	View.showView('#login_form');
 	
 }
-
-
-/* function hideLoginForm(){
-	
-	$('#login_form').css("display", "none");
-	
-} */
 
 function showSearchBlock(){
 	//console.log('here here');
@@ -1690,17 +1659,8 @@ function saveChecklistItemValue(el){
 	localStorage.setItem(propertyName,isChecked);
 }
 
-function clearCommentsFromLocalStorage(){
-	const elements = $('.comment_input').toArray();
-	for(let i=0; i < elements.length; i++){
-		const propertyName = $(elements[i]).attr('data-property-name');
-		//let value = localStorage.getItem(propertyName);
-		localStorage.removeItem(propertyName);
-	}
-}
-
-function clearChecklistItemFromLocalStorage(inputClass){
-	const elements = $(`.${inputClass}`).toArray();
+function clearLocalStorage(elementClass){
+	const elements = $(`.${elementClass}`).toArray();
 	for(let i=0; i < elements.length; i++){
 		const propertyName = $(elements[i]).attr('data-property-name');
 		//let value = localStorage.getItem(propertyName);
@@ -1854,12 +1814,9 @@ $(document).ready(function(){
 	});
 
 	$('#clear_comments_button').on('click', function(){
-		clearCommentsFromLocalStorage();
-		loadCommentView();
+		clearLocalStorage('comment_input');
+		loadTextboxes('comment_input');
 	});
-
-
-	//clearChecklistItemFromLocalStorage
 
 	$('#copy_comments_button').on('click', function(){
 		//Loop all comments and add keys and values to an object
@@ -1937,31 +1894,36 @@ $(document).ready(function(){
 	})
 	/* CLEAR CHECKLIST BUTTON EVENTS */
 	$('#clear_pre-checklist_button').on('click', function(){
-		clearChecklistItemFromLocalStorage('checklist_pre');
-		clearChecklistItemFromLocalStorage('header_info');
-		loadChecklistForm('checklist_pre', 'header_info');
+		clearLocalStorage('checklist_pre');
+		clearLocalStorage('header_info');
+		loadCheckboxes('checklist_pre');
+		loadTextboxes('header_info');
+		
 	});
-	$('#clear_discussion_button').on('click', function(){
-		clearChecklistItemFromLocalStorage('checklist_discussion');
-		loadChecklistForm('checklist_discussion', '');
+	$('#clear_discussion_button').on('click', function(){		
+		clearLocalStorage('checklist_discussion');
+		loadCheckboxes('checklist_discussion');
+		
 	});
 	$('#clear_main_checklist_button').on('click', function(){
-		clearChecklistItemFromLocalStorage('checklist_main');
-		loadChecklistForm('checklist_main', '');
+		clearLocalStorage('checklist_main');
+		loadCheckboxes('checklist_main');
 	});
 	$('#clear_all').on('click', function(){
 		//Remove date from Local Storage by looping the following elements by
 		//class and then get the data-property-name attribute
-		clearChecklistItemFromLocalStorage('checklist_pre');
-		clearChecklistItemFromLocalStorage('header_info');
-		clearChecklistItemFromLocalStorage('checklist_discussion');
-		clearChecklistItemFromLocalStorage('checklist_main');
-		//
-		loadChecklistForm('checklist_pre','header_info');
-		loadChecklistForm('checklist_discussion', '');
-		loadChecklistForm('checklist_main', '');
-		clearCommentsFromLocalStorage();
-		loadCommentView();
+		clearLocalStorage('checklist_pre');
+		clearLocalStorage('header_info');
+		clearLocalStorage('checklist_discussion');
+		clearLocalStorage('checklist_main');
+		clearLocalStorage('comment_input');
+		//Fill in the form elements
+		loadCheckboxes('checklist_pre');
+		loadTextboxes('header_info');
+		loadCheckboxes('checklist_discussion');
+		loadCheckboxes('checklist_main');
+		loadTextbxes('comment_input');
+		
 		$('#myNavbar').collapse('hide');
 	});
 	/* CHECKLIST ITEMS HANDLER - WHEN CLICKED */
@@ -1969,6 +1931,8 @@ $(document).ready(function(){
 		const el = $(this);
 		saveChecklistItemValue(el);
 	})
+
+	//Modal copy button click
 	$('#copy_item_button').on('click', function(){
 		//Copy text to clipboard
 		const newValue = $('#modal_text_input').val();
