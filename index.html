@@ -341,9 +341,7 @@
 				<button type="button" class="btn btn-warning pull-right" id="clear_comments_button">Clear</button>
 
 			</form>
-			<div class="mySpacer">
-
-			</div>
+			<div class="mySpacer"></div>
 		</div>
 
 		<div id="pre_checklist_form" class="view">
@@ -412,22 +410,28 @@
 							data-property-name="enterExternalities">Enter Externalities
 					</label>
 				</div>
-				<button type="button" class="btn btn-warning" id="clear_pre-checklist_button">Clear</button>
+				<button type="button" class="btn btn-info" id="does_nothing_button">To Follow</button>
+				<button type="button" class="btn btn-warning pull-right" id="clear_pre-checklist_button">Clear</button>
 			</form>
+			<div class="mySpacer"></div>
 		</div>
+		
 
 		<div id="discussion_checklist_form" class="view">
 			<h2>Discussion</h2>
 			<form>
 				<div class="info_header">
 					<p>
-						S Name: <span id="susan_name_input_info" class="header_text"></span>
+						S Name: <span data-property-name="susanName" id="susan_name_input_info"
+							class="header_text header_static"></span>
 					</p>
 					<p>
-						ZAT Name: <span id="zat_name_input_info" class="header_text"></span>
+						ZAT Name: <span data-property-name="zatName" id="zat_name_input_info"
+							class="header_text header_static"></span>
 					</p>
 					<p>
-						Address: <span id="property_address_info" class="header_text"></span>
+						Address: <span data-property-name="propertyAddress" id="property_address_info"
+							class="header_text header_static"></span>
 					</p>
 				</div>
 				<div class="checkbox checklist_checkbox">
@@ -520,8 +524,10 @@
 							data-property-name="pamphlet">Pamphlet
 					</label>
 				</div>
-				<button type="button" class="btn btn-warning" id="clear_discussion_button">Clear</button>
+				<button type="button" class="btn btn-info" id="does_nothing_button">To Follow</button>
+				<button type="button" class="btn btn-warning pull-right" id="clear_discussion_button">Clear</button>
 			</form>
+			<div class="mySpacer"></div>
 		</div>
 
 		<div id="main_checklist_form" class="view">
@@ -671,8 +677,10 @@
 							data-property-name="completeUnpause">Complete Unpause G-Form
 					</label>
 				</div>
-				<button type="button" class="btn btn-warning" id="clear_main_checklist_button">Clear</button>
+				<button type="button" class="btn btn-info" id="does_nothing_button">To Follow</button>
+				<button type="button" class="btn btn-warning pull-right" id="clear_main_checklist_button">Clear</button>
 			</form>
+			<div class="mySpacer"></div>
 		</div>
 
 		<div class="pad_overlay">
@@ -697,9 +705,7 @@
 							<input type="text" class="form-control header_info" id="modal_text_input">
 						-->
 							<label for="modal_text_input">Edit Item::</label>
-							<textarea
-								class="form-control rounded-0" id="modal_text_input"
-								rows="6"></textarea>
+							<textarea class="form-control rounded-0" id="modal_text_input" rows="6"></textarea>
 						</div>
 
 					</div>

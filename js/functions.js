@@ -1169,7 +1169,7 @@ function showForgotPasswordForm(){
 function showCommentForm(){
 	View.clearView('#comments_form');
 	View.showView('#comments_form');
-	loadTextbxes('comment_input');
+	loadTextboxes('comment_input');
 }
 
 
@@ -1200,6 +1200,14 @@ function loadTextboxes(textBoxClass){
 	for(let i=0; i < elements.length; i++){
 		const propertyName = $(elements[i]).attr('data-property-name');
 		$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
+	}
+}
+
+function loadStatic(staticClass){
+	elements = $(`.${staticClass}`).toArray();
+	for(let i=0; i < elements.length; i++){
+		const propertyName = $(elements[i]).attr('data-property-name');
+		$(`#${elements[i].id}`).html(localStorage.getItem(propertyName));
 	}
 }
 
@@ -1922,7 +1930,8 @@ $(document).ready(function(){
 		loadTextboxes('header_info');
 		loadCheckboxes('checklist_discussion');
 		loadCheckboxes('checklist_main');
-		loadTextbxes('comment_input');
+		loadTextboxes('comment_input');
+		loadStatic('header_static');
 		
 		$('#myNavbar').collapse('hide');
 	});
@@ -1938,6 +1947,11 @@ $(document).ready(function(){
 		const newValue = $('#modal_text_input').val();
 		updateClipboard(newValue);
 	});
+
+	$('#does_nothing_button').on('click', function(){
+		alert('This does not do anything yet');
+	});
+	//does_nothing_button
 
 });
 
