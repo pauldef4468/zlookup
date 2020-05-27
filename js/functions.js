@@ -1950,10 +1950,13 @@ $(document).ready(function(){
 		loadChecklistForm('checklist_main', '');
 	});
 	$('#clear_all').on('click', function(){
+		//Remove date from Local Storage by looping the following elements by
+		//class and then get the data-property-name attribute
 		clearChecklistItemFromLocalStorage('checklist_pre');
 		clearChecklistItemFromLocalStorage('header_info');
 		clearChecklistItemFromLocalStorage('checklist_discussion');
 		clearChecklistItemFromLocalStorage('checklist_main');
+		//
 		loadChecklistForm('checklist_pre','header_info');
 		loadChecklistForm('checklist_discussion', '');
 		loadChecklistForm('checklist_main', '');
