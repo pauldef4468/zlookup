@@ -30,7 +30,7 @@
 
 	<div class="container">
 
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -56,6 +56,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
+
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -74,14 +75,19 @@
 						</li>
 						<li id="logout_menu_item"><a href="#"><span
 									class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+						<p id="user_info" class="navbar-text"></p>
 					</ul>
+
 				</div>
 			</div>
 
 		</nav>
 		<div>
-			<p id="user_info">
-
+			<p>
+				S: <span class="susan_name_input_info bold_text"></span>
+				Z: <span class="zat_name_input_info bold_text"></span>
+				A: <span class="property_address_info bold_text"></span>
+				Y: <span class="year_built_info bold_text"></span>
 			</p>
 		</div>
 
@@ -362,6 +368,10 @@
 					<input data-property-name="propertyAddress" type="text" class="form-control header_info"
 						id="property_address">
 				</div>
+				<div class="form-group">
+					<label for="year_built">Year Built:</label>
+					<input data-property-name="yearBuilt" type="text" class="form-control header_info" id="year_built">
+				</div>
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_pre"
@@ -415,7 +425,7 @@
 			</form>
 			<div class="mySpacer"></div>
 		</div>
-		
+
 
 		<div id="discussion_checklist_form" class="view">
 			<h2>Discussion</h2>
@@ -423,15 +433,19 @@
 				<div class="info_header">
 					<p>
 						S Name: <span data-property-name="susanName" id="susan_name_input_info"
-							class="header_text header_static"></span>
+							class="header_text header_static susan_name_input_info"></span>
 					</p>
 					<p>
 						ZAT Name: <span data-property-name="zatName" id="zat_name_input_info"
-							class="header_text header_static"></span>
+							class="header_text header_static zat_name_input_info"></span>
 					</p>
 					<p>
 						Address: <span data-property-name="propertyAddress" id="property_address_info"
-							class="header_text header_static"></span>
+							class="header_text header_static property_address_info"></span>
+					</p>
+					<p>
+						Year Built: <span data-property-name="yearBuilt" id="year_built_info"
+							class="header_text header_static year_built_info"></span>
 					</p>
 				</div>
 				<div class="checkbox checklist_checkbox">
@@ -474,6 +488,12 @@
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_discussion"
 							data-property-name="electricalPanels">Access to Electrical Panels
+					</label>
+				</div>
+				<div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+						<input type="checkbox" class="checklist_checkbox_input checklist_discussion"
+							data-property-name="waterHeater">Access to Water Heater
 					</label>
 				</div>
 				<div class="checkbox checklist_checkbox">

@@ -254,6 +254,21 @@ function categoryLookup(){
 	}
 }
 
+function updateStaticHeader(){
+	let susanName = localStorage.getItem('susanName');
+	susanName = susanName ? susanName : '';
+	let zatName = localStorage.getItem('zatName');
+	zatName = zatName ? zatName : '';
+	let propertyAddress = localStorage.getItem('propertyAddress');
+	propertyAddress = propertyAddress ? propertyAddress : '';
+	let yearBuilt = localStorage.getItem('yearBuilt');
+	yearBuilt = yearBuilt ? yearBuilt : '';
+	$('.susan_name_input_info').html(susanName);
+	$('.zat_name_input_info').html(zatName);
+	$('.property_address_info').html(propertyAddress);
+	$('.year_built_info').html(yearBuilt);
+}
+
 
 function lookupFunction() {
 
@@ -1692,6 +1707,9 @@ $(document).ready(function(){
 	
 	//Initialize a global selected paragraph var
 	selectedParId = '';
+
+	//Get header values from localstorage and update
+	updateStaticHeader();
 	
 	//Initialize user to null because we don't have one yet
 	//If we start using cookies or have a way to store the JWT 
@@ -1863,18 +1881,19 @@ $(document).ready(function(){
 		updateClipboard(formattedComment);
 	});
 
-	$('.comment_input').on('keyup', function(e){
+	$('.comment_input').on('change', function(e){
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
 		localStorage.setItem(propertyName,value);
 	});
 
-	$('.header_info').on('keyup', function(e){
+	$('.header_info').on('change', function(e){
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
 		localStorage.setItem(propertyName,value);
+		updateStaticHeader();
 	});
 
 	//* CHECKLIST MENU EVENTS */
@@ -1884,16 +1903,7 @@ $(document).ready(function(){
 	})
 	$('#susan_checklist_menu').on('click', function(){
 		showChecklistForm('discussion_checklist_form','checklist_discussion', '');
-
-		let susanName = localStorage.getItem('susanName');
-		susanName = susanName ? susanName : '';
-		let zatName = localStorage.getItem('zatName');
-		zatName = zatName ? zatName : '';
-		let propertyAddress = localStorage.getItem('propertyAddress');
-		propertyAddress = propertyAddress ? propertyAddress : '';
-		$('#susan_name_input_info').html(susanName);
-		$('#zat_name_input_info').html(zatName);
-		$('#property_address_info').html(propertyAddress);
+		updateStaticHeader();
 		$('#myNavbar').collapse('hide');
 	})
 	$('#main_checklist_menu').on('click', function(){
@@ -1932,7 +1942,7 @@ $(document).ready(function(){
 		loadCheckboxes('checklist_main');
 		loadTextboxes('comment_input');
 		loadStatic('header_static');
-		
+		updateStaticHeader();
 		$('#myNavbar').collapse('hide');
 	});
 	/* CHECKLIST ITEMS HANDLER - WHEN CLICKED */

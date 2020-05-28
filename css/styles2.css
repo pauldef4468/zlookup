@@ -1,7 +1,18 @@
 
+/*Added this body padding if using a fized nav bar*/
+body { padding-top: 60px; }
+
+/*
+.navbar-nav > li > a, .navbar-brand {padding-top:5px !important; padding-bottom:0px !important;}
+.navbar {min-height:25px !important}
+*/
 
 p.touch{
 	cursor: pointer;
+}
+
+.bold_text{
+	font-weight: bolder;
 }
 
 p{
@@ -86,10 +97,12 @@ p.name{
 	padding: 10px;
 }
 
+/*
 #user_info{
 	margin: 0px;
 	padding: 0px;
 }
+*/
 
 #result_count{
 	margin-left: 5px;
@@ -143,6 +156,7 @@ p.name{
 .first_table_column{
 	width: 30px;
 }
+
 
 #lookup_error{
 	display: none;
