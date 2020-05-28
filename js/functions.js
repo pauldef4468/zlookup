@@ -212,14 +212,6 @@ function getCategoryByID(id){
 	return categories.find(category => category._id === id);
 }
 
-function handleFSLInputEvents(el){
-	const propertyName = el.attr('data-property-name');
-	const value = $.trim($(el).val());
-	localStorage.setItem(propertyName,value);
-	if(el.hasClass('ac_input')){
-		updateDeltaT();
-	}
-}
 
 function getItemCountPerCategory(category){
 	let count = 0;
@@ -1204,8 +1196,8 @@ function updateDeltaT(){
 	const returnVent2 = $('#return_vent_2_input').val();
 	const supplyVent2 = $('#supply_vent_2_cool_input').val();
 
-	var deltaT1 = returnVent1 - supplyVent1;
-	var deltaT2 = returnVent2 - supplyVent2
+	var deltaT1 = (returnVent1 - supplyVent1).toFixed(1);
+	var deltaT2 = (returnVent2 - supplyVent2).toFixed(1);
 	
 	$('#delta-t1_input').val(deltaT1);
 	$('#delta-t2_input').val(deltaT2);
@@ -1913,15 +1905,17 @@ $(document).ready(function(){
 		localStorage.setItem(propertyName,value);
 	});
 
-	$('.fsl_input').on('change', function(e){
-		handleFSLInputEvents($(e.target));
+	$('.fsl_input').on('change keyup paste', function(e){
+		const el = $(e.target);
+		const propertyName = el.attr('data-property-name');
+		const value = $.trim($(el).val());
+		localStorage.setItem(propertyName,value);
+		if(el.hasClass('ac_input')){
+			updateDeltaT();
+		}
 	});
 
-	$('.fsl_input').on('keyup', function(e){
-		handleFSLInputEvents($(e.target));
-	});
-
-	$('.header_info').on('change', function(e){
+	$('.header_info').on('change keyup paste', function(e){
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
