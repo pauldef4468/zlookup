@@ -86,8 +86,8 @@
 			<p>
 				S: <span class="susan_name_input_info bold_text"></span>
 				Z: <span class="zat_name_input_info bold_text"></span>
-				A: <span class="property_address_info bold_text"></span>
-				Y: <span class="year_built_info bold_text"></span>
+				<!--				A: <span class="property_address_info bold_text"></span>
+				Y: <span class="year_built_info bold_text"></span>-->
 			</p>
 		</div>
 
@@ -269,24 +269,54 @@
 						class="form-control comment_input" id="spec_level_input">
 				</div>
 				<div class="form-group">
-					<label for="sf1_input">Sq Ft Listed:</label>
-					<input data-property-name="squareFeetListed" type="text" inputmode="numeric"
-						class="form-control comment_input" id="sf1_input">
+					<label for="sf_above_grade_input">Above Grade Square Footage:</label>
+					<input data-property-name="sfAboveGrade" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="sf_above_grade_input">
 				</div>
 				<div class="form-group">
-					<label for="sf2_input">Sq Ft Measured:</label>
-					<input data-property-name="squareFeetMeasured" type="text" inputmode="numeric"
-						class="form-control comment_input" id="sf2_input">
+					<label for="sf_basement_finished_input">Basement SQFT - Finished Total:</label>
+					<input data-property-name="sfBasementFinished" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="sf_basement_finished_input">
 				</div>
+				<div class="form-group">
+					<label for="sf_basement_unfinished_input">Basement SQFT - Unfinished Total:</label>
+					<input data-property-name="sfBasementUnfinished" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="sf_basement_unfinished_input">
+				</div>
+
+				<hr>
 				<div class="form-group">
 					<label for="beds_input">Bedrooms:</label>
-					<input data-property-name="beds" type="text" inputmode="numeric" class="form-control comment_input"
+					<input data-property-name="beds" type="text" inputmode="numeric" class="form-control fsl_input"
 						id="beds_input">
 				</div>
 				<div class="form-group">
-					<label for="baths_input">Bathrooms:</label>
-					<input data-property-name="baths" type="text" inputmode="numeric" class="form-control comment_input"
+					<label for="baths_input">Full Bathrooms:</label>
+					<input data-property-name="fullBaths" type="text" inputmode="numeric" class="form-control fsl_input"
 						id="baths_input">
+				</div>
+				<div class="form-group">
+					<label for="baths_input2">Half Bathrooms:</label>
+					<input data-property-name="halfBaths" type="text" inputmode="numeric" class="form-control fsl_input"
+						id="baths_input2">
+				</div>
+
+				<!-- *** HVAC 1 ***-->
+				<hr>
+				<div class="form-group">
+					<label for="return_vent_1_input">Return Vent 1:</label>
+					<input data-property-name="returnVent1" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="return_vent_1_input">
+				</div>
+				<div class="form-group">
+					<label for="supply_vent_1_cool_input">Supply Vent 1 Cool:</label>
+					<input data-property-name="supplyVent1Cool" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="supply_vent_1_cool_input">
+				</div>
+				<div class="form-group">
+					<label for="supply_vent_1_heat_input">Supply Vent 1 Heat:</label>
+					<input data-property-name="supplyVent1Heat" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="supply_vent_1_heat_input">
 				</div>
 				<div class="form-group">
 					<label for="delta-t1_input">Temp Split 1st Floor:</label>
@@ -294,15 +324,59 @@
 						class="form-control comment_input" id="delta-t1_input">
 				</div>
 				<div class="form-group">
+					<label for="furnace1_year_input">Furnace 1 Year:</label>
+					<input data-property-name="furnace1Year" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="furnace1_year_input">
+				</div>
+
+
+				<!-- *** HVAC 2 *** -->
+				<hr>
+				<div class="form-group">
+					<label for="return_vent_2_input">Return Vent 2:</label>
+					<input data-property-name="returnVent2" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="return_vent_2_input">
+				</div>
+				<div class="form-group">
+					<label for="supply_vent_2_cool_input">Supply Vent 2 Cool:</label>
+					<input data-property-name="supplyVent2Cool" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="supply_vent_2_cool_input">
+				</div>
+				<div class="form-group">
+					<label for="supply_vent_2_heat_input">Supply Vent 2 Heat:</label>
+					<input data-property-name="supplyVent2Heat" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="supply_vent_2_heat_input">
+				</div>
+				<div class="form-group">
 					<label for="delta-t2_input">Temp Split 2nd Floor:</label>
 					<input data-property-name="deltaT2" type="text" inputmode="numeric"
 						class="form-control comment_input" id="delta-t2_input">
 				</div>
 				<div class="form-group">
+					<label for="furnace2_year_input">Furnace 2 Year:</label>
+					<input data-property-name="furnace2Year" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="furnace2_year_input">
+				</div>
+
+				<!-- *** HVAC 3 *** -->
+				<hr>
+				<div class="form-group">
 					<label for="delta-t3_input">Temp Split 3rd Floor:</label>
 					<input data-property-name="deltaT3" type="text" inputmode="numeric"
 						class="form-control comment_input" id="delta-t3_input">
 				</div>
+
+				<hr>
+				<!-- WATER HEATER-->
+				<div class="form-group">
+					<label for="water_heater_year_input">Water Heater Year:</label>
+					<input data-property-name="waterHeaterYear" type="text" inputmode="numeric"
+						class="form-control comment_input" id="water_heater_year_input">
+				</div>
+
+
+
+				<hr>
 				<div class="form-group">
 					<label for="wood_windows_input">Wood Windows Present?:</label>
 					<input data-property-name="woodWindows" type="text" class="form-control comment_input"
@@ -677,6 +751,12 @@
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_main"
 							data-property-name="rpmPicsMain">All Pics in RPM
+					</label>
+				</div>
+				<div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+						<input type="checkbox" class="checklist_checkbox_input checklist_main"
+							data-property-name="checkOtherPics">Check Other Picture Folders
 					</label>
 				</div>
 				<div class="checkbox checklist_checkbox">

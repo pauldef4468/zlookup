@@ -1185,8 +1185,22 @@ function showCommentForm(){
 	View.clearView('#comments_form');
 	View.showView('#comments_form');
 	loadTextboxes('comment_input');
+	loadTextboxes('fsl_input');
+	updateDeltaT();
 }
 
+function updateDeltaT(){
+	const returnVent1 = $('#return_vent_1_input').val();
+	const supplyVent1 = $('#supply_vent_1_cool_input').val();
+	const returnVent2 = $('#return_vent_2_input').val();
+	const supplyVent2 = $('#supply_vent_2_cool_input').val();
+
+	var deltaT1 = returnVent1 - supplyVent1;
+	var deltaT2 = returnVent2 - supplyVent2
+	
+	$('#delta-t1_input').val(deltaT1);
+	$('#delta-t2_input').val(deltaT2);
+}
 
 
 function showChecklistForm(formID, checkboxClass, textBoxClass){
@@ -1842,6 +1856,8 @@ $(document).ready(function(){
 	$('#clear_comments_button').on('click', function(){
 		clearLocalStorage('comment_input');
 		loadTextboxes('comment_input');
+		loadTextboxes('fsl_input');
+		updateDeltaT();
 	});
 
 	$('#copy_comments_button').on('click', function(){
@@ -1886,6 +1902,16 @@ $(document).ready(function(){
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
 		localStorage.setItem(propertyName,value);
+	});
+
+	$('.fsl_input').on('change', function(e){
+		const el = $(e.target);
+		const propertyName = el.attr('data-property-name');
+		const value = $.trim($(el).val());
+		localStorage.setItem(propertyName,value);
+
+		updateDeltaT();
+
 	});
 
 	$('.header_info').on('change', function(e){
@@ -1936,12 +1962,15 @@ $(document).ready(function(){
 		clearLocalStorage('checklist_discussion');
 		clearLocalStorage('checklist_main');
 		clearLocalStorage('comment_input');
+		clearLocalStorage('fsl_input');
 		//Fill in the form elements
 		loadCheckboxes('checklist_pre');
 		loadTextboxes('header_info');
 		loadCheckboxes('checklist_discussion');
 		loadCheckboxes('checklist_main');
 		loadTextboxes('comment_input');
+		loadTextboxes('fsl_input');
+		updateDeltaT();
 		loadStatic('header_static');
 		updateStaticHeader();
 		$('#myNavbar').collapse('hide');

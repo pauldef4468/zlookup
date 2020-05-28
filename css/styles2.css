@@ -49,6 +49,16 @@ p{
 	color: #F06018;
 }
 
+hr { 
+	position: relative; 
+	top: 20px; 
+	border: none; 
+	height: 4px; 
+	background: black; 
+	margin-bottom: 50px; 
+} 
+
+
 /*
 .navbar{
  	background-color: #3861FD;
@@ -56,6 +66,11 @@ p{
 
 }
 */
+
+.fsl_input{
+	background-color: hsla(120, 100%, 50%, 0.3);
+
+}
 
 
 
