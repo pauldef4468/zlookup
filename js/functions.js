@@ -1916,6 +1916,7 @@ $(document).ready(function(){
 		clearLocalStorage('header_info');
 		loadCheckboxes('checklist_pre');
 		loadTextboxes('header_info');
+		updateStaticHeader();
 		
 	});
 	$('#clear_discussion_button').on('click', function(){		
