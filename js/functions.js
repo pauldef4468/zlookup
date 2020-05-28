@@ -212,6 +212,14 @@ function getCategoryByID(id){
 	return categories.find(category => category._id === id);
 }
 
+function handleFSLInputEvents(el){
+	const propertyName = el.attr('data-property-name');
+	const value = $.trim($(el).val());
+	localStorage.setItem(propertyName,value);
+	if(el.hasClass('ac_input')){
+		updateDeltaT();
+	}
+}
 
 function getItemCountPerCategory(category){
 	let count = 0;
@@ -1190,6 +1198,7 @@ function showCommentForm(){
 }
 
 function updateDeltaT(){
+
 	const returnVent1 = $('#return_vent_1_input').val();
 	const supplyVent1 = $('#supply_vent_1_cool_input').val();
 	const returnVent2 = $('#return_vent_2_input').val();
@@ -1905,13 +1914,11 @@ $(document).ready(function(){
 	});
 
 	$('.fsl_input').on('change', function(e){
-		const el = $(e.target);
-		const propertyName = el.attr('data-property-name');
-		const value = $.trim($(el).val());
-		localStorage.setItem(propertyName,value);
+		handleFSLInputEvents($(e.target));
+	});
 
-		updateDeltaT();
-
+	$('.fsl_input').on('keyup', function(e){
+		handleFSLInputEvents($(e.target));
 	});
 
 	$('.header_info').on('change', function(e){
