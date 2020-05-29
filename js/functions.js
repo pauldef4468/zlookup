@@ -1,9 +1,9 @@
 
 
-function commentClick2(par,text){
-	
+function commentClick2(par, text) {
+
 	//If something already selected then unselect it
-	if(selectedParId){
+	if (selectedParId) {
 		$('#' + selectedParId).css("background-color", "")
 	}
 	//Set the background color of the selected paragraph element
@@ -11,7 +11,7 @@ function commentClick2(par,text){
 	$('#' + id).css("background-color", "yellow");
 	//Remember the selected id
 	selectedParId = id;
-	
+
 	//Copy the p element clicked on to the clipboard
 	const el = document.createElement('textarea');
 	//el.value = par.innerHTML;
@@ -24,8 +24,8 @@ function commentClick2(par,text){
 	//el.setSelectionRange(0, 99999); //It doesn't look like I need this
 	document.execCommand('copy');
 	document.body.removeChild(el);
-	
-	
+
+
 }
 
 function updateClipboard(text) {
@@ -40,21 +40,21 @@ function updateClipboard(text) {
 	//el.setSelectionRange(0, 99999); //It doesn't look like I need this
 	document.execCommand('copy');
 	document.body.removeChild(el);
-  }
+}
 
 
-function reloadFunction(){
+function reloadFunction() {
 	//Completely refresh page from server
 	location.reload(true);
 }
 
-function ajaxItems(){
+function ajaxItems() {
 
 	return new Promise((resolve, reject) => {
 
 		// The global user object is not set when not logged in
 		let token = '';
-		if(user){
+		if (user) {
 			token = user.token;
 		}
 
@@ -63,50 +63,51 @@ function ajaxItems(){
 
 		//=============================
 		//$.ajax({url: "http://localhost:5000/zlookup-api/items", 
-		$.ajax({url: `${apiServer}/zlookup-api/items`, 
+		$.ajax({
+			url: `${apiServer}/zlookup-api/items`,
 			type: "GET",
 			//This below was messing with CORS (Cross Origin Resource Sharing) somehow
 			// xhrFields: {
 			// 	withCredentials: true
 			//  },
 			headers: { 'x-auth-token': token },
-			dataType: "json", 
-			contentType:"application/json; charset=utf-8"
+			dataType: "json",
+			contentType: "application/json; charset=utf-8"
 		})
-		.done(function (responseItems, status, xhr){
+			.done(function (responseItems, status, xhr) {
 
-			//Loop each comment item returned
-			$(responseItems).each(function(){
-			//Get the created by user name
-			// var createdByUserName = this.firstName + " " + this.lastName;
-			var item = new Item(this.componentName,
-				this.itemName,
-				this.comment,
-				this.price,
-				this.originalFlag,
-				this._id,
-				this.categoryID,
-				this.modifiedByUserID,
-				this.createdByUserID,
-				this.createdDateTime
-			);
-				respItems.push(item);
+				//Loop each comment item returned
+				$(responseItems).each(function () {
+					//Get the created by user name
+					// var createdByUserName = this.firstName + " " + this.lastName;
+					var item = new Item(this.componentName,
+						this.itemName,
+						this.comment,
+						this.price,
+						this.originalFlag,
+						this._id,
+						this.categoryID,
+						this.modifiedByUserID,
+						this.createdByUserID,
+						this.createdDateTime
+					);
+					respItems.push(item);
+				});
+				resolve(respItems);
+
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
+
 			});
-			resolve(respItems);
-
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
-	
-		});
 
 	})
 }
 
-function loadInitialData(){
-	
+function loadInitialData() {
+
 	//*** Load data from server ***
-	
+
 	//Initialize these global arrays
 	items = [];
 	categories = [];
@@ -115,19 +116,19 @@ function loadInitialData(){
 
 	return new Promise((resolve, reject) => {
 
-		async function submitAjaxRequests(){
-			try{
+		async function submitAjaxRequests() {
+			try {
 				//Load items and category arrays
 				items = await ajaxItems();
 				categories = await ajaxCategories();
 				resolve();
 			}
-			catch(err){
+			catch (err) {
 				const errorType = err.responseJSON.errorType;
 				const tokenErrorMessage = checkTokenErrorType(errorType);
-				if(tokenErrorMessage){
+				if (tokenErrorMessage) {
 					console.error(tokenErrorMessage);
-				}else{
+				} else {
 					console.error(err);
 				}
 				reject();
@@ -136,22 +137,22 @@ function loadInitialData(){
 
 		submitAjaxRequests();
 	});
-	
+
 }
 
-function checkTokenErrorType(errorType){
+function checkTokenErrorType(errorType) {
 
-	if(errorType === 'undefined' || null){
+	if (errorType === 'undefined' || null) {
 		return null;
 	}
 
-	if(errorType === 'token_missing'){
-		return {message: 'Token missing'};
-	}else if(errorType === 'token_invalid'){
-		return {message: 'Token invalid'};
-	}else if(errorType === 'token_expired'){
-		return {message: 'Token expired'};
-	}else{
+	if (errorType === 'token_missing') {
+		return { message: 'Token missing' };
+	} else if (errorType === 'token_invalid') {
+		return { message: 'Token invalid' };
+	} else if (errorType === 'token_expired') {
+		return { message: 'Token expired' };
+	} else {
 		return null;
 		//throw new Error('Problem checking error type');
 	}
@@ -159,7 +160,7 @@ function checkTokenErrorType(errorType){
 
 }
 
-function ajaxCategories(){
+function ajaxCategories() {
 
 	return new Promise((resolve, reject) => {
 
@@ -171,36 +172,37 @@ function ajaxCategories(){
 		//Make web call to get all initial data
 
 		// $.ajax({url: "http://localhost:5000/zlookup-api/categories", 
-		$.ajax({url: `${apiServer}/zlookup-api/categories`,
-		type: "GET",
-		headers: { 'x-auth-token': token },
-		dataType: "json", 
-		contentType:"application/json; charset=utf-8"
+		$.ajax({
+			url: `${apiServer}/zlookup-api/categories`,
+			type: "GET",
+			headers: { 'x-auth-token': token },
+			dataType: "json",
+			contentType: "application/json; charset=utf-8"
 		})
-		.done(function(responseCategories, status, xhr){
-			resolve(responseCategories)
-			
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
-		});
+			.done(function (responseCategories, status, xhr) {
+				resolve(responseCategories)
+
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
+			});
 
 	});
-	
+
 }
 
-function loadCategories(){
+function loadCategories() {
 	let option = '';
 	$('#category_select').empty();
-	for (let i=0;i<categories.length;i++){
+	for (let i = 0; i < categories.length; i++) {
 		let itemCount = getItemCountPerCategory(categories[i]);
 		option += `<option value="${categories[i]._id}">${categories[i].name} - ${itemCount}</option>`;
 	}
 	$('#category_select').append(option);
 }
 
-function updateCategoryCounts(){
-	$("#category_select > option").each(function() {
+function updateCategoryCounts() {
+	$("#category_select > option").each(function () {
 		let category = getCategoryByID(this.value);
 		let itemCount = getItemCountPerCategory(category);
 		this.text = `${category.name} - ${itemCount}`;
@@ -208,27 +210,27 @@ function updateCategoryCounts(){
 	});
 }
 
-function getCategoryByID(id){
+function getCategoryByID(id) {
 	return categories.find(category => category._id === id);
 }
 
 
-function getItemCountPerCategory(category){
+function getItemCountPerCategory(category) {
 	let count = 0;
-	for (let i=0;i<items.length;i++){
-		if(items[i].category._id === category._id) count++;
+	for (let i = 0; i < items.length; i++) {
+		if (items[i].category._id === category._id) count++;
 	}
 	return count;
 }
 
-function loadFormCategories(categoryID){
+function loadFormCategories(categoryID) {
 	var option = '';
 	var currentSelectionID = 0;
-	for (var i=0;i<categories.length;i++){
-	   option += '<option value="'+ categories[i]._id + '">' + categories[i].name + '</option>';
-	   if(categoryID == categories[i]._id){
-		   currentSelectionID = categoryID;
-	   }
+	for (var i = 0; i < categories.length; i++) {
+		option += '<option value="' + categories[i]._id + '">' + categories[i].name + '</option>';
+		if (categoryID == categories[i]._id) {
+			currentSelectionID = categoryID;
+		}
 	}
 	$('.form_category_select').append(option);
 	//Set the category drop down selected item
@@ -236,25 +238,25 @@ function loadFormCategories(categoryID){
 }
 
 
-function notReadyFunction(){
+function notReadyFunction() {
 	alert("Sorry! This doesn't do anything yet.");
 }
 
-function categoryLookup(){
+function categoryLookup() {
 	const lookupText = $('#category_lookup').val().toLowerCase();
 	const cat = categories.find((category) => {
 		let n = category.name.toLowerCase().indexOf(lookupText);
-		if(n > -1) return true;
+		if (n > -1) return true;
 	})
-	if(cat){
+	if (cat) {
 		$('#category_select').val(cat._id);
 		lookupFunction();
-	}else{
+	} else {
 		$('#category_select').val('');
 	}
 }
 
-function updateStaticHeader(){
+function updateStaticHeader() {
 	let susanName = localStorage.getItem('susanName');
 	susanName = susanName ? susanName : '';
 	let zatName = localStorage.getItem('zatName');
@@ -269,19 +271,85 @@ function updateStaticHeader(){
 	$('.year_built_info').html(yearBuilt);
 }
 
+function isAddToListTypeComment(item) {
+	if (item.category.addToLocation) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function addToListOnClick(item) {
+
+	const { comment } = item;
+	//Get array of curly brace matches (see if there are curly braces)
+	if (!getPlaceHolders(comment)) {
+		//No placeholders so just add to the list
+		updateLocalStorage(item.category, comment);
+	} else {
+		showEditItemModal(item);
+	}
+
+
+}
+
+function updateLocalStorage(category, newText) {
+
+	if (category.addToLocation === 'externalities') {
+		let externalitiesValue = localStorage.getItem('externalities');
+		if (!externalitiesValue) {
+			localStorage.setItem('externalities', newText);
+		} else {
+			externalitiesValue = externalitiesValue.concat('\n' + newText);
+			localStorage.setItem('externalities', externalitiesValue);
+		}
+	} else if (category.addToLocation === 'notes') {
+		let externalitiesValue = localStorage.getItem('notes');
+		if (!externalitiesValue) {
+			localStorage.setItem('notes', newText);
+		} else {
+			externalitiesValue = externalitiesValue.concat('\n' + newText);
+			localStorage.setItem('notes', externalitiesValue);
+		}
+	}
+}
+
+function showEditItemModal(item) {
+	// Remove the curly braces on placeholder words and show modal window 
+	// with this comment in the body
+	$('#modal_text_input').val(stripPlaceHolderBraces(item.comment));
+	// Store this object in hidden div on form
+	$('#item_object_stringify').html(JSON.stringify(item));
+	//Only show the appropriate buttons for this type of item
+	if (isAddToListTypeComment(item)) {
+		$("#add_to_list_button").css("display", "inline");
+	} else {
+		$("#add_to_list_button").css("display", "none");
+	}
+	$("#myModal").modal();
+
+}
+
+function getPlaceHolders(text) {
+	//Returns array of curly brace words
+	return text.match(/[^{]+(?=\})/g);
+}
+function stripPlaceHolderBraces(text) {
+	return text.replace(/{|}/gi, '');
+}
 
 function lookupFunction() {
 
 	var categoryID = $('#category_select option:selected').val();
-	
-	if (!Array.isArray(items) || !items.length) {
-	  // array does not exist, is not an array, or is empty
-	  $("#lookup_error").css("display", "block");
-	  $("#lookup_error").html("No items. You probably need to login?");
 
-	}else{
-	  $("#lookup_error").css("display", "none");
-	  $("#lookup_error").html("");
+	if (!Array.isArray(items) || !items.length) {
+		// array does not exist, is not an array, or is empty
+		$("#lookup_error").css("display", "block");
+		$("#lookup_error").html("No items. You probably need to login?");
+
+	} else {
+		$("#lookup_error").css("display", "none");
+		$("#lookup_error").html("");
 	}
 
 	//Clean up any open edit forms
@@ -292,93 +360,97 @@ function lookupFunction() {
 	$('#tbody').html('');
 	//Clear the result count display
 	$("#result_count").html("");
-	
-	
+
+
 	//See if the all checkbox is checked.
 	//var allChecked = document.getElementById("all_checkbox").checked;
-	
+
 	//Get the lookup textbox value for each key stroke
 	//var lookupText = document.getElementById("lookupText").value;
 	var lookupText = $('#lookupText').val();
-	
+
 	//We should have a bunch of "items" at this time
 	var lookupWords = lookupText.split(" ");
-		
+
 	//Loop the items array and add to the resultItems array if not filtered out
 	var i;
 	for (i = 0; i < items.length; i++) {
-		
+
 		var componentName = items[i].componentName;
 		var comment = items[i].comment;
 		var name = items[i].name;
 		var originalFlag = items[i].originalFlag;
-		
-		if(categoryID != items[i].category._id){continue};
-		
+
+		if (categoryID != items[i].category._id) { continue };
+
 		//If not an original or custom comment then don't include
 		//*** THIS WILL BE A CHECKBOX LATER OR SOMETHING ***
 		//if(originalFlag == "0"){continue;}
-		
+
 		//If the original flag is zero and all checked 
 		//if(!allChecked && originalFlag == "0"){continue;}
-		
+
 		//Lookup everything if nothing there 
-		if(lookupText == ""){
+		if (lookupText == "") {
 			resultItems.push(items[i]);
 			continue;
 		}
-		
+
 		//Loop for each lookup word and ignore empty string in case of double spaces
 		var found = false;
 		var icount;
 		for (icount = 0; icount < lookupWords.length; icount++) {
-			if(!lookupWords[icount]){continue;} //Check for empty string
-			
+			if (!lookupWords[icount]) { continue; } //Check for empty string
+
 			//Search for this lookup word case insensitive
 			//var combined = name + " " + comment + " " + componentName;
 			var combined = name + " " + comment;
-			
+
 			//var n = combined.toLowerCase().search(lookupWords[icount].toLowerCase()); //I took this out (looks for regular expression
 			var n = combined.toLowerCase().indexOf(lookupWords[icount].toLowerCase());
 			//if(n == -1){continue};
-			if(n == -1){
+			if (n == -1) {
 				found = false;
 				break;
 			}
 			found = true;
 		}
-		if(!found){continue;}
-		
+		if (!found) { continue; }
+
 		resultItems.push(items[i]);
-		
+
 	}
-	
-	
+
+
 	// *** LOAD THE TABLE ***
 	//var table = $("#resultTable");
 
 	//Clear results in the result table
 	var tableBody = document.getElementById("tbody");
-	
+
 	//tableBody.innerHTML = '';
-	
+
 	//Clear the selected paragraph 
 	selectedParId = '';
-	
- 	var i;
+
+	var i;
 	var rowCount = 0;
-	
+
+	//Set the count span element 
 	$("#result_count").html(resultItems.length);
-	
+
 	for (i = 0; i < resultItems.length; i++) {
-		
+
+		const resultItem = resultItems[i];
+		const { componentName, name, price, comment } = resultItem;
+
 		rowCount = rowCount + 1;
-		
+
 		var row = tableBody.insertRow();
 		var rowId = 'R' + i;
 		row.setAttribute("id", rowId);
 		row.setAttribute("class", "result_row");
-		
+
 		//Insert cell
 		var cell0 = row.insertCell(0);
 		var span = $("<span class='glyphicon glyphicon-chevron-down edit_icon'></span>");
@@ -386,320 +458,265 @@ function lookupFunction() {
 		//$(cell0).append(editIcon);
 		$(cell0).append(span);
 		//$(cell0).append(plus);
-		
+
 		//Event handler for pencil click
-		$(span).on('click', (function(span){
-			return(function() { 
-				showEditForm2(span); 
+		$(span).on('click', (function (span) {
+			return (function () {
+				showEditForm2(span);
 			});
 		})(span));
-		
+
 		//Insert comment cell
 		var cell1 = row.insertCell(1);
 		$(cell1).attr("class", "cell1");
-		
+
 		//*** Component Name *** ie. Exterior, Bedroom, Kitchen, etc
 		var parComponentName = document.createElement("p");
 		parComponentName.setAttribute("class", "name component");
 		//Convert to html entities so the browser doesn't process any html type chars
-		var parComponentNameText = htmlspecialchars(resultItems[i].componentName);
+		var parComponentNameText = htmlspecialchars(componentName);
 		parComponentName.innerHTML = parComponentNameText;
 		cell1.appendChild(parComponentName)
-		
+
 		//*** Heading Text AKA Comment Name ***
 		var headId = 'H' + i;
 		var parHeading = document.createElement("p");
 		parHeading.setAttribute("class", "name touch commentName");
 		parHeading.setAttribute("id", headId);
 		//Convert to html entities so the browser doesn't process any html type chars
-		var parHeadingText = htmlspecialchars(resultItems[i].name);
+		var parHeadingText = htmlspecialchars(name);
 		//Highlight
 		parHeading.innerHTML = highlight(parHeadingText, lookupWords);
 		//parHeading.innerHTML = parHeadingText;
 		cell1.appendChild(parHeading)
-		
+
 		//*** Comment Text ***
 		var textId = 'T' + i;
 		var par = document.createElement("p");
 		par.setAttribute("class", "touch commentText");
 		par.setAttribute("id", textId);
 		//Convert to html entities so the browser doesn't process any html type chars
-		var parCommentText = htmlspecialchars(resultItems[i].comment);
+		var parCommentText = htmlspecialchars(comment);
 		//Highlight the search words in the par element
 		par.innerHTML = highlight(parCommentText, lookupWords);
 		cell1.appendChild(par);
-		
+
 		//*** Add price ***
-		let priceEl = $(cell1).append('<p class="price_display">Price: ' + resultItems[i].price + '</p>');
-		
-		//Set event handlers to copy data to clipboard
-		var nameText = resultItems[i].name;
-		parHeading.onclick = function(parHeading, nameText){
-			return(function() { 
+		let priceEl = $(cell1).append('<p class="price_display">Price: ' + price + '</p>');
+
+
+
+		//Set event handler for heading to copy data to clipboard
+		parHeading.onclick = function (parHeading, name) {
+			return (function () {
 				//Copy to clipboard
-				commentClick2(parHeading, nameText); 
+				commentClick2(parHeading, name);
 			});
-		}(parHeading, nameText);
-		
-		var commentText = resultItems[i].comment;
-		par.onclick = function(par,commentText){
-			return(function() { 
-				//Get array of curly brace matches
-				const matches = commentText.match(/[^{]+(?=\})/g);
-				if(!matches){
+		}(parHeading, name);
+
+		//var commentText = resultItem.comment;
+		par.onclick = function (par, comment) {
+			return (function () {
+				//Get array of curly brace matches (see if there are curly braces)
+				if (!getPlaceHolders(comment)) {
 					//Highlight text and copy to clipboard
-					commentClick2(par,commentText);
-				}else{
-					//Remove the curly brackets
-					const stripped = commentText.replace(/{|}/gi, '');
-					$('#modal_text_input').val(stripped);
-					$("#myModal").modal();
+					commentClick2(par, comment);
+				} else {
+					//Show modal edit item window
+					showEditItemModal(resultItem);
 				}
-				 
+
 			});
-		}(par,commentText);
+		}(par, comment);
 
-		const resultItem = resultItems[i];
-
-		if(resultItem.category._id === '5eb465afd494f76768b4c3e7' || resultItem.category._id === '5ec1d85a7411d74c5c6e8ecc' || resultItem.category._id === '5ec65c9e7411d74c5c6e8ece' || resultItem.category._id === '5ebc3ea6e89c345de4e74976'){
-			//Add the plus icon to add this note to appropriate section
+		//Add an Add to List button if this is that type of comment
+		if (isAddToListTypeComment(resultItem)) {
+			//Add the Add to List button 
 			let plus = $('<button type="button" class="btn btn-success btn-sm" id="add_comment_button">Add to List</button>');
 			$(cell1).append(plus);
-			$(plus).on('click', (function(resultItem){
-				return(function() { 
-					//Check if Externality
-					if(resultItem.category._id === '5eb465afd494f76768b4c3e7'){
-						let externalitiesValue = localStorage.getItem('externalities');
-						if(!externalitiesValue){
-							localStorage.setItem('externalities',resultItem.comment);
-						}else{
-							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
-							localStorage.setItem('externalities',externalitiesValue);
-						}
-						//Check if Limitation
-					}else if(resultItem.category._id === '5ec1d85a7411d74c5c6e8ecc'){
-						let externalitiesValue = localStorage.getItem('notes');
-						if(!externalitiesValue){
-							localStorage.setItem('notes',resultItem.comment);
-						}else{
-							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
-							localStorage.setItem('notes',externalitiesValue);
-						}
-						//Check if a general note
-					}else if(resultItem.category._id === '5ec65c9e7411d74c5c6e8ece'){
-						let notesValue = localStorage.getItem('notes');
-						if(!notesValue){
-							localStorage.setItem('notes',resultItem.comment);
-						}else{
-							notesValue = notesValue.concat('\n' + resultItem.comment);
-							localStorage.setItem('notes',notesValue);
-						}
-						//Check for internalities
-					}else if(resultItem.category._id === '5ebc3ea6e89c345de4e74976'){
-						let externalitiesValue = localStorage.getItem('externalities');
-						if(!externalitiesValue){
-							localStorage.setItem('externalities',resultItem.comment);
-						}else{
-							externalitiesValue = externalitiesValue.concat('\n' + resultItem.comment);
-							localStorage.setItem('externalities',externalitiesValue);
-						}
-					}
-					
-				});
+			$(plus).on('click', (function (resultItem) {
+				return function () {
+					addToListOnClick(resultItem);
+				}
 			})(resultItem));
 		}
-
-			
-		
-		
-/* 		//Insert price cell
- 		var cell2 = row.insertCell(2);
-		cell2.setAttribute("class", "money");
-		cell2.innerHTML = resultItems[i].price; */
-		
-
-
 	}
-	
 
-	
 }
 
-function highlight(textToProcess, lookupWordsArray){
+function highlight(textToProcess, lookupWordsArray) {
 	//Highlight the search words in the par element
 	var icount;
 	var newText = textToProcess;
 	for (icount = 0; icount < lookupWordsArray.length; icount++) {
-		//I have no idea how this works but I found online to replace everything 
+		//I found this online to replace everything 
 		//outside html tags only so it doesn't keep clobbering itself
 		var searchstring = lookupWordsArray[icount].replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 		var regex = new RegExp("(" + searchstring + ")(?!([^<]+)?>)", "gi");
-		newText = newText.replace(regex,'<span class="highlight">$&</span>');
+		newText = newText.replace(regex, '<span class="highlight">$&</span>');
 	}
 	return newText;
 }
 
-function editFunction(){
-	
+function editFunction() {
+
 	//*** DO NOT DELETE YET ***
-	
+
 	//See if any rows have checkmarks checked. We should only have one.
 	//When we have a single checked checkmark then get the row element.
-	
-	
+
+
 	//Loop all checkboxes and build array of checked = true only
-	var checkboxes = $( ".row_checkbox" ).get();
-	
+	var checkboxes = $(".row_checkbox").get();
+
 	var i;
 	var checkedBoxesArr = [];
-	for (i = 0; i < checkboxes.length; i++){
-		if(checkboxes[i].checked){
+	for (i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].checked) {
 			checkedBoxesArr.push(checkboxes[i]);
 		}
 	}
-	
+
 	//Make sure we only have one
-	if(checkedBoxesArr.length == 0){
+	if (checkedBoxesArr.length == 0) {
 		alert('None selected');
 		return;
-	}else if(checkedBoxesArr.length > 1){
+	} else if (checkedBoxesArr.length > 1) {
 		alert('Please select only one');
 		return;
 	}
-	
-	
+
+
 	//Get this checkboxes parent table row
 	var checkbox = checkedBoxesArr[0];
-	var row = $( checkbox ).parents(".result_row");
+	var row = $(checkbox).parents(".result_row");
 	var rowIdStr = $(row).attr('id');
 
 
 	//Get the number only from the id
-	var str = rowIdStr.replace ( /[^\d.]/g, '' );
+	var str = rowIdStr.replace(/[^\d.]/g, '');
 	var resultItemIndex = parseInt(str);
-	
+
 	//Set global selectedItem
 	selectedItem = resultItems[resultItemIndex];
-	
+
 	//Load a form with 
 	showEditForm();
-	
+
 }
 
-function showEditForm(){
-	
-/* 	//Show the form
-	$('#pad_form').slideDown();
-	
-	//Fill in the form 
-	$('#component_name').val(selectedItem.componentName);
-	$('#item_name').val(selectedItem.name);
-	$('#item_comment').html(selectedItem.comment); */
-	
+function showEditForm() {
+
+	/* 	//Show the form
+		$('#pad_form').slideDown();
+		
+		//Fill in the form 
+		$('#component_name').val(selectedItem.componentName);
+		$('#item_name').val(selectedItem.name);
+		$('#item_comment').html(selectedItem.comment); */
+
 }
 
-function showEditForm2(spanElement){
-	
-	
+function showEditForm2(spanElement) {
+
+
 	//Get this checkboxes parent table row
-	var row = $( spanElement ).closest(".result_row");
-	
+	var row = $(spanElement).closest(".result_row");
+
 	//Get cell1 (has comment, name, etc.
 	var cell1 = $(row).find(".cell1");
-	
+
 	//Get the form div
 	var editFormDiv = $(row).find(".pad_form");
-	
+
 	//If the edit form already exists in the cell then close it and return
-	if($(row).find(".pad_form").length){
-		
+	if ($(row).find(".pad_form").length) {
+
 		closeEditFormDiv('', editFormDiv);
-		
+
 		return;
 	}
-	
+
 	//Only allow one open at a time. I had to do this because of problems with AutoNumeric
-	if($('.pad_form').length)return;
-	
+	if ($('.pad_form').length) return;
+
 	//Toggle the chevron
 	var chevron = $(row).find('.edit_icon');
 	chevron.toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up');
-	
+
 	//Get the id of the row
 	var rowIdStr = $(row).attr('id');
-	
+
 	//Get the number only from the id
-	var str = rowIdStr.replace ( /[^\d.]/g, '' );
+	var str = rowIdStr.replace(/[^\d.]/g, '');
 	var resultItemIndex = parseInt(str);
 	//The current Item 
 	var selectedItem2 = resultItems[resultItemIndex];
 
-	//console.log(items[0].comment);
-			
 	// TODO2 - Add an additional comment option to the form
-			
+
 	//Create the edit form div and start out not displayed
 	var editFormDiv = $('<div style="display: none;" class="pad_form">' +
-	'<form class="edit_form" action="..blah" method="post">' +
+		'<form class="edit_form" action="..blah" method="post">' +
 		'<select class="form_category_select"></select>' +
-	
+
 		'<div id="component_name_group" class="form-group">' +
-			'<label for="component_name" class="renowalk_component">RenoWalk Component:</label>' +
-			'<input type="text" class="form-control component_name" id="component_name">' +
-		 '</div>' +
-	  
-		'<div id="comment_name_group" class="form-group">' +
-			'<label for="comment_name" class="renowalk_comment_label">RenoWalk Comment Name:</label>' +
-			'<input type="text" class="form-control comment_name" id="comment_name">' +
+		'<label for="component_name" class="renowalk_component">RenoWalk Component:</label>' +
+		'<input type="text" class="form-control component_name" id="component_name">' +
 		'</div>' +
-		
+
+		'<div id="comment_name_group" class="form-group">' +
+		'<label for="comment_name" class="renowalk_comment_label">RenoWalk Comment Name:</label>' +
+		'<input type="text" class="form-control comment_name" id="comment_name">' +
+		'</div>' +
+
 		'<div id="item_comment_group" class="form-group">' +
-			'<label for="item_comment">Comment:</label>' +
-			'<textarea class="form-control rounded-0 item_comment" id="item_comment" rows="4"></textarea>' +
+		'<label for="item_comment">Comment:</label>' +
+		'<textarea class="form-control rounded-0 item_comment" id="item_comment" rows="4"></textarea>' +
 		'</div>' +
 		'<div id="item_price_group" class="form-group">' +
-			'<label for="item_price">Price:</label>' +
-			'<input type="tel" class="form-control item_price" id="item_price">' +
+		'<label for="item_price">Price:</label>' +
+		'<input type="tel" class="form-control item_price" id="item_price">' +
 		'</div>' +
 		'<div class="row">' +
-			'<div class="col-sm-6"><span class="database_id_label">Record ID: </span><span class="database_id"></span></div>' +
-			'<div class="col-sm-6 text-right created_by"></div>' +
+		'<div class="col-sm-6"><span class="database_id_label">Record ID: </span><span class="database_id"></span></div>' +
+		'<div class="col-sm-6 text-right created_by"></div>' +
 		'</div>' +
-		
+
 		'<button type="button" class="btn btn-success btn-sm save_button">Save</button>' +
 		'<button type="button" class="btn btn-success btn-sm save_new_button">Save As</button>' +
 		'<button type="button" class="btn btn-danger btn-sm delete_button">Delete</button>' +
-		
+
 		'<button type="button" class="btn btn-warning pull-right btn-sm cancel_button">Cancel</button>' +
 		'<div class="bg-danger text-danger panel-body standard_err_message"></div>' +
 
-	  
-	'</form>' +
 
-	//Intitially hidden overlay for spinner
-	'<div class="pad_overlay">' +
+		'</form>' +
+
+		//Intitially hidden overlay for spinner
+		'<div class="pad_overlay">' +
 		'<div class="loader" >' +
 		'</div>' +
-	'</div>' + 
-	'</div>');
-	
+		'</div>' +
+		'</div>');
+
 	$(editFormDiv).appendTo($(cell1)).slideDown();
-	
-	
+
+
 	//I could not get this AutoNumeric stuff to work with multiple dynamically loaded forms so I only allow one at a time above
-	 const autoNumericOptions = {
-			allowDecimalPadding: "floats",
-			decimalCharacter: ".",
-			digitGroupSeparator: ",",
-			emptyInputBehavior: "zero",
-			watchExternalChanges: true 
-		};
+	const autoNumericOptions = {
+		allowDecimalPadding: "floats",
+		decimalCharacter: ".",
+		digitGroupSeparator: ",",
+		emptyInputBehavior: "zero",
+		watchExternalChanges: true
+	};
 	//anItemPrice = new AutoNumeric.multiple('.item_price',AutoNumeric.getPredefinedOptions().NorthAmerican);
-	anItemPrice = new AutoNumeric.multiple('.item_price',autoNumericOptions);
+	anItemPrice = new AutoNumeric.multiple('.item_price', autoNumericOptions);
 
 	//Load the categories from the global categories array
 	loadFormCategories(selectedItem2.category._id);
-	
+
 	//Fill in the form 
 	var componentName = $(editFormDiv).find(".component_name");
 	componentName.val(selectedItem2.componentName);
@@ -712,132 +729,132 @@ function showEditForm2(spanElement){
 	//Fill in the amount
 	var price = $(editFormDiv).find(".item_price");
 	price.val(selectedItem2.price);
-	
-	
+
+
 	//Register the save button click event
 	var saveButton = $(editFormDiv).find(".save_button");
-	$(saveButton).on('click', function(e){
-		formSubmitUpdate(e,row, selectedItem2);
+	$(saveButton).on('click', function (e) {
+		formSubmitUpdate(e, row, selectedItem2);
 	});
-	
+
 	//Register the save new button click event
 	var saveNewButton = $(editFormDiv).find(".save_new_button");
-	$(saveNewButton).on('click', function(){
+	$(saveNewButton).on('click', function () {
 		formSubmitSaveAs(row, selectedItem2);
-	});	
-	
+	});
+
 	//Register the delete button click event
 	var deleteButton = $(editFormDiv).find(".delete_button");
-	$(deleteButton).on('click', function(){
+	$(deleteButton).on('click', function () {
 		deleteItem(row, selectedItem2);
-	});	
-	
+	});
+
 	const fullName = selectedItem2.createdByUser.firstName + ' ' + selectedItem2.createdByUser.lastName;
 	$(editFormDiv).find(".created_by").html('Created By: ' + htmlspecialchars(fullName));
-	
-/* 	//Register the cancel button click event
+
+	/* 	//Register the cancel button click event
+		var cancelButton = $(row).find(".cancel_button");
+		$(cancelButton).on('click', function(e){
+			closeEditFormDiv(e);
+		}); */
+
 	var cancelButton = $(row).find(".cancel_button");
-	$(cancelButton).on('click', function(e){
-		closeEditFormDiv(e);
-	}); */
-	
-	var cancelButton = $(row).find(".cancel_button");
-	$(cancelButton).on('click', function(e){
+	$(cancelButton).on('click', function (e) {
 		closeEditFormDiv(e, editFormDiv);
 	});
-	
+
 
 
 };
 
-function clearEditFormErrors(row){
+function clearEditFormErrors(row) {
 	//Remove any errors if there are some
 	$(row).find(".form-group").removeClass('has-error');
 	$(row).find(".help-block").remove();
 }
 
-function setFormDataObj(row, selectedItem){
+function setFormDataObj(row, selectedItem) {
 	//Use AutoNumeric to get raw price number
 	let anRawPrice = AutoNumeric.getAutoNumericElement('.item_price').getNumericString();
 	anRawPrice = parseFloat(anRawPrice);
-	
+
 	//The categoryID is stored in the value of the category Select element
 	const formCategorySelectValue = $(row).find(".form_category_select").val();
-	
+
 	//Set the formData object to send to server
 	return {
-		'componentName':$(row).find(".component_name").val(),
-		'itemName':$(row).find(".comment_name").val(),
-		'comment':$(row).find(".item_comment").val(),
-		'price':anRawPrice,
-		'categoryID':formCategorySelectValue,
+		'componentName': $(row).find(".component_name").val(),
+		'itemName': $(row).find(".comment_name").val(),
+		'comment': $(row).find(".item_comment").val(),
+		'price': anRawPrice,
+		'categoryID': formCategorySelectValue,
 		//'createdByUserID':user.id,
 		//'modifiedByUserID': user.id
 	}
 }
 
-function setFormSubmitSaveAsObj(row, selectedItem){
+function setFormSubmitSaveAsObj(row, selectedItem) {
 
 	//Use AutoNumeric to get raw price number
 	let anRawPrice = AutoNumeric.getAutoNumericElement('.item_price').getNumericString();
 	anRawPrice = parseFloat(anRawPrice);
-	
+
 	//The categoryID is stored in the value of the category Select element
 	const formCategorySelectValue = $(row).find(".form_category_select").val();
-	
+
 	//Set the formData object to send to server
 	return {
-		'componentName':$(row).find(".component_name").val(),
-		'itemName':$(row).find(".comment_name").val(),
-		'comment':$(row).find(".item_comment").val(),
-		'price':anRawPrice,
-		'categoryID':formCategorySelectValue,
+		'componentName': $(row).find(".component_name").val(),
+		'itemName': $(row).find(".comment_name").val(),
+		'comment': $(row).find(".item_comment").val(),
+		'price': anRawPrice,
+		'categoryID': formCategorySelectValue,
 		//'createdByUserID':selectedItem.createdByUser._id,
 		//'createdByUserID':user.id,
 		//'modifiedByUserID': user.id
 	}
 }
 
-function showHideEditFormSpinner(el,showSpinner){
-	if(!el){
+function showHideEditFormSpinner(el, showSpinner) {
+	if (!el) {
 		el = $('.container');
 	}
-	if(showSpinner){
+	if (showSpinner) {
 		$(el).find(".pad_overlay").css("visibility", "visible");
-	}else{
+	} else {
 		$(el).find(".pad_overlay").css("visibility", "hidden");
 	}
 }
 
 
-function showEditFormInputErrors(row, inputKey, errorMessage){
-	
+function showEditFormInputErrors(row, inputKey, errorMessage) {
+
 	var componentNameGroup = $(row).find("#component_name_group");
-	if(inputKey === 'componentName'){
-		$(componentNameGroup).addClass('has-error'); 
+	if (inputKey === 'componentName') {
+		$(componentNameGroup).addClass('has-error');
 		$(componentNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
 	}
 	var commentNameGroup = $(row).find("#comment_name_group");
-	if(inputKey === 'itemName'){
-		$(commentNameGroup).addClass('has-error'); 
+	if (inputKey === 'itemName') {
+		$(commentNameGroup).addClass('has-error');
 		$(commentNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
 	}
 	var itemCommentGroup = $(row).find("#item_comment_group");
-	if(inputKey === 'comment'){
-		$(itemCommentGroup).addClass('has-error'); 
+	if (inputKey === 'comment') {
+		$(itemCommentGroup).addClass('has-error');
 		$(itemCommentGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
 	}
 	var itemPriceGroup = $(row).find('#item_price_group');
-	if(inputKey === 'price'){
-		$(itemPriceGroup).addClass('has-error'); 
+	if (inputKey === 'price') {
+		$(itemPriceGroup).addClass('has-error');
 		$(itemPriceGroup).append('<div class="help-block">' + errorMessage + '</div>');
 	}
 }
 
-function formSubmitSaveAs(row, selectedItem){
-		
+function formSubmitSaveAs(row, selectedItem) {
+
 	//*** Save new record based on existing selected record ***
-	
+
 	//Remove any error displays if there are some
 	clearEditFormErrors(row);
 	//get reference this edit form
@@ -845,10 +862,10 @@ function formSubmitSaveAs(row, selectedItem){
 	//Set the data object we will send to server
 	const formDataItem = setFormSubmitSaveAsObj(row, selectedItem);
 	//Show a spinner
-	showHideEditFormSpinner(row,true);
+	showHideEditFormSpinner(row, true);
 
-	async function submitSaveAs(){
-		try{
+	async function submitSaveAs() {
+		try {
 			const item = await ajaxPostNewItem(formDataItem);
 			let newItem = new Item(
 				item.componentName,
@@ -868,7 +885,7 @@ function formSubmitSaveAs(row, selectedItem){
 			closeEditFormDiv('', form);
 
 		}
-		catch(err){
+		catch (err) {
 			processAndDisplayError(err, row, form);
 		}
 	}
@@ -877,23 +894,23 @@ function formSubmitSaveAs(row, selectedItem){
 
 }
 
-function processAndDisplayError(err, row, form){
+function processAndDisplayError(err, row, form) {
 	//Hide the spinner
-	showHideEditFormSpinner(row,false);
+	showHideEditFormSpinner(row, false);
 
 	const errorType = err.responseJSON.errorType;
 	const errorMessage = err.responseJSON.message;
-	if(errorType === 'validation'){
+	if (errorType === 'validation') {
 		const inputKey = err.responseJSON.inputKey;
 		showEditFormInputErrors(row, inputKey, errorMessage);
-	}else{
+	} else {
 		// TODO Finish this
 		const tokenErrorMessage = checkTokenErrorType(errorType);
-		if(tokenErrorMessage){
+		if (tokenErrorMessage) {
 			// This is a token error. They must log in
 			showFormError(form, 'Token issue. Please login');
 			logout();
-		}else{
+		} else {
 			//This is some other issue
 			console.error(err);
 			showFormError(form, errorMessage);
@@ -902,105 +919,107 @@ function processAndDisplayError(err, row, form){
 	}
 }
 
-function ajaxPostNewItem(formDataItem){
+function ajaxPostNewItem(formDataItem) {
 
 	return new Promise((resolve, reject) => {
 
 		let token = '';
-		if(user){
+		if (user) {
 			token = user.token;
 		}
 
 		//=============================
 		// $.ajax({url: `http://localhost:5000/zlookup-api/items`, 
-		$.ajax({url: `${apiServer}/zlookup-api/items`, 
+		$.ajax({
+			url: `${apiServer}/zlookup-api/items`,
 			type: "POST",
 			headers: { 'x-auth-token': token },
-			dataType: "json", 
-			contentType:"application/json; charset=utf-8",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(formDataItem),
 
 		})
-		.done(function (respItem){
+			.done(function (respItem) {
 
-			resolve(respItem);
+				resolve(respItem);
 
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
-	
-		});
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
+
+			});
 
 	})
 
 }
 
-function deleteItemByRecordID(id){
-	
+function deleteItemByRecordID(id) {
+
 	//Find the item and remove from the array
 	for (let i = 0; i < items.length; i++) {
-		if(items[i].id == id){
-			items.splice(i,1);
+		if (items[i].id == id) {
+			items.splice(i, 1);
 		}
 	}
-	
+
 }
 
-function ajaxDeleteItem(itemID){
+function ajaxDeleteItem(itemID) {
 
 	return new Promise((resolve, reject) => {
 		// The global user object is not set when not logged in
 		let token = '';
-		if(user){
+		if (user) {
 			token = user.token;
 		}
 
 		//=============================
 		//$.ajax({url: `http://localhost:5000/zlookup-api/items/${itemID}`, 
-		$.ajax({url: `${apiServer}/zlookup-api/items/${itemID}`,
+		$.ajax({
+			url: `${apiServer}/zlookup-api/items/${itemID}`,
 			type: "DELETE",
 			headers: { 'x-auth-token': token },
-			dataType: "json", 
-			contentType:"application/json; charset=utf-8"
+			dataType: "json",
+			contentType: "application/json; charset=utf-8"
 			//data: JSON.stringify(formDataItem),
 
 		})
-		.done(function (){
+			.done(function () {
 
-			resolve();
+				resolve();
 
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
 
-		});
+			});
 	});
 
-	
+
 }
 
-function deleteItem(row, selectedItem){
-		
+function deleteItem(row, selectedItem) {
+
 	//*** Delete ***
 
 	const id = selectedItem.id;
-	
+
 	//Remove any error displays if there are some
 	clearEditFormErrors(row);
 	//get reference to this edit form
 	var form = $(row).find(".pad_form");
 	//Set the data object we will send to server
 	//Show a spinner
-	showHideEditFormSpinner(row,true);
+	showHideEditFormSpinner(row, true);
 
-	async function submitDeleteItem(){
-		try{
+	async function submitDeleteItem() {
+		try {
 			await ajaxDeleteItem(id);
 			deleteItemByRecordID(id);
 			//Close the edit form and then re-filter and display
 			closeEditFormDiv('', form);
 		}
-		catch(err){
+		catch (err) {
 			processAndDisplayError(err, row, form);
 		}
 	}
@@ -1009,43 +1028,44 @@ function deleteItem(row, selectedItem){
 
 }
 
-function ajaxItemUpdate(itemID, formDataItem){
+function ajaxItemUpdate(itemID, formDataItem) {
 
 	return new Promise((resolve, reject) => {
 
 		// The global user object is not set when not logged in
 		let token = '';
-		if(user){
+		if (user) {
 			token = user.token;
 		}
 
 		//=============================
 		// $.ajax({url: `http://localhost:5000/zlookup-api/items/${itemID}`, 
-		$.ajax({url: `${apiServer}/zlookup-api/items/${itemID}`,
+		$.ajax({
+			url: `${apiServer}/zlookup-api/items/${itemID}`,
 			type: "PUT",
 			headers: { 'x-auth-token': token },
-			dataType: "json", 
-			contentType:"application/json; charset=utf-8",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(formDataItem),
 
 		})
-		.done(function (respItem){
+			.done(function (respItem) {
 
-			resolve(respItem);
+				resolve(respItem);
 
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
-	
-		});
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
+
+			});
 
 	})
 }
 
-function formSubmitUpdate(e, row, selectedItem){
-	
+function formSubmitUpdate(e, row, selectedItem) {
+
 	//*** UPDATE THE ITEM COMMENT ***
-		
+
 	//Remove any error displays if there are some
 	clearEditFormErrors(row);
 	//get reference this edit form
@@ -1053,10 +1073,10 @@ function formSubmitUpdate(e, row, selectedItem){
 	//Set the data object we will send to server
 	const formDataItem = setFormDataObj(row, selectedItem);
 	//Show a spinner
-	showHideEditFormSpinner(row,true);
-	
-	async function submitFormSave(){
-		try{
+	showHideEditFormSpinner(row, true);
+
+	async function submitFormSave() {
+		try {
 			const item = await ajaxItemUpdate(selectedItem.id, formDataItem);
 
 			//Success
@@ -1074,11 +1094,11 @@ function formSubmitUpdate(e, row, selectedItem){
 			$(row).find(".commentText").html(htmlspecialchars(selectedItem.comment));
 			// TODO2 this next line should really produce properly formatted currency
 			$(row).find(".money").html(selectedItem.price);
-			
+
 			//Close the edit form and then re-filter and display 
 			closeEditFormDiv('', form);
 		}
-		catch(err){
+		catch (err) {
 			processAndDisplayError(err, row, form);
 		}
 	}
@@ -1087,28 +1107,28 @@ function formSubmitUpdate(e, row, selectedItem){
 
 
 
-function closeEditFormDiv(e, editFormDiv){
-	
+function closeEditFormDiv(e, editFormDiv) {
+
 	//Toggle the chevron
 	var resultRow = $(editFormDiv).closest('.result_row');
 	var chevron = $(resultRow).find('.edit_icon');
 	chevron.toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up');
-	
-	$(editFormDiv).slideUp("", function() { 
-		$(this).remove(); 
+
+	$(editFormDiv).slideUp("", function () {
+		$(this).remove();
 		//Reload categories so the counts are updated
 		//loadCategories();
 		updateCategoryCounts();
 		//Re-run the lookup 
 		lookupFunction();
-	} );
+	});
 
-	
-	
+
+
 }
 
-class Item{
-	constructor(componentName, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime){
+class Item {
+	constructor(componentName, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime) {
 		this.componentName = componentName;
 		this.name = name;
 		this.comment = comment;
@@ -1127,7 +1147,7 @@ class View {
 	static showView(displayFormID) {
 		//Hide all views
 		$('.view').each(
-			function(){
+			function () {
 				$(this).css("display", "none");
 			}
 		);
@@ -1135,9 +1155,9 @@ class View {
 		$(displayFormID).css("display", "block");
 
 	}
-	static clearView(displayFormID){
+	static clearView(displayFormID) {
 		const formControls = $(displayFormID).find('.form-control');
-		$(formControls).each(function(index){
+		$(formControls).each(function (index) {
 			$(this).val('');
 		});
 		//Clear any errors
@@ -1147,8 +1167,8 @@ class View {
 	}
 }
 
-class User{
-	constructor(firstName, lastName, id, email, token){
+class User {
+	constructor(firstName, lastName, id, email, token) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.id = id;
@@ -1161,27 +1181,27 @@ class User{
 
 }
 
-function showSignUpForm(){
-	
+function showSignUpForm() {
+
 	View.clearView('#sign_up_form');
 	View.showView('#sign_up_form');
-	
+
 }
 
-function showResetPasswordForm(){
-	
+function showResetPasswordForm() {
+
 	View.clearView('#reset_password_form');
 	View.showView('#reset_password_form');
-	
-	
+
+
 }
 
-function showForgotPasswordForm(){
+function showForgotPasswordForm() {
 	View.clearView('#forgot_password_form');
 	View.showView('#forgot_password_form');
 }
 
-function showCommentForm(){
+function showCommentForm() {
 	View.clearView('#comments_form');
 	View.showView('#comments_form');
 	loadTextboxes('comment_input');
@@ -1189,7 +1209,7 @@ function showCommentForm(){
 	updateDeltaT();
 }
 
-function updateDeltaT(){
+function updateDeltaT() {
 
 	const returnVent1 = $('#return_vent_1_input').val();
 	const supplyVent1 = $('#supply_vent_1_cool_input').val();
@@ -1198,56 +1218,55 @@ function updateDeltaT(){
 
 	var deltaT1 = (returnVent1 - supplyVent1).toFixed(1);
 	var deltaT2 = (returnVent2 - supplyVent2).toFixed(1);
-	
+
 	$('#delta-t1_input').val(deltaT1);
 	$('#delta-t2_input').val(deltaT2);
 }
 
 
-function showChecklistForm(formID, checkboxClass, textBoxClass){
+function showChecklistForm(formID, checkboxClass, textBoxClass) {
 	View.clearView(`#${formID}`);
 	View.showView(`#${formID}`);
-	if(checkboxClass) loadCheckboxes(checkboxClass);
-	if(textBoxClass) loadTextboxes(textBoxClass);
-	
+	if (checkboxClass) loadCheckboxes(checkboxClass);
+	if (textBoxClass) loadTextboxes(textBoxClass);
+
 }
 
-function loadCheckboxes(checkboxClass){
+function loadCheckboxes(checkboxClass) {
 	let elements = $(`.${checkboxClass}`).toArray();
-	for(let i=0; i < elements.length; i++){
+	for (let i = 0; i < elements.length; i++) {
 		const propertyName = $(elements[i]).attr('data-property-name');
 		const isChecked = localStorage.getItem(propertyName);
-		if(isChecked === 'true'){
-			$( elements[i] ).prop( "checked", true );
-		}else{
-			$( elements[i] ).prop( "checked", false );
+		if (isChecked === 'true') {
+			$(elements[i]).prop("checked", true);
+		} else {
+			$(elements[i]).prop("checked", false);
 		}
 	}
 
 }
-function loadTextboxes(textBoxClass){
+function loadTextboxes(textBoxClass) {
 	elements = $(`.${textBoxClass}`).toArray();
-	for(let i=0; i < elements.length; i++){
+	for (let i = 0; i < elements.length; i++) {
 		const propertyName = $(elements[i]).attr('data-property-name');
 		$(`#${elements[i].id}`).val(localStorage.getItem(propertyName));
 	}
 }
 
-function loadStatic(staticClass){
+function loadStatic(staticClass) {
 	elements = $(`.${staticClass}`).toArray();
-	for(let i=0; i < elements.length; i++){
+	for (let i = 0; i < elements.length; i++) {
 		const propertyName = $(elements[i]).attr('data-property-name');
 		$(`#${elements[i].id}`).html(localStorage.getItem(propertyName));
 	}
 }
 
-function numberLinesofText(text){
+function numberLinesofText(text) {
 	let textLines = text.split('\n');
 	//Make sure to trim each line
-	//console.log(textLines);
 	let formattedText = '';
 	let lineNumber = 0;
-	for(let i=0; i < textLines.length; i++){
+	for (let i = 0; i < textLines.length; i++) {
 		lineNumber++;
 		formattedText = formattedText.concat(`${lineNumber}. ${textLines[i]}\n`);
 	}
@@ -1257,25 +1276,24 @@ function numberLinesofText(text){
 }
 
 
-function showLoginForm(){
-	
+function showLoginForm() {
+
 	View.clearView('#login_form');
 	View.showView('#login_form');
-	
+
 }
 
-function showSearchBlock(){
-	//console.log('here here');
+function showSearchBlock() {
 	//Check if logged in
 	View.showView('#search_block');
 }
 
-function hideSearchBlock(){
+function hideSearchBlock() {
 	$("#lookup_error").css("display", "none");
 	$("#lookup_error").html("");
 	$("#search_block").css("display", "none");
 	$('#lookupText').val("");
-	
+
 	//***Clean up any search stuff***
 	//Clear lookup text
 	$('#lookupText').val("");
@@ -1290,139 +1308,141 @@ function hideSearchBlock(){
 
 }
 
-function ajaxSignup(firstName, lastName, email, password, confirmPassword){
+function ajaxSignup(firstName, lastName, email, password, confirmPassword) {
 
 	var formData = {
-		'firstName':firstName,
-		'lastName':lastName,
-		'email':email,
-		'password':password,
-		'confirmPassword':confirmPassword
+		'firstName': firstName,
+		'lastName': lastName,
+		'email': email,
+		'password': password,
+		'confirmPassword': confirmPassword
 	}
-	
+
 	return new Promise((resolve, reject) => {
-		$.ajax({url: `${apiServer}/zlookup-api/users`, 
-		type: "POST",
-		data: JSON.stringify(formData), 
-		dataType: "json", 
-		contentType:"application/json; charset=utf-8"
+		$.ajax({
+			url: `${apiServer}/zlookup-api/users`,
+			type: "POST",
+			data: JSON.stringify(formData),
+			dataType: "json",
+			contentType: "application/json; charset=utf-8"
 		})
-		.done(function(responseData, status, xhr){
-			//*** All is good ***
-			resolve(responseData);
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
-		})
+			.done(function (responseData, status, xhr) {
+				//*** All is good ***
+				resolve(responseData);
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
+			})
 	});
 
 }
 
-function submitSignUpForm(){
-	
+function submitSignUpForm() {
+
 	//*** SIGN UP SUBMIT FUNCTION ***
-	
+
 	var form = $('#sign_up_form');
 
 	removeFormErrors(form);
 
 	showHideEditFormSpinner(form, true);
-	
+
 	//Remove any errors if there are some
 	$(form).find(".form-group").removeClass('has-error');
 	$(form).find(".help-block").remove();
-	
+
 	var firstName = $(form).find(".first_name").val();
 	var lastName = $(form).find(".last_name").val();
 	var email = $(form).find(".your_email").val();
 	var password = $(form).find(".password").val();
 	var confirmPassword = $(form).find(".confirm_password").val();
-	
-	async function submitAjaxRequests(){
-		try{
+
+	async function submitAjaxRequests() {
+		try {
 			const responseData = await ajaxSignup(firstName, lastName, email, password, confirmPassword);
 			showLoginForm();
 		}
-		catch(err){
+		catch (err) {
 			const errorType = err.responseJSON.errorType;
 			const errorMessage = err.responseJSON.message;
-			if(errorType === 'validation'){
+			if (errorType === 'validation') {
 				const inputKey = err.responseJSON.inputKey;
-				switch(inputKey){
+				switch (inputKey) {
 					case 'firstName':
 						const firstNameGroup = $(form).find(".reg_first_name");
-						$(firstNameGroup).addClass('has-error'); 
-						$(firstNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(firstNameGroup).addClass('has-error');
+						$(firstNameGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					case 'lastName':
 						const lastNameGroup = $(form).find(".reg_last_name");
 						$(lastNameGroup).addClass('has-error'); // add the error class to show red input
-						$(lastNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(lastNameGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					case 'email':
 						const emailGroup = $(form).find(".reg_email");
 						$(emailGroup).addClass('has-error'); // add the error class to show red input
-						$(emailGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(emailGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					case 'password':
 						var confirmPasswordGroup = $(form).find(".reg_password");
 						$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
-						$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					case 'confirmPassword':
 						var confirmPasswordGroup = $(form).find(".reg_confirm_password");
 						$(confirmPasswordGroup).addClass('has-error'); // add the error class to show red input
-						$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(confirmPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					default:
 						//Handle non form validation error here
 						showFormError(form, errorMessage);
 						break;
 				}
-	
-			}else{
+
+			} else {
 				// TODO Finish this
 				showFormError(form, errorMessage);
 			}
 			return;
 		}
-		finally{
+		finally {
 			showHideEditFormSpinner(form, false);
 		}
-		
+
 	}
-	
+
 	submitAjaxRequests();
-	
+
 }
 
-function ajaxLogin(email, password){
+function ajaxLogin(email, password) {
 
 	let formData = {
-		'email':email,
-		'password':password
+		'email': email,
+		'password': password
 	}
-	
+
 	return new Promise((resolve, reject) => {
 		// $.ajax({url: "http://localhost:5000/zlookup-api/auth", 
-		$.ajax({url: `${apiServer}/zlookup-api/auth`, 
-		type: "POST",
-		data: JSON.stringify(formData), 
-		dataType: "json", 
-		contentType:"application/json; charset=utf-8"
+		$.ajax({
+			url: `${apiServer}/zlookup-api/auth`,
+			type: "POST",
+			data: JSON.stringify(formData),
+			dataType: "json",
+			contentType: "application/json; charset=utf-8"
 		})
-		.done(function(responseData, status, xhr){
-			//*** All is good ***
-			resolve(responseData);
-		})
-		.fail(function(responseData, textStatus, error){
-			reject(responseData);
-		})
+			.done(function (responseData, status, xhr) {
+				//*** All is good ***
+				resolve(responseData);
+			})
+			.fail(function (responseData, textStatus, error) {
+				reject(responseData);
+			})
 	});
 
 }
 
-function removeFormErrors(form){
+function removeFormErrors(form) {
 
 	//Remove any errors if there are some
 	$(form).find(".form-group").removeClass('has-error');
@@ -1432,60 +1452,60 @@ function removeFormErrors(form){
 
 }
 
-function showFormError(form, errorMessage){
+function showFormError(form, errorMessage) {
 	//Show regular non-input error message
 	const errorMessageDiv = $(form).find(".standard_err_message");
 	errorMessageDiv.css("display", "block");
 	errorMessageDiv.html(errorMessage);
 }
 
-function submitLoginForm(){
-	
+function submitLoginForm() {
+
 	const form = $('#login_form');
-	
+
 	removeFormErrors(form);
 
 	showHideEditFormSpinner(form, true);
-	
+
 	const loginEmail = $(form).find(".login_email").val();
 	const loginPassword = $(form).find(".login_password").val();
-	
+
 	//Async wrapper to submit login call to server
-	async function submitAjaxRequests(){
-		try{
+	async function submitAjaxRequests() {
+		try {
 			const responseData = await ajaxLogin(loginEmail, loginPassword);
-			user = new User(responseData.firstName,responseData.lastName,responseData.id,responseData.email,responseData.token);
+			user = new User(responseData.firstName, responseData.lastName, responseData.id, responseData.email, responseData.token);
 
 		}
-		catch(err){
+		catch (err) {
 			const errorType = err.responseJSON.errorType;
 			const errorMessage = err.responseJSON.message;
-			if(errorType === 'validation'){
+			if (errorType === 'validation') {
 				const inputKey = err.responseJSON.inputKey;
-				switch(inputKey){
+				switch (inputKey) {
 					case 'email':
 						const loginEmailGroup = $(form).find(".log_login_email");
-						$(loginEmailGroup).addClass('has-error'); 
-						$(loginEmailGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(loginEmailGroup).addClass('has-error');
+						$(loginEmailGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					case 'password':
 						const loginPasswordGroup = $(form).find(".log_login_password");
 						$(loginPasswordGroup).addClass('has-error'); // add the error class to show red input
-						$(loginPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>'); 
+						$(loginPasswordGroup).append('<div class="help-block">' + errorMessage + '</div>');
 						break;
 					default:
 						//Handle non form validation error here
 						showFormError(form, errorMessage);
 						break;
 				}
-	
-			}else{
+
+			} else {
 				// TODO Finish this
 				showFormError(form, errorMessage);
 			}
 			return;
 		}
-		finally{
+		finally {
 			showHideEditFormSpinner(form, false);
 		}
 
@@ -1497,7 +1517,7 @@ function submitLoginForm(){
 		tableBody.innerHTML = '';
 
 		//Load items, categories, etc
-		try{
+		try {
 			await loadInitialData();
 		}
 		catch{
@@ -1514,78 +1534,77 @@ function submitLoginForm(){
 		//display user name id is user_info
 		const displayName = user.getFullName();
 		$('#user_info').html(displayName);
-		
+
 	}
 
 	submitAjaxRequests();
-	
+
 }
 
 
-function submitResetPasswordForm(){
-	
+function submitResetPasswordForm() {
+
 	const form = $('#reset_password_form');
-	
+
 	//Remove any errors if there are some
 	$(form).find(".form-group").removeClass('has-error');
 	$(form).find(".help-block").remove();
-	
+
 	const newPassword = $(form).find(".enter_password_input").val();
 	const confirmPassword = $(form).find(".reenter_password_input").val();
-	
+
 	const formData = {
-		'newPassword':newPassword,
-		'confirmPassword':confirmPassword
+		'newPassword': newPassword,
+		'confirmPassword': confirmPassword
 	}
-	
-	$.post('php/resetPassword.php',formData, function(responseData){
-		
-		if(!responseData.success){
-			
+
+	$.post('php/resetPassword.php', formData, function (responseData) {
+
+		if (!responseData.success) {
+
 			//Show any form errors
-			
+
 			const enter_password_group = $(form).find(".enter_password_group");
-			if(responseData.errors.newPassword){
-				$(enter_password_group).addClass('has-error'); 
-				$(enter_password_group).append('<div class="help-block">' + responseData.errors.newPassword + '</div>'); 
+			if (responseData.errors.newPassword) {
+				$(enter_password_group).addClass('has-error');
+				$(enter_password_group).append('<div class="help-block">' + responseData.errors.newPassword + '</div>');
 			}
 			const reenter_password_group = $(form).find(".reenter_password_group");
-			if(responseData.errors.confirmPassword){
+			if (responseData.errors.confirmPassword) {
 				$(reenter_password_group).addClass('has-error'); // add the error class to show red input
-				$(reenter_password_group).append('<div class="help-block">' + responseData.errors.confirmPassword + '</div>'); 
+				$(reenter_password_group).append('<div class="help-block">' + responseData.errors.confirmPassword + '</div>');
 			}
-			
-			if(responseData.errors.misc){
-				//console.log(responseData.errors.misc);
+
+			if (responseData.errors.misc) {
 				alert(responseData.errors.misc);
 			}
-		}else{
-			
-			// TODO finish this reset password stuff
-/* 			//All is good
-			showSearchBlock();
-			//Load data
-			loadDataFromServer();
-			//Show logout menu button
-			$('#logout_menu_item').css("display", "block");
-			//Hide login menu button
-			$('#login_menu_item').css("display", "none");
-			//display user name id is user_info
-			var displayName = "Hello " + responseData.user.firstName + " " + responseData.user.lastName;
-			$('#user_info').html(displayName); */
-		}
-	},'json')
-	.fail(function(responseData, textStatus, error){
-	
-		//Show the error information
-		console.error("submitSignUpForm failed, status: " + textStatus + ", error: " + error);
-		alert('submitSignUpForm failed. Check logs');
+		} else {
 
-	})
-	
+			// TODO finish this reset password stuff
+			/* 			//All is good
+						showSearchBlock();
+						//Load data
+						loadDataFromServer();
+						//Show logout menu button
+						$('#logout_menu_item').css("display", "block");
+						//Hide login menu button
+						$('#login_menu_item').css("display", "none");
+						//display user name id is user_info
+						var displayName = "Hello " + responseData.user.firstName + " " + responseData.user.lastName;
+						$('#user_info').html(displayName); */
+		}
+	}, 'json')
+		.fail(function (responseData, textStatus, error) {
+
+			//Show the error information
+			console.error("submitSignUpForm failed, status: " + textStatus + ", error: " + error);
+			alert('submitSignUpForm failed. Check logs');
+
+		})
+
 }
 
-function logout(){
+function logout() {
 	//Null out the user object
 	user = null;
 	//Clean up any open edit forms in the search block
@@ -1612,10 +1631,10 @@ function logout(){
 	$("#result_count").html("");
 	//
 	showLoginForm();
-	
+
 }
 
-var htmlspecialchars = function(string) {
+var htmlspecialchars = function (string) {
 	//*** I got this function from a google search ***
 	// Our finalized string will start out as a copy of the initial string.
 	var escapedString = string;
@@ -1624,28 +1643,28 @@ var htmlspecialchars = function(string) {
 	var len = htmlspecialchars.specialchars.length;
 	for (var x = 0; x < len; x++) {
 
-	// Replace all instances of the special character with its entity.
-	escapedString = escapedString.replace(
-		new RegExp(htmlspecialchars.specialchars[x][0], 'g'),
-		htmlspecialchars.specialchars[x][1]
-	);
+		// Replace all instances of the special character with its entity.
+		escapedString = escapedString.replace(
+			new RegExp(htmlspecialchars.specialchars[x][0], 'g'),
+			htmlspecialchars.specialchars[x][1]
+		);
 	}
 
 	// Return the escaped string.
 	return escapedString;
 };
 
-function clearLookupText(){
+function clearLookupText() {
 	//If already empty then don't do anything
-	if(!$('#lookupText').val().length) return;
+	if (!$('#lookupText').val().length) return;
 	//Clear out the text and run the lookup
 	$('#lookupText').val('');
 	lookupFunction();
 }
 
-function clearCatLookup(){
+function clearCatLookup() {
 	//If already empty then don't do anything
-	if(!$('#category_lookup').val().length) return;
+	if (!$('#category_lookup').val().length) return;
 	//Clear out the text and run the lookup
 	$('#category_lookup').val('');
 	lookupFunction();
@@ -1653,13 +1672,13 @@ function clearCatLookup(){
 
 // A collection of special characters and their entities.
 htmlspecialchars.specialchars = [
-	[ '&', '&amp;' ],
-	[ '<', '&lt;' ],
-	[ '>', '&gt;' ],
-	[ '"', '&quot;' ]
+	['&', '&amp;'],
+	['<', '&lt;'],
+	['>', '&gt;'],
+	['"', '&quot;']
 ];
 
-var htmlspecialchars_decode = function(string) {
+var htmlspecialchars_decode = function (string) {
 	//*** I got this function from a google search ***
 	// Our finalized string will start out as a copy of the initial string.
 	var unescapedString = string;
@@ -1668,11 +1687,11 @@ var htmlspecialchars_decode = function(string) {
 	var len = htmlspecialchars_decode.specialchars.length;
 	for (var x = 0; x < len; x++) {
 
-	// Replace all instances of the entity with the special character.
-	unescapedString = unescapedString.replace(
-		new RegExp(htmlspecialchars_decode.specialchars[x][1], 'g'),
-		htmlspecialchars_decode.specialchars[x][0]
-	);
+		// Replace all instances of the entity with the special character.
+		unescapedString = unescapedString.replace(
+			new RegExp(htmlspecialchars_decode.specialchars[x][1], 'g'),
+			htmlspecialchars_decode.specialchars[x][0]
+		);
 	}
 
 	// Return the unescaped string.
@@ -1680,197 +1699,195 @@ var htmlspecialchars_decode = function(string) {
 };
 
 htmlspecialchars_decode.specialchars = [
-	[ '"', '&quot;' ],
-	[ '>', '&gt;' ],
-	[ '<', '&lt;' ],
-	[ '&', '&amp;' ]
+	['"', '&quot;'],
+	['>', '&gt;'],
+	['<', '&lt;'],
+	['&', '&amp;']
 ];
 
-function saveChecklistItemValue(el){
+function saveChecklistItemValue(el) {
 	//Use this function to handle all checklist type saves when checked
 	const propertyName = el.attr('data-property-name');
 	let isChecked = 'false';
-	if ($(el).is(":checked"))
-	{
+	if ($(el).is(":checked")) {
 		isChecked = 'true';
 	}
-	localStorage.setItem(propertyName,isChecked);
+	localStorage.setItem(propertyName, isChecked);
 }
 
-function clearLocalStorage(elementClass){
+function clearLocalStorage(elementClass) {
 	const elements = $(`.${elementClass}`).toArray();
-	for(let i=0; i < elements.length; i++){
+	for (let i = 0; i < elements.length; i++) {
 		const propertyName = $(elements[i]).attr('data-property-name');
 		//let value = localStorage.getItem(propertyName);
 		localStorage.removeItem(propertyName);
 	}
 }
 
-$(document).ready(function(){
-	
+$(document).ready(function () {
+
 	//Make sure the edit form is hidden
 	//$('#pad_form').hide();
-	
+
 	//$('.result_table').show();
-	
+
 	selectedItem = '';
-	
+
 	//Items array to hold all comment items
 	items = [];
 	//Categories array. IE. Electrical, Plumbing, Paint, etc. 
 	categories = [];
-	
+
 	//Initialize a global selected paragraph var
 	selectedParId = '';
 
 	//Get header values from localstorage and update
 	updateStaticHeader();
-	
+
 	//Initialize user to null because we don't have one yet
 	//If we start using cookies or have a way to store the JWT 
 	//then we will want to make an AJAX call to check if it's still valid
 	user = null;
 	// The global user object is not set when not logged in
-	if(!user){
+	if (!user) {
 		showLoginForm();
 	}
 
 	apiServer = 'https://zlookup-api.herokuapp.com';
-	if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === ""){
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "") {
 		console.log('Using local host');
 		//$
 		$('#login_email').val('pauld@zillowgroup.com');
 		apiServer = 'http://localhost:5000'
-	}else{
+	} else {
 		console.log('Using Heroku');
 	}
 
 	//Attempt to load data. If not logged in it will show login instead
-	$('#load_menu_item').on('click', function(e){
+	$('#load_menu_item').on('click', function (e) {
 
-		(async function(){
-			try{
+		(async function () {
+			try {
 				showHideEditFormSpinner(null, true);
 				await loadInitialData();
 				loadCategories();
 				lookupFunction();
 			}
-			catch(err){
+			catch (err) {
 				showLoginForm();
 			}
-			finally{
+			finally {
 				showHideEditFormSpinner(null, false);
 				$('#myNavbar').collapse('hide');
 			}
 		})();
-		
+
 	})
-	
+
 	//Event handlers
 	// $(window).on('focus', function(){
-	// 	console.log('Focus Window');
 	// }); 
 
-	$('#all_checkbox').on('click', function(e){
+	$('#all_checkbox').on('click', function (e) {
 		lookupFunction();
 	});
-	$('#lookupText').on('keyup', function(e){
+	$('#lookupText').on('keyup', function (e) {
 		lookupFunction();
 	});
 
-	$('#category_lookup').on('keyup', function(){
+	$('#category_lookup').on('keyup', function () {
 		categoryLookup();
 	});
-	
-	$('#category_select').change('keyup', function(e){
+
+	$('#category_select').change('keyup', function (e) {
 		lookupFunction();
 	});
 
-	$('#clear_button').on('click', function(e){
+	$('#clear_button').on('click', function (e) {
 		clearLookupText();
 		$("#lookupText").focus();
 	});
-	$('#clear_cat_button').on('click', function(){
+	$('#clear_cat_button').on('click', function () {
 		clearCatLookup();
 		$("#category_lookup").focus();
 	});
-	$('#clear_cat_button_all').on('click', function(){
+	$('#clear_cat_button_all').on('click', function () {
 		clearCatLookup();
 		clearLookupText();
 		$("#category_lookup").focus();
 	});
 
-	$('#edit_menu_item').on('click', function(e){
+	$('#edit_menu_item').on('click', function (e) {
 		alert('Temporarily disabled');
 		//editFunction();
 	})
 
-	$('#refresh_menu_item').on('click', function(e){
+	$('#refresh_menu_item').on('click', function (e) {
 		reloadFunction();
 	})
 	//=========================
-	$('#sign_up_menu_item').on('click', function(e){
+	$('#sign_up_menu_item').on('click', function (e) {
 		showSignUpForm();
 	})
-	$('#reset_password').on('click', function(e){
+	$('#reset_password').on('click', function (e) {
 		showResetPasswordForm();
 		$('#myNavbar').collapse('hide');
 	})
-	$('#forgot_password').on('click', function(e){
+	$('#forgot_password').on('click', function (e) {
 		showForgotPasswordForm();
 		$('#myNavbar').collapse('hide');
 	})
-	$('#comments_menu_item').on('click', function(){
+	$('#comments_menu_item').on('click', function () {
 		showCommentForm();
 		$('#myNavbar').collapse('hide');
 	})
-		
-	$('#lookup_menu_item').on('click', function(e){
+
+	$('#lookup_menu_item').on('click', function (e) {
 		showSearchBlock();
 		$('#myNavbar').collapse('hide');
 	})
-	$('#login_menu_item').on('click', function(e){
+	$('#login_menu_item').on('click', function (e) {
 		showLoginForm();
 		$('#myNavbar').collapse('hide');
 	})
 	//========================
-	$('#logout_menu_item').on('click', function(e){
+	$('#logout_menu_item').on('click', function (e) {
 		logout();
 		$('#myNavbar').collapse('hide');
 	})
-	
-	
+
+
 	//
-	$('#submit_button').on('click', function(){
+	$('#submit_button').on('click', function () {
 		submitSignUpForm();
 	});
-	$('#login_submit_button').on('click', function(){
+	$('#login_submit_button').on('click', function () {
 		submitLoginForm();
 	});
-	$('#login_here_link').on('click', function(){
+	$('#login_here_link').on('click', function () {
 		showLoginForm();
 	});
-	$('#reset_password_button').on('click', function(){
+	$('#reset_password_button').on('click', function () {
 		submitResetPasswordForm();
 	});
 
-	$('#clear_comments_button').on('click', function(){
+	$('#clear_comments_button').on('click', function () {
 		clearLocalStorage('comment_input');
 		loadTextboxes('comment_input');
 		loadTextboxes('fsl_input');
 		updateDeltaT();
 	});
 
-	$('#copy_comments_button').on('click', function(){
+	$('#copy_comments_button').on('click', function () {
 		//Loop all comments and add keys and values to an object
 		let commentObj = {};
 		const elements = $('.comment_input').toArray();
-		for(let i=0; i < elements.length; i++){
+		for (let i = 0; i < elements.length; i++) {
 			const propertyName = $(elements[i]).attr('data-property-name');
 			let value = localStorage.getItem(propertyName);
-			if(!value) value = '';
+			if (!value) value = '';
 			//If this is a list type field then add numbers
-			if($(elements[i]).hasClass( 'comment_input_list' ) && value){
+			if ($(elements[i]).hasClass('comment_input_list') && value) {
 				value = numberLinesofText(value);
 			}
 			commentObj[propertyName] = value; //Add property and value to the comment object
@@ -1878,84 +1895,86 @@ $(document).ready(function(){
 		}
 
 		let formattedComment = '';
-		if(commentObj.specLevel) formattedComment = formattedComment.concat(`[Spec Level: ${commentObj.specLevel}]`);
-		if(commentObj.squareFeetListed) formattedComment = formattedComment.concat(` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured}]`);
-		if(commentObj.beds) formattedComment = formattedComment.concat(` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]`);
-		if(commentObj.deltaT1) formattedComment = formattedComment.concat(` - [Temp split (1st floor): ${commentObj.deltaT1}]`);
-		if(commentObj.deltaT2) formattedComment = formattedComment.concat(` - [Temp split (2nd floor): ${commentObj.deltaT2}]`);
-		if(commentObj.deltaT3) formattedComment = formattedComment.concat(` - [Temp split (3rd floor): ${commentObj.deltaT3}]`);
-		if(commentObj.woodWindows) formattedComment = formattedComment.concat(` - [Wood Windows Present?: ${commentObj.woodWindows}]`);
-		if(commentObj.gas) formattedComment = formattedComment.concat(` - [Gas on/off: ${commentObj.gas}]`);
-		if(commentObj.heatTested) formattedComment = formattedComment.concat(` - [Heat Tested?: ${commentObj.heatTested}]`);
-		if(commentObj.coolTested) formattedComment = formattedComment.concat(` - [Cool Tested?: ${commentObj.coolTested}]`);
-		if(commentObj.appliancesTaken) formattedComment = formattedComment.concat(` - [Appliances Being Taken: ${commentObj.appliancesTaken}]`);
-		if(commentObj.garageRemotes) formattedComment = formattedComment.concat(` - [Garage Remotes: ${commentObj.garageRemotes}]`);
-		if(commentObj.inAttendance) formattedComment = formattedComment.concat(` - [In Attendance: ${commentObj.inAttendance}]`);
-		if(commentObj.outsideTemp) formattedComment = formattedComment.concat(` - [Outside Temp: ${commentObj.outsideTemp}]`);
-		if(commentObj.externalities) formattedComment = formattedComment.concat(` - [Noted externalities: ${commentObj.externalities}]`);
-		if(commentObj.notes) formattedComment = formattedComment.concat(` - [Add Notes: ${commentObj.notes}]`);
+		if (commentObj.specLevel) formattedComment = formattedComment.concat(`[Spec Level: ${commentObj.specLevel}]`);
+		if (commentObj.squareFeetListed) formattedComment = formattedComment.concat(` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured}]`);
+		if (commentObj.beds) formattedComment = formattedComment.concat(` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]`);
+		if (commentObj.deltaT1) formattedComment = formattedComment.concat(` - [Temp split (1st floor): ${commentObj.deltaT1}]`);
+		if (commentObj.deltaT2) formattedComment = formattedComment.concat(` - [Temp split (2nd floor): ${commentObj.deltaT2}]`);
+		if (commentObj.deltaT3) formattedComment = formattedComment.concat(` - [Temp split (3rd floor): ${commentObj.deltaT3}]`);
+		if (commentObj.woodWindows) formattedComment = formattedComment.concat(` - [Wood Windows Present?: ${commentObj.woodWindows}]`);
+		if (commentObj.gas) formattedComment = formattedComment.concat(` - [Gas on/off: ${commentObj.gas}]`);
+		if (commentObj.heatTested) formattedComment = formattedComment.concat(` - [Heat Tested?: ${commentObj.heatTested}]`);
+		if (commentObj.coolTested) formattedComment = formattedComment.concat(` - [Cool Tested?: ${commentObj.coolTested}]`);
+		if (commentObj.appliancesTaken) formattedComment = formattedComment.concat(` - [Appliances Being Taken: ${commentObj.appliancesTaken}]`);
+		if (commentObj.garageRemotes) formattedComment = formattedComment.concat(` - [Garage Remotes: ${commentObj.garageRemotes}]`);
+		if (commentObj.inAttendance) formattedComment = formattedComment.concat(` - [In Attendance: ${commentObj.inAttendance}]`);
+		if (commentObj.outsideTemp) formattedComment = formattedComment.concat(` - [Outside Temp: ${commentObj.outsideTemp}]`);
+		if (commentObj.externalities) formattedComment = formattedComment.concat(` - [Noted externalities: ${commentObj.externalities}]`);
+		if (commentObj.notes) formattedComment = formattedComment.concat(` - [Add Notes: ${commentObj.notes}]`);
 
 		updateClipboard(formattedComment);
 	});
 
-	$('.comment_input').on('change', function(e){
+	$('.comment_input').on('change', function (e) {
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
-		localStorage.setItem(propertyName,value);
+		localStorage.setItem(propertyName, value);
 	});
 
-	$('.fsl_input').on('change keyup paste', function(e){
+	$('.fsl_input').on('change keyup paste', function (e) {
+		//I think paste might need a timer. It's not working on the iPad
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
-		localStorage.setItem(propertyName,value);
-		if(el.hasClass('ac_input')){
+		localStorage.setItem(propertyName, value);
+		if (el.hasClass('ac_input')) {
 			updateDeltaT();
 		}
 	});
 
-	$('.header_info').on('change keyup paste', function(e){
+	$('.header_info').on('change keyup paste', function (e) {
+		//I think paste might need a timer. It's not working on the iPad
 		const el = $(e.target);
 		const propertyName = el.attr('data-property-name');
 		const value = $.trim($(el).val());
-		localStorage.setItem(propertyName,value);
+		localStorage.setItem(propertyName, value);
 		updateStaticHeader();
 	});
 
 	//* CHECKLIST MENU EVENTS */
-	$('#pre_checklist_menu').on('click', function(){
-		showChecklistForm('pre_checklist_form','checklist_pre','header_info');
+	$('#pre_checklist_menu').on('click', function () {
+		showChecklistForm('pre_checklist_form', 'checklist_pre', 'header_info');
 		$('#myNavbar').collapse('hide');
 	})
-	$('#susan_checklist_menu').on('click', function(){
-		showChecklistForm('discussion_checklist_form','checklist_discussion', '');
+	$('#susan_checklist_menu').on('click', function () {
+		showChecklistForm('discussion_checklist_form', 'checklist_discussion', '');
 		updateStaticHeader();
 		$('#myNavbar').collapse('hide');
 	})
-	$('#main_checklist_menu').on('click', function(){
-		showChecklistForm('main_checklist_form','checklist_main', '')
+	$('#main_checklist_menu').on('click', function () {
+		showChecklistForm('main_checklist_form', 'checklist_main', '')
 		$('#myNavbar').collapse('hide');
 	})
 	/* CLEAR CHECKLIST BUTTON EVENTS */
-	$('#clear_pre-checklist_button').on('click', function(){
+	$('#clear_pre-checklist_button').on('click', function () {
 		clearLocalStorage('checklist_pre');
 		clearLocalStorage('header_info');
 		loadCheckboxes('checklist_pre');
 		loadTextboxes('header_info');
 		updateStaticHeader();
-		
+
 	});
-	$('#clear_discussion_button').on('click', function(){		
+	$('#clear_discussion_button').on('click', function () {
 		clearLocalStorage('checklist_discussion');
 		loadCheckboxes('checklist_discussion');
-		
+
 	});
-	$('#clear_main_checklist_button').on('click', function(){
+	$('#clear_main_checklist_button').on('click', function () {
 		clearLocalStorage('checklist_main');
 		loadCheckboxes('checklist_main');
 	});
-	$('#clear_all').on('click', function(){
+	$('#clear_all').on('click', function () {
 		//Remove date from Local Storage by looping the following elements by
 		//class and then get the data-property-name attribute
 		clearLocalStorage('checklist_pre');
@@ -1977,22 +1996,34 @@ $(document).ready(function(){
 		$('#myNavbar').collapse('hide');
 	});
 	/* CHECKLIST ITEMS HANDLER - WHEN CLICKED */
-	$('.checklist_checkbox_input').on('change', function(){
+	$('.checklist_checkbox_input').on('change', function () {
 		const el = $(this);
 		saveChecklistItemValue(el);
 	})
 
 	//Modal copy button click
-	$('#copy_item_button').on('click', function(){
+	$('#copy_item_button').on('click', function () {
 		//Copy text to clipboard
 		const newValue = $('#modal_text_input').val();
 		updateClipboard(newValue);
 	});
 
-	$('#does_nothing_button').on('click', function(){
+	//Modal Add to List button
+	$('#add_to_list_button').on('click', function () {
+		//Copy text to clipboard
+		const newValue = $('#modal_text_input').val();
+		//Get a stringify version of the Item
+		const itemAsString = $('#item_object_stringify').html();
+		//console.log(itemAsString);
+		const item = JSON.parse(itemAsString);
+		//console.log(item);
+		//updateClipboard(newValue);
+		updateLocalStorage(item.category, newValue);
+	});
+
+	$('#does_nothing_button').on('click', function () {
 		alert('This does not do anything yet');
 	});
-	//does_nothing_button
 
 });
 

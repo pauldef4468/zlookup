@@ -800,19 +800,18 @@
 					<div class="modal-body">
 						<!--<p id="modal_text"></p>-->
 						<div class="form-group">
-							<!--							
-								<label for="modal_text_input">Edit Item:</label>
-							<input type="text" class="form-control header_info" id="modal_text_input">
-						-->
-							<label for="modal_text_input">Edit Item::</label>
+							<label for="modal_text_input">Edit Item:</label>
 							<textarea class="form-control rounded-0" id="modal_text_input" rows="6"></textarea>
 						</div>
+						<div class="hidden_div" id="item_object_stringify"></div>
 
 					</div>
 
 					<div class="modal-footer">
 						<button type="button" id="copy_item_button" class="btn btn-success btn-sm"
 							data-dismiss="modal">Copy</button>
+						<button type="button" id="add_to_list_button" class="btn btn-success btn-sm"
+							data-dismiss="modal">Add to List</button>
 						<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
 					</div>
 				</div>

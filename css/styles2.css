@@ -11,6 +11,11 @@ p.touch{
 	cursor: pointer;
 }
 
+
+.hidden_div{
+	display: none;
+}
+
 .bold_text{
 	font-weight: bolder;
 }
