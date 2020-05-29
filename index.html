@@ -445,24 +445,43 @@
 			<h2>Pre-Checklist</h2>
 			<form>
 				<div class="form-group">
-					<label for="susan_name_input">Susan Name:</label>
-					<input data-property-name="susanName" type="text" class="form-control header_info"
-						id="susan_name_input">
-				</div>
-				<div class="form-group">
-					<label for="zat_name_input">ZAT Name:</label>
-					<input data-property-name="zatName" type="text" class="form-control header_info"
-						id="zat_name_input">
-				</div>
-				<div class="form-group">
 					<label for="property_address">Address:</label>
 					<input data-property-name="propertyAddress" type="text" class="form-control header_info"
 						id="property_address">
 				</div>
-				<div class="form-group">
-					<label for="year_built">Year Built:</label>
-					<input data-property-name="yearBuilt" type="text" class="form-control header_info" id="year_built">
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="susan_name_input">Susan Name:</label>
+						<input data-property-name="susanName" type="text" class="form-control header_info double_input"
+							id="susan_name_input">
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="zat_name_input">ZAT Name:</label>
+						<input data-property-name="zatName" type="text" class="form-control header_info double_input"
+							id="zat_name_input">
+					</div>
 				</div>
+				<div class="row">
+					<div class="form-group  col-xs-6">
+						<label for="year_built">Year Built:</label>
+						<input data-property-name="yearBuilt" type="text" class="form-control header_info double_input" id="year_built">
+					</div>
+					<div class="form-group  col-xs-6">
+						<label for="beds_listed">Beds Listed:</label>
+						<input data-property-name="bedsListed" type="text" class="form-control header_info double_input" id="beds_listed">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group  col-xs-6">
+						<label for="full_baths_listed">Full Baths Listed:</label>
+						<input data-property-name="fullBathsListed" type="text" class="form-control header_info double_input" id="full_baths_listed">
+					</div>
+					<div class="form-group  col-xs-6">
+						<label for="half_baths_listed">Half Baths Listed:</label>
+						<input data-property-name="halfBathsListed" type="text" class="form-control header_info double_input" id="half_baths_listed">
+					</div>
+				</div>
+
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_pre"
