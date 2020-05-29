@@ -12,6 +12,16 @@ p.touch{
 }
 
 
+.double_input{
+	max-width: 200px;
+	
+}
+
+.blah{
+	background-color: tomato;
+
+}
+
 .hidden_div{
 	display: none;
 }
