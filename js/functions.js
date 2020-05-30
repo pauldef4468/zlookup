@@ -265,10 +265,19 @@ function updateStaticHeader() {
 	propertyAddress = propertyAddress ? propertyAddress : '';
 	let yearBuilt = localStorage.getItem('yearBuilt');
 	yearBuilt = yearBuilt ? yearBuilt : '';
+	let bedsListed = localStorage.getItem('bedsListed');
+	bedsListed = bedsListed ? bedsListed : '';
+	let fullBathsListed = localStorage.getItem('fullBathsListed');
+	fullBathsListed = fullBathsListed ? fullBathsListed : '';
+	let halfBathsListed = localStorage.getItem('halfBathsListed');
+	halfBathsListed = halfBathsListed ? halfBathsListed : '';
 	$('.susan_name_input_info').html(susanName);
 	$('.zat_name_input_info').html(zatName);
 	$('.property_address_info').html(propertyAddress);
 	$('.year_built_info').html(yearBuilt);
+	$('.beds_input_info').html(bedsListed);
+	$('.baths_input_info').html(fullBathsListed);
+	$('.baths_input2_info').html(halfBathsListed);
 }
 
 function isAddToListTypeComment(item) {
@@ -1207,6 +1216,7 @@ function showCommentForm() {
 	loadTextboxes('comment_input');
 	loadTextboxes('fsl_input');
 	updateDeltaT();
+	updateStaticHeader();
 }
 
 function updateDeltaT() {
