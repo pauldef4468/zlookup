@@ -1896,6 +1896,7 @@ $(document).ready(function () {
 
 	$('#clear_comments_button').on('click', function () {
 		clearLocalStorage('comment_input');
+		clearLocalStorage('fsl_input');
 		loadTextboxes('comment_input');
 		loadTextboxes('fsl_input');
 		updateDeltaT();
