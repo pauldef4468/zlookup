@@ -7,7 +7,7 @@ function commentClick2(par, text) {
 		$('#' + selectedParId).css("background-color", "")
 	}
 	//Set the background color of the selected paragraph element
-	var id = $(par).attr('id');
+	let id = $(par).attr('id');
 	$('#' + id).css("background-color", "yellow");
 	//Remember the selected id
 	selectedParId = id;
@@ -80,7 +80,7 @@ function ajaxItems() {
 				$(responseItems).each(function () {
 					//Get the created by user name
 					// var createdByUserName = this.firstName + " " + this.lastName;
-					var item = new Item(this.componentName,
+					let item = new Item(this.componentName,
 						this.itemName,
 						this.comment,
 						this.price,
@@ -224,9 +224,9 @@ function getItemCountPerCategory(category) {
 }
 
 function loadFormCategories(categoryID) {
-	var option = '';
-	var currentSelectionID = 0;
-	for (var i = 0; i < categories.length; i++) {
+	let option = '';
+	let currentSelectionID = 0;
+	for (let i = 0; i < categories.length; i++) {
 		option += '<option value="' + categories[i]._id + '">' + categories[i].name + '</option>';
 		if (categoryID == categories[i]._id) {
 			currentSelectionID = categoryID;
@@ -349,7 +349,7 @@ function stripPlaceHolderBraces(text) {
 
 function lookupFunction() {
 
-	var categoryID = $('#category_select option:selected').val();
+	const categoryID = $('#category_select option:selected').val();
 
 	if (!Array.isArray(items) || !items.length) {
 		// array does not exist, is not an array, or is empty
@@ -376,10 +376,10 @@ function lookupFunction() {
 
 	//Get the lookup textbox value for each key stroke
 	//var lookupText = document.getElementById("lookupText").value;
-	var lookupText = $('#lookupText').val();
+	const lookupText = $('#lookupText').val();
 
 	//We should have a bunch of "items" at this time
-	var lookupWords = lookupText.split(" ");
+	let lookupWords = lookupText.split(" ");
 
 	//Loop the items array and add to the resultItems array if not filtered out
 	var i;
@@ -2029,6 +2029,32 @@ $(document).ready(function () {
 		//console.log(item);
 		//updateClipboard(newValue);
 		updateLocalStorage(item.category, newValue);
+	});
+
+	$('#rpm_menu_item').on('click', function () {
+		View.clearView('#rpm_report_form');
+		View.showView('#rpm_report_form');
+		updateStaticHeader();
+
+		const tbody = $('#rpm_t_body');
+
+		//Clear then load table
+		$(tbody).html('');
+
+		//Sort the FSL items
+		let fslSortedArray = $(".fsl_input").sort((a,b) => {
+			return $(a).attr('data-sort') - $(b).attr('data-sort');
+		});
+
+		$(fslSortedArray).each(function () {
+			let labelVal = $(this).siblings('label').html();
+			let value = localStorage.getItem($(this).attr('data-property-name'));
+			value = value ? value : '';
+			let row = `<tr><td>${labelVal}</td><td>${value}</td></tr>`
+			$(tbody).append(row);
+		});
+
+		$('#myNavbar').collapse('hide');
 	});
 
 	$('#does_nothing_button').on('click', function () {

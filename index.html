@@ -44,6 +44,7 @@
 					<ul class="nav navbar-nav">
 						<!-- <li class="active"><a href="#">Home</a></li> -->
 						<li><a href="#" id="comments_menu_item">Comments</a></li>
+						<li><a href="#" id="rpm_menu_item">RPM</a></li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Checklists
 								<span class="caret"></span></a>
@@ -247,74 +248,74 @@
 			<h2>Comments</h2>
 			<form>
 				<div class="form-group">
-					<label for="externalities_input">Externalities:</label>
+					<label for="externalities_input">Externalities</label>
 					<textarea data-property-name="externalities"
 						class="form-control rounded-0 comment_input comment_input_list" id="externalities_input"
 						rows="6"></textarea>
 				</div>
 				<div class="form-group">
-					<label for="notes_input">Notes:</label>
+					<label for="notes_input">Notes</label>
 					<textarea data-property-name="notes" class="form-control rounded-0 comment_input comment_input_list"
 						id="notes_input" rows="6"></textarea>
 				</div>
 				<div class="form-group">
-					<label for="extra_notes_input">Extra Notes (not copied):</label>
+					<label for="extra_notes_input">Extra Notes (not copied)</label>
 					<textarea data-property-name="extraNotes"
 						class="form-control rounded-0 comment_input comment_input_list" id="extra_notes_input"
 						rows="6"></textarea>
 				</div>
 				<div class="form-group">
-					<label for="spec_level_input">Spec Level:</label>
+					<label for="spec_level_input">Spec Level</label>
 					<input data-property-name="specLevel" type="text" inputmode="numeric"
 						class="form-control comment_input" id="spec_level_input">
 				</div>
 				<div class="form-group">
-					<label for="sf_above_grade_input">Above Grade Square Footage:</label>
-					<input data-property-name="sfAboveGrade" type="text" inputmode="numeric"
+					<label for="sf_above_grade_input">Above Grade Square Footage</label>
+					<input data-property-name="sfAboveGrade" data-sort="40" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="sf_above_grade_input">
 				</div>
 				<div class="form-group">
-					<label for="sf_basement_finished_input">Basement SQFT - Finished Total:</label>
-					<input data-property-name="sfBasementFinished" type="text" inputmode="numeric"
+					<label for="sf_basement_finished_input">Basement SQFT - Finished Total</label>
+					<input data-property-name="sfBasementFinished" data-sort="50" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="sf_basement_finished_input">
 				</div>
 				<div class="form-group">
-					<label for="sf_basement_unfinished_input">Basement SQFT - Unfinished Total:</label>
-					<input data-property-name="sfBasementUnfinished" type="text" inputmode="numeric"
+					<label for="sf_basement_unfinished_input">Basement SQFT - Unfinished Total</label>
+					<input data-property-name="sfBasementUnfinished" data-sort="60" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="sf_basement_unfinished_input">
 				</div>
-				
+
 				<div class="myHR">
 					<h4 class="bold_text">Rooms</h>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-4">
 						<label for="beds_input">Bedrooms:</label>
-						<input data-property-name="beds" type="text" inputmode="numeric" class="form-control fsl_input"
+						<input data-property-name="beds" data-sort="10" type="text" inputmode="numeric" class="form-control fsl_input"
 							id="beds_input">
 					</div>
-					
-					<div class="form-group col-xs-8"  >
+
+					<div class="form-group col-xs-8">
 						<p class="beds_input_info" style="padding-top: 37px;"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-4">
 						<label for="baths_input">Full Baths</label>
-						<input data-property-name="fullBaths" type="text" inputmode="numeric" class="form-control fsl_input"
-							id="baths_input">
+						<input data-property-name="fullBaths" data-sort="20" type="text" inputmode="numeric"
+							class="form-control fsl_input" id="baths_input">
 					</div>
-					<div class="form-group col-xs-8"  >
+					<div class="form-group col-xs-8">
 						<p class="baths_input_info" style="padding-top: 37px;"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-4">
 						<label for="baths_input2">Half Baths</label>
-						<input data-property-name="halfBaths" type="text" inputmode="numeric" class="form-control fsl_input"
-							id="baths_input2">
+						<input data-property-name="halfBaths" data-sort="30" type="text" inputmode="numeric"
+							class="form-control fsl_input" id="baths_input2">
 					</div>
-					<div class="form-group col-xs-8"  >
+					<div class="form-group col-xs-8">
 						<p class="baths_input2_info" style="padding-top: 37px;"></p>
 					</div>
 				</div>
@@ -323,34 +324,39 @@
 				<div class="myHR">
 					<h4 class="bold_text">HVAC 1</h>
 				</div>
-				
+
 				<div class="row">
 					<div class="form-group col-xs-6">
-						<label for="return_vent_1_input">Return (1)</label>
-						<input data-property-name="returnVent1" type="text" inputmode="numeric"
+						<label for="return_vent_1_input">Return Vent 1 Ambient</label>
+						<input data-property-name="returnVent1" data-sort="130" type="text" inputmode="numeric"
 							class="form-control fsl_input ac_input double_input" id="return_vent_1_input">
 					</div>
 					<div class="form-group col-xs-6">
-						<label for="supply_vent_1_cool_input">Supply Cool (1)</label>
-						<input data-property-name="supplyVent1Cool" type="text" inputmode="numeric"
+						<label for="supply_vent_1_cool_input">Supply Vent 1 Cooling Temp</label>
+						<input data-property-name="supplyVent1Cool" data-sort="170" type="text" inputmode="numeric"
 							class="form-control fsl_input ac_input double_input" id="supply_vent_1_cool_input">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="supply_vent_1_heat_input">Supply Heat (1)</label>
-					<input data-property-name="supplyVent1Heat" type="text" inputmode="numeric"
+					<label for="supply_vent_1_heat_input">Supply Vent 1 Heat Temp</label>
+					<input data-property-name="supplyVent1Heat" data-sort="150" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="supply_vent_1_heat_input">
 				</div>
 				<div class="form-group">
-					<label for="delta-t1_input">Temp Split AC (1)</label>
+					<label for="delta-t1_input">Temp Split AC 1</label>
 					<input data-property-name="deltaT1" type="text" inputmode="numeric"
 						class="form-control comment_input" id="delta-t1_input">
 				</div>
 				<div class="form-group">
-					<label for="furnace1_year_input">Furnace Year(1)</label>
-					<input data-property-name="furnace1Year" type="text" inputmode="numeric"
+					<label for="furnace1_year_input">Furnace 1 Manufactured Year</label>
+					<input data-property-name="furnace1Year" data-sort="90" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="furnace1_year_input">
+				</div>
+				<div class="form-group">
+					<label for="ac1_year_input">HVAC 1 Condenser Manufactured Year</label>
+					<input data-property-name="ac1Year" data-sort="110" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="ac1_year_input">
 				</div>
 
 				<!-- *** HVAC 2 *** -->
@@ -359,31 +365,36 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-6">
-						<label for="return_vent_2_input">Return (2)</label>
-						<input data-property-name="returnVent2" type="text" inputmode="numeric"
+						<label for="return_vent_2_input">Return Vent 2 - Ambient</label>
+						<input data-property-name="returnVent2" data-sort="140" type="text" inputmode="numeric"
 							class="form-control fsl_input ac_input double_input" id="return_vent_2_input">
 					</div>
-					<div class="form-group col-xs-6">
-						<label for="supply_vent_2_cool_input">Supply Cool (2)</label>
-						<input data-property-name="supplyVent2Cool" type="text" inputmode="numeric"
+					<div class="form-group col-xs-6">s
+						<label for="supply_vent_2_cool_input">Supply Vent 2 Cooling Temp</label>
+						<input data-property-name="supplyVent2Cool" data-sort="180" type="text" inputmode="numeric"
 							class="form-control fsl_input ac_input double_input" id="supply_vent_2_cool_input">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="supply_vent_2_heat_input">Supply Heat (2)</label>
-					<input data-property-name="supplyVent2Heat" type="text" inputmode="numeric"
+					<label for="supply_vent_2_heat_input">Supply Vent 2 Heat Temp</label>
+					<input data-property-name="supplyVent2Heat" data-sort="160" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="supply_vent_2_heat_input">
 				</div>
 				<div class="form-group">
-					<label for="delta-t2_input">Temp Split AC (2)</label>
+					<label for="delta-t2_input">Temp Split AC 2</label>
 					<input data-property-name="deltaT2" type="text" inputmode="numeric"
 						class="form-control comment_input" id="delta-t2_input">
 				</div>
 				<div class="form-group">
-					<label for="furnace2_year_input">Furnace Year (2)</label>
-					<input data-property-name="furnace2Year" type="text" inputmode="numeric"
+					<label for="furnace2_year_input">Furnace 2 Manufactured Year</label>
+					<input data-property-name="furnace2Year" data-sort="100" type="text" inputmode="numeric"
 						class="form-control fsl_input" id="furnace2_year_input">
+				</div>
+				<div class="form-group">
+					<label for="ac2_year_input">HVAC 2 Condenser Manufactured Year</label>
+					<input data-property-name="ac2Year" data-sort="120" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="ac2_year_input">
 				</div>
 
 				<!-- *** HVAC 3 *** -->
@@ -391,7 +402,7 @@
 					<h4 class="bold_text">HVAC 3</h>
 				</div>
 				<div class="form-group">
-					<label for="delta-t3_input">Temp Split 3rd Floor:</label>
+					<label for="delta-t3_input">Temp Split 3rd Floor</label>
 					<input data-property-name="deltaT3" type="text" inputmode="numeric"
 						class="form-control comment_input" id="delta-t3_input">
 				</div>
@@ -401,9 +412,14 @@
 					<h4 class="bold_text">Water Heater</h>
 				</div>
 				<div class="form-group">
-					<label for="water_heater_year_input">Water Heater Year:</label>
-					<input data-property-name="waterHeaterYear" type="text" inputmode="numeric"
-						class="form-control comment_input" id="water_heater_year_input">
+					<label for="water_heater_year_input">Water Heater 1 Manufactured Year</label>
+					<input data-property-name="waterHeaterYear" data-sort="70" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="water_heater_year_input">
+				</div>
+				<div class="form-group">
+					<label for="water_heater2_year_input">Water Heater 2 Manufactured Year</label>
+					<input data-property-name="waterHeaterYear" data-sort="80" type="text" inputmode="numeric"
+						class="form-control fsl_input" id="water_heater_year_input">
 				</div>
 
 				<div class="myHR">
@@ -479,21 +495,25 @@
 				<div class="row">
 					<div class="form-group  col-xs-6">
 						<label for="year_built">Year Built:</label>
-						<input data-property-name="yearBuilt" type="text" inputmode="numeric" class="form-control header_info double_input" id="year_built">
+						<input data-property-name="yearBuilt" type="text" inputmode="numeric"
+							class="form-control header_info double_input" id="year_built">
 					</div>
 					<div class="form-group  col-xs-6">
 						<label for="beds_listed">Beds Listed:</label>
-						<input data-property-name="bedsListed" type="text" inputmode="numeric" class="form-control header_info double_input" id="beds_listed">
+						<input data-property-name="bedsListed" type="text" inputmode="numeric"
+							class="form-control header_info double_input" id="beds_listed">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group  col-xs-6">
 						<label for="full_baths_listed">Full Baths Listed:</label>
-						<input data-property-name="fullBathsListed" type="text" inputmode="numeric" class="form-control header_info double_input" id="full_baths_listed">
+						<input data-property-name="fullBathsListed" type="text" inputmode="numeric"
+							class="form-control header_info double_input" id="full_baths_listed">
 					</div>
 					<div class="form-group  col-xs-6">
 						<label for="half_baths_listed">Half Baths Listed:</label>
-						<input data-property-name="halfBathsListed" type="text" inputmode="numeric" class="form-control header_info double_input" id="half_baths_listed">
+						<input data-property-name="halfBathsListed" type="text" inputmode="numeric"
+							class="form-control header_info double_input" id="half_baths_listed">
 					</div>
 				</div>
 
@@ -834,6 +854,35 @@
 			<div class="mySpacer"></div>
 		</div>
 
+		<div id="rpm_report_form" class="view">
+			<h2>RPM Report</h2>
+			<form>
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">RPM Values</h3>
+					</div>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Value</th>
+							</tr>
+						</thead>
+						<tbody id="rpm_t_body">
+							<!-- Rows filled in dynamically here -->
+						</tbody>
+					</table>
+				</div>
+
+
+				<!-- <button type="button" class="btn btn-info" id="does_nothing_button">To Follow</button>
+				<button type="button" class="btn btn-warning pull-right" id="clear_discussion_button">Clear</button> -->
+			</form>
+			<div class="mySpacer"></div>
+		</div>
+
 		<div class="pad_overlay">
 			<div class="loader">
 			</div>
@@ -869,6 +918,7 @@
 
 			</div>
 		</div>
+
 
 	</div>
 
