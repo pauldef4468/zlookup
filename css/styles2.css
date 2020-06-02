@@ -165,10 +165,10 @@ p.name{
 	font-weight: bold;
 }
 
-.alert-fixed {
+#myalert {
     position:fixed; 
     top: 60px; 
-    left: 0px; 
+    left: 20px; 
     z-index:9999; 
 }
 

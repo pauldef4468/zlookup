@@ -548,7 +548,6 @@ function lookupFunction() {
 					addToListOnClick(resultItem);
 					//$('#myalert').show(200);
 					$('#myalert').slideDown('fast',()=>{
-						console.log('This is callback');
 						setTimeout(() => {
 							$('#myalert').slideUp('fast'); 
 							}, 500);
