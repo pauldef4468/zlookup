@@ -165,6 +165,13 @@ p.name{
 	font-weight: bold;
 }
 
+.alert-fixed {
+    position:fixed; 
+    top: 60px; 
+    left: 0px; 
+    z-index:9999; 
+}
+
 .warning_menu_item{
 	background-color: red;
 }

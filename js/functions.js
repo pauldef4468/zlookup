@@ -546,6 +546,13 @@ function lookupFunction() {
 			$(plus).on('click', (function (resultItem) {
 				return function () {
 					addToListOnClick(resultItem);
+					//$('#myalert').show(200);
+					$('#myalert').slideDown('fast',()=>{
+						console.log('This is callback');
+						setTimeout(() => {
+							$('#myalert').slideUp('fast'); 
+							}, 500);
+					});
 				}
 			})(resultItem));
 		}
@@ -1736,6 +1743,8 @@ function clearLocalStorage(elementClass) {
 
 $(document).ready(function () {
 
+	$('.alert-fixed').hide();
+
 	//Make sure the edit form is hidden
 	//$('#pad_form').hide();
 
@@ -1797,6 +1806,11 @@ $(document).ready(function () {
 	//Event handlers
 	// $(window).on('focus', function(){
 	// }); 
+
+	$('#myalert').on('click', function() {
+		$("#myalert").hide();  
+
+	  });
 
 	$('#all_checkbox').on('click', function (e) {
 		lookupFunction();
