@@ -1235,8 +1235,9 @@ function updateDeltaT() {
 	var deltaT1 = (returnVent1 - supplyVent1).toFixed(1);
 	var deltaT2 = (returnVent2 - supplyVent2).toFixed(1);
 
-	$('#delta-t1_input').val(deltaT1);
-	$('#delta-t2_input').val(deltaT2);
+	$('#delta-t1_input').val(deltaT1).trigger("change");
+	$('#delta-t2_input').val(deltaT2).trigger("change");;
+
 }
 
 
