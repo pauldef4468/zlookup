@@ -229,6 +229,10 @@ p.name{
 	display: none;
 }
 
+.my_list_group .list-group-item{
+	color: mediumblue;
+}
+
 #copy_comments_button{
 	margin-bottom: 20px;
 }

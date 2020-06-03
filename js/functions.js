@@ -295,11 +295,21 @@ function addToListOnClick(item) {
 	if (!getPlaceHolders(comment)) {
 		//No placeholders so just add to the list
 		updateLocalStorage(item.category, comment);
+		showMyAlert('Item added successfully!');
 	} else {
 		showEditItemModal(item);
 	}
 
 
+}
+
+function showMyAlert(message){
+	$('#my_alert_message').html(message);
+	$('#myalert').slideDown('fast',()=>{
+		setTimeout(() => {
+			$('#myalert').slideUp('fast'); 
+			}, 500);
+	});
 }
 
 function updateLocalStorage(category, newText) {
@@ -546,12 +556,6 @@ function lookupFunction() {
 			$(plus).on('click', (function (resultItem) {
 				return function () {
 					addToListOnClick(resultItem);
-					//$('#myalert').show(200);
-					$('#myalert').slideDown('fast',()=>{
-						setTimeout(() => {
-							$('#myalert').slideUp('fast'); 
-							}, 500);
-					});
 				}
 			})(resultItem));
 		}
@@ -1943,6 +1947,7 @@ $(document).ready(function () {
 		if (commentObj.notes) formattedComment = formattedComment.concat(` - [Add Notes: ${commentObj.notes}]`);
 
 		updateClipboard(formattedComment);
+		showMyAlert('Copied to clipboard!');
 	});
 
 	$('.comment_input').on('change', function (e) {
@@ -2049,6 +2054,8 @@ $(document).ready(function () {
 		//console.log(item);
 		//updateClipboard(newValue);
 		updateLocalStorage(item.category, newValue);
+		//showMyAlert();
+
 	});
 
 	$('#rpm_menu_item').on('click', function () {
