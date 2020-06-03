@@ -61,7 +61,7 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Settings</a></li>
+								<li><a href="#" id="info_menu_item">Info</a></li>
 								<li><a href="#" id="load_menu_item">Re-load Data</a></li>
 								<li><a href="#" id="refresh_menu_item">Full Refresh</a></li>
 								<li id="forgot_password"><a href="#">Forgot Password</a></li>
@@ -247,11 +247,11 @@
 		<div id="comments_form" class="view">
 			<h2>Comments</h2>
 			<div class="list-group">
-				<a href="#sf_basement_unfinished_input" class="list-group-item">Rooms</a>
-				<a href="#baths_input2" class="list-group-item">HVAC 1</a>
-				<a href="#ac1_year_input" class="list-group-item">HVAC 2</a>
-				<a href="#delta-t3_input" class="list-group-item">Water Heaters</a>
-				<a href="#water_heater_year_input" class="list-group-item">Other</a>
+				<a href="#Rooms_HR" class="list-group-item">Rooms</a>
+				<a href="#HVAC1_HR" class="list-group-item">HVAC 1</a>
+				<a href="#HVAC2_HR" class="list-group-item">HVAC 2</a>
+				<a href="#WH_HR" class="list-group-item">Water Heaters</a>
+				<a href="#other_HR" class="list-group-item">Other</a>
 			  </div>
 
 			<form>
@@ -293,8 +293,10 @@
 						class="form-control fsl_input" id="sf_basement_unfinished_input">
 				</div>
 
+
 				<div class="myHR">
-					<h4 class="bold_text">Rooms</h>
+					<h4 id="Rooms_HR" class="bold_text">Rooms</h>
+					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-4">
@@ -330,7 +332,8 @@
 
 				<!-- *** HVAC 1 ***-->
 				<div class="myHR">
-					<h4 class="bold_text">HVAC 1</h>
+					<h4 id="HVAC1_HR" class="bold_text">HVAC 1</h>
+					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 
 				<div class="row">
@@ -369,7 +372,8 @@
 
 				<!-- *** HVAC 2 *** -->
 				<div class="myHR">
-					<h4 class="bold_text">HVAC 2</h>
+					<h4 id="HVAC2_HR" class="bold_text">HVAC 2</h>
+					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-6">
@@ -408,6 +412,7 @@
 				<!-- *** HVAC 3 *** -->
 				<div class="myHR">
 					<h4 class="bold_text">HVAC 3</h>
+					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="form-group">
 					<label for="delta-t3_input">Temp Split 3rd Floor</label>
@@ -417,7 +422,8 @@
 
 				<!-- WATER HEATER-->
 				<div class="myHR">
-					<h4 class="bold_text">Water Heater</h>
+					<h4 id="WH_HR" class="bold_text">Water Heater</h>
+					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="form-group">
 					<label for="water_heater_year_input">Water Heater 1 Manufactured Year</label>
@@ -431,7 +437,8 @@
 				</div>
 
 				<div class="myHR">
-					<h4 class="bold_text">Other</h>
+					<h4 id="other_HR" class="bold_text">Other</h>
+					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="form-group">
 					<label for="wood_windows_input">Wood Windows Present?:</label>

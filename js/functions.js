@@ -1878,9 +1878,14 @@ $(document).ready(function () {
 		logout();
 		$('#myNavbar').collapse('hide');
 	})
-
-
-	//
+	$('.to-top-btn').on('click', function (e) {
+		$(window).scrollTop(0);
+	})
+	$('#info_menu_item').on('click', function (e) {
+		$('#myNavbar').collapse('hide');
+		alert('Info Modal Here');
+		//$("#myModal").modal();
+	})
 	$('#submit_button').on('click', function () {
 		submitSignUpForm();
 	});

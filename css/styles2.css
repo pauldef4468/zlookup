@@ -28,6 +28,10 @@ p.touch{
 	padding: 1px 10px 1px 20px;
 }
 
+.myHR .bold_text{
+	scroll-margin-top: 80px
+}
+
 .bold_text{
 	font-weight: bolder;
 }
@@ -173,6 +177,7 @@ p.name{
     left: 20px; 
     z-index:9999; 
 }
+
 
 .warning_menu_item{
 	background-color: red;
