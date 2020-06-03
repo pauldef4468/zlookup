@@ -164,7 +164,9 @@ p.name{
 .header_text{
 	font-weight: bold;
 }
-
+.list-group a{
+	font-weight: bolder;
+}
 #myalert {
     position:fixed; 
     top: 60px; 
