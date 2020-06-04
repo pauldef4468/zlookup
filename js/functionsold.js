@@ -214,7 +214,7 @@ function formSubmitUpdate(e, row, selectedItem){
 	//*** UPDATE THE ITEM COMMENT ***
 		
 	//Remove any error displays if there are some
-	clearEditFormErrors(row);
+	clearElementErrors(row);
 	//get reference this edit form
 	var form = $(row).find(".pad_form");
 	//Set the data object we will send to server
@@ -283,7 +283,7 @@ function formSubmitSaveAs(row, selectedItem){
 	//*** Save new record based on existing selected record ***
 	
 	//Remove any error displays if there are some
-	clearEditFormErrors(row);
+	clearElementErrors(row);
 	//get reference this edit form
 	var form = $(row).find(".pad_form");
 	//Set the data object we will send to server
@@ -346,7 +346,7 @@ function deleteItem(row, selectedItem){
 	//*** Delete ***
 	
 	//Remove any error displays if there are some
-	clearEditFormErrors(row);
+	clearElementErrors(row);
 	//get reference to this edit form
 	var form = $(row).find(".pad_form");
 	//Set the data object we will send to server

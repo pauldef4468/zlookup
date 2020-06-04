@@ -295,7 +295,7 @@ function addToListOnClick(item) {
 	if (!getPlaceHolders(comment)) {
 		//No placeholders so just add to the list
 		updateLocalStorage(item.category, comment);
-		showMyAlert('Item added successfully!');
+		showMyAlert('Item added successfully!','success');
 	} else {
 		showEditItemModal(item);
 	}
@@ -303,12 +303,33 @@ function addToListOnClick(item) {
 
 }
 
-function showMyAlert(message){
+function showMyAlert(message, alertType) {
+	const myalert = $('#myalert');
+	$(myalert).removeClass('alert-success');
+	$(myalert).removeClass('alert-info');
+	$(myalert).removeClass('alert-warning');
+	$(myalert).removeClass('alert-danger');
+	switch (alertType) {
+		case 'success': 
+			$(myalert).addClass('alert-success');
+			break;
+		case 'info': 
+			$(myalert).addClass('alert-info');
+			break;
+		case 'warning': 
+			$(myalert).addClass('alert-warning');
+			break;
+		case 'danger': 
+			$(myalert).addClass('alert-danger');
+			break;
+		default:
+			break;
+	}
 	$('#my_alert_message').html(message);
-	$('#myalert').slideDown('fast',()=>{
+	$(myalert).slideDown('fast', () => {
 		setTimeout(() => {
-			$('#myalert').slideUp('fast'); 
-			}, 500);
+			$(myalert).slideUp('fast');
+		}, 500);
 	});
 }
 
@@ -786,10 +807,10 @@ function showEditForm2(spanElement) {
 
 };
 
-function clearEditFormErrors(row) {
+function clearElementErrors(parentEl) {
 	//Remove any errors if there are some
-	$(row).find(".form-group").removeClass('has-error');
-	$(row).find(".help-block").remove();
+	$(parentEl).find(".form-group").removeClass('has-error');
+	$(parentEl).find(".help-block").remove();
 }
 
 function setFormDataObj(row, selectedItem) {
@@ -875,7 +896,7 @@ function formSubmitSaveAs(row, selectedItem) {
 	//*** Save new record based on existing selected record ***
 
 	//Remove any error displays if there are some
-	clearEditFormErrors(row);
+	clearElementErrors(row);
 	//get reference this edit form
 	const form = $(row).find(".pad_form");
 	//Set the data object we will send to server
@@ -1024,7 +1045,7 @@ function deleteItem(row, selectedItem) {
 	const id = selectedItem.id;
 
 	//Remove any error displays if there are some
-	clearEditFormErrors(row);
+	clearElementErrors(row);
 	//get reference to this edit form
 	var form = $(row).find(".pad_form");
 	//Set the data object we will send to server
@@ -1086,7 +1107,7 @@ function formSubmitUpdate(e, row, selectedItem) {
 	//*** UPDATE THE ITEM COMMENT ***
 
 	//Remove any error displays if there are some
-	clearEditFormErrors(row);
+	clearElementErrors(row);
 	//get reference this edit form
 	const form = $(row).find(".pad_form");
 	//Set the data object we will send to server
@@ -1747,7 +1768,9 @@ function clearLocalStorage(elementClass) {
 
 $(document).ready(function () {
 
-	$('.alert-fixed').hide();
+	//$('.alert-fixed').hide();
+	$('#myalert').hide();
+
 
 	//Make sure the edit form is hidden
 	//$('#pad_form').hide();
@@ -1811,10 +1834,10 @@ $(document).ready(function () {
 	// $(window).on('focus', function(){
 	// }); 
 
-	$('#myalert').on('click', function() {
-		$("#myalert").hide();  
+	$('#myalert').on('click', function () {
+		$("#myalert").hide();
 
-	  });
+	});
 
 	$('#all_checkbox').on('click', function (e) {
 		lookupFunction();
@@ -1913,13 +1936,27 @@ $(document).ready(function () {
 	});
 
 	$('#copy_comments_button').on('click', function () {
+		//Clear any errors
+		const commentsForm = $('#comments_form');
+		clearElementErrors(commentsForm);
+		// $(commentsForm).find(".form-group").removeClass('has-error');
+		// $(commentsForm).find(".help-block").remove();
 		//Loop all comments and add keys and values to an object
 		let commentObj = {};
-		const elements = $('.comment_input').toArray();
+		let hasErrors = false;
+		let elements = $('#comments_form').find('.form-control').toArray();
 		for (let i = 0; i < elements.length; i++) {
 			const propertyName = $(elements[i]).attr('data-property-name');
 			let value = localStorage.getItem(propertyName);
-			if (!value) value = '';
+
+			if (!value && !$(elements[i]).hasClass('exclude_check')) {
+				hasErrors = true;
+				let parentGroup = $(elements[i]).parent('.form-group');
+				$(parentGroup).addClass('has-error');
+				$(parentGroup).append('<div class="help-block">Cannot be empty!</div>');
+			}
+
+			if (!value) value = ''; //Keeps from being null
 			//If this is a list type field then add numbers
 			if ($(elements[i]).hasClass('comment_input_list') && value) {
 				value = numberLinesofText(value);
@@ -1946,8 +1983,13 @@ $(document).ready(function () {
 		if (commentObj.externalities) formattedComment = formattedComment.concat(` - [Noted externalities: ${commentObj.externalities}]`);
 		if (commentObj.notes) formattedComment = formattedComment.concat(` - [Add Notes: ${commentObj.notes}]`);
 
-		updateClipboard(formattedComment);
-		showMyAlert('Copied to clipboard!');
+		if (!hasErrors) {
+			updateClipboard(formattedComment);
+			showMyAlert('Copied to clipboard!','success');
+		} else {
+			showMyAlert('Incomplete items!','danger');
+		}
+
 	});
 
 	$('.comment_input').on('change', function (e) {
@@ -2069,7 +2111,7 @@ $(document).ready(function () {
 		$(tbody).html('');
 
 		//Sort the FSL items
-		let fslSortedArray = $(".fsl_input").sort((a,b) => {
+		let fslSortedArray = $(".fsl_input").sort((a, b) => {
 			return $(a).attr('data-sort') - $(b).attr('data-sort');
 		});
 

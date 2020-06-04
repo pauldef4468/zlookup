@@ -252,7 +252,7 @@
 				<a href="#HVAC2_HR" class="list-group-item">HVAC 2</a>
 				<a href="#WH_HR" class="list-group-item">Water Heaters</a>
 				<a href="#other_HR" class="list-group-item">Other</a>
-			  </div>
+			</div>
 
 			<form>
 				<div class="form-group">
@@ -263,13 +263,13 @@
 				</div>
 				<div class="form-group">
 					<label for="notes_input">Notes</label>
-					<textarea data-property-name="notes" class="form-control rounded-0 comment_input comment_input_list"
+					<textarea data-property-name="notes" class="form-control rounded-0 comment_input exclude_check comment_input_list"
 						id="notes_input" rows="6"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="extra_notes_input">Extra Notes (not copied)</label>
 					<textarea data-property-name="extraNotes"
-						class="form-control rounded-0 comment_input comment_input_list" id="extra_notes_input"
+						class="form-control rounded-0 comment_input exclude_check comment_input_list" id="extra_notes_input"
 						rows="6"></textarea>
 				</div>
 				<div class="form-group">
@@ -296,13 +296,13 @@
 
 				<div class="myHR">
 					<h4 id="Rooms_HR" class="bold_text">Rooms</h>
-					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
+						<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-4">
 						<label for="beds_input">Bedrooms:</label>
-						<input data-property-name="beds" data-sort="10" type="text" inputmode="numeric" class="form-control fsl_input"
-							id="beds_input">
+						<input data-property-name="beds" data-sort="10" type="text" inputmode="numeric"
+							class="form-control fsl_input" id="beds_input">
 					</div>
 
 					<div class="form-group col-xs-8">
@@ -333,7 +333,7 @@
 				<!-- *** HVAC 1 ***-->
 				<div class="myHR">
 					<h4 id="HVAC1_HR" class="bold_text">HVAC 1</h>
-					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
+						<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 
 				<div class="row">
@@ -373,7 +373,7 @@
 				<!-- *** HVAC 2 *** -->
 				<div class="myHR">
 					<h4 id="HVAC2_HR" class="bold_text">HVAC 2</h>
-					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
+						<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-6">
@@ -412,18 +412,18 @@
 				<!-- *** HVAC 3 *** -->
 				<div class="myHR">
 					<h4 class="bold_text">HVAC 3</h>
-					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
+						<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="form-group">
 					<label for="delta-t3_input">Temp Split 3rd Floor</label>
 					<input data-property-name="deltaT3" type="text" inputmode="numeric"
-						class="form-control comment_input" id="delta-t3_input">
+						class="form-control comment_input exclude_check" id="delta-t3_input">
 				</div>
 
 				<!-- WATER HEATER-->
 				<div class="myHR">
 					<h4 id="WH_HR" class="bold_text">Water Heater</h>
-					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
+						<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="form-group">
 					<label for="water_heater_year_input">Water Heater 1 Manufactured Year</label>
@@ -438,7 +438,7 @@
 
 				<div class="myHR">
 					<h4 id="other_HR" class="bold_text">Other</h>
-					<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
+						<button type="button" class="btn btn-xs btn-info pull-right to-top-btn">Top</button>
 				</div>
 				<div class="form-group">
 					<label for="wood_windows_input">Wood Windows Present?:</label>
@@ -934,10 +934,10 @@
 			</div>
 		</div>
 
-		<div class="alert alert-success alert-dismissible alert-fixed" id="myalert" role="alert">
+		<div class="alert alert-success alert-dismissible" id="myalert" role="alert">
 			<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong id="my_alert_message"></strong>
-		  </div>
+		</div>
 
 
 	</div>
