@@ -83,14 +83,15 @@
 			</div>
 
 		</nav>
-		<div>
+		<!-- <div>
 			<p>
+
 				S: <span class="susan_name_input_info bold_text"></span>
 				Z: <span class="zat_name_input_info bold_text"></span>
-				<!--				A: <span class="property_address_info bold_text"></span>
-				Y: <span class="year_built_info bold_text"></span>-->
+				A: <span class="property_address_info bold_text"></span>
+				Y: <span class="year_built_info bold_text"></span>
 			</p>
-		</div>
+		</div> -->
 
 
 		<!-- The search block. Not displayed initially until data loaded at start-up -->
@@ -103,23 +104,41 @@
 			</div>-->
 
 			<!-- Lookup select and input -->
-			<div class="row">
-				<div class="col-sm-4">
-					<!-- <label for="category_select">Category:</label> -->
+			<div>
+				<input autocomplete="off" type="text" id="category_lookup" class="search_input" name="categoryLookup">
+				<select id="category_select"></select>
+				<button type="button" id="clear_cat_button" class="btn btn-danger btn-xs">C</button>
+				<button type="button" id="clear_cat_button_all" class="btn btn-danger btn-xs">CA</button>
+			</div>
+
+			<!-- <div>
+				<select id="sub_category_select">
+					<option value="toilet">Toilet</option>
+					<option value="faucet">Faucet</option>
+				</select>
+			</div> -->
+
+			<div>
+				<input autocomplete="off" type="text" id="lookupText" class="search_input" name="lookupText">
+				<span id="result_count"></span>
+				<button type="button" id="clear_button" class="btn btn-danger btn-xs">C</button>
+			</div>
+
+			<!--			
+				<div class="row">
+				<div style="background-color: blueviolet;" class="col-sm-6">
 					<input autocomplete="off" type="text" id="category_lookup" name="categoryLookup">
-					<button type="button" id="clear_cat_button" class="btn btn-danger btn-sm">Clr</button>
-					<button type="button" id="clear_cat_button_all" class="btn btn-danger btn-sm">ClrA</button>
-				</div>
-				<div class="col-sm-2">
-					<!-- <label for="category_select">Category:</label> -->
 					<select id="category_select"></select>
+					<button type="button" id="clear_cat_button" class="btn btn-danger btn-sm">C</button>
+					<button type="button" id="clear_cat_button_all" class="btn btn-danger btn-sm">CA</button>
 				</div>
-				<div class="col-sm-6">
+
+				<div class="col-sm-6" style="background-color: crimson;">
 					<input autocomplete="off" type="text" id="lookupText" name="lookupText">
 					<span id="result_count"></span>
-					<button type="button" id="clear_button" class="btn btn-danger btn-sm">Clr</button>
+					<button type="button" id="clear_button" class="btn btn-danger btn-sm">C</button>
 				</div>
-			</div>
+			</div>-->
 
 			<p id="lookup_error"></p>
 
@@ -263,14 +282,15 @@
 				</div>
 				<div class="form-group">
 					<label for="notes_input">Notes</label>
-					<textarea data-property-name="notes" class="form-control rounded-0 comment_input exclude_check comment_input_list"
-						id="notes_input" rows="6"></textarea>
+					<textarea data-property-name="notes"
+						class="form-control rounded-0 comment_input exclude_check comment_input_list" id="notes_input"
+						rows="6"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="extra_notes_input">Extra Notes (not copied)</label>
 					<textarea data-property-name="extraNotes"
-						class="form-control rounded-0 comment_input exclude_check comment_input_list" id="extra_notes_input"
-						rows="6"></textarea>
+						class="form-control rounded-0 comment_input exclude_check comment_input_list"
+						id="extra_notes_input" rows="6"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="spec_level_input">Spec Level</label>
@@ -300,7 +320,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-4">
-						<label for="beds_input">Bedrooms:</label>
+						<label for="beds_input">Bedrooms</label>
 						<input data-property-name="beds" data-sort="10" type="text" inputmode="numeric"
 							class="form-control fsl_input" id="beds_input">
 					</div>
@@ -890,6 +910,7 @@
 						</tbody>
 					</table>
 				</div>
+				<div style='height:400px'></div>
 
 
 				<!-- <button type="button" class="btn btn-info" id="does_nothing_button">To Follow</button>

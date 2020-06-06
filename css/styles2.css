@@ -175,9 +175,17 @@ p.name{
     position:fixed; 
     top: 60px; 
     left: 20px; 
-    z-index:9999; 
+	z-index:9999; 
 }
 
+.search_input{
+	max-width: 100px;
+}
+
+.rpm_heading td{
+	background-color: lightgray;
+	font-weight: bolder;
+}
 
 .warning_menu_item{
 	background-color: red;

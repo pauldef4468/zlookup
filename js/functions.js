@@ -195,8 +195,9 @@ function loadCategories() {
 	let option = '';
 	$('#category_select').empty();
 	for (let i = 0; i < categories.length; i++) {
-		let itemCount = getItemCountPerCategory(categories[i]);
-		option += `<option value="${categories[i]._id}">${categories[i].name} - ${itemCount}</option>`;
+		// let itemCount = getItemCountPerCategory(categories[i]);
+		// option += `<option value="${categories[i]._id}">${categories[i].name} - ${itemCount}</option>`;
+		option += `<option value="${categories[i]._id}">${categories[i].name}</option>`;
 	}
 	$('#category_select').append(option);
 }
@@ -295,7 +296,7 @@ function addToListOnClick(item) {
 	if (!getPlaceHolders(comment)) {
 		//No placeholders so just add to the list
 		updateLocalStorage(item.category, comment);
-		showMyAlert('Item added successfully!','success');
+		showMyAlert('Item added successfully!', 'success');
 	} else {
 		showEditItemModal(item);
 	}
@@ -310,16 +311,16 @@ function showMyAlert(message, alertType) {
 	$(myalert).removeClass('alert-warning');
 	$(myalert).removeClass('alert-danger');
 	switch (alertType) {
-		case 'success': 
+		case 'success':
 			$(myalert).addClass('alert-success');
 			break;
-		case 'info': 
+		case 'info':
 			$(myalert).addClass('alert-info');
 			break;
-		case 'warning': 
+		case 'warning':
 			$(myalert).addClass('alert-warning');
 			break;
-		case 'danger': 
+		case 'danger':
 			$(myalert).addClass('alert-danger');
 			break;
 		default:
@@ -1968,7 +1969,7 @@ $(document).ready(function () {
 		let formattedComment = '';
 		if (commentObj.specLevel) formattedComment = formattedComment.concat(`[Spec Level: ${commentObj.specLevel}]`);
 		if (commentObj.squareFeetListed) formattedComment = formattedComment.concat(` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured}]`);
-		if (commentObj.beds) formattedComment = formattedComment.concat(` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]`);
+		//if (commentObj.beds) formattedComment = formattedComment.concat(` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]`);
 		if (commentObj.deltaT1) formattedComment = formattedComment.concat(` - [Temp split (1st floor): ${commentObj.deltaT1}]`);
 		if (commentObj.deltaT2) formattedComment = formattedComment.concat(` - [Temp split (2nd floor): ${commentObj.deltaT2}]`);
 		if (commentObj.deltaT3) formattedComment = formattedComment.concat(` - [Temp split (3rd floor): ${commentObj.deltaT3}]`);
@@ -1985,9 +1986,9 @@ $(document).ready(function () {
 
 		if (!hasErrors) {
 			updateClipboard(formattedComment);
-			showMyAlert('Copied to clipboard!','success');
+			showMyAlert('Copied to clipboard!', 'success');
 		} else {
-			showMyAlert('Incomplete items!','danger');
+			showMyAlert('Incomplete items!', 'danger');
 		}
 
 	});
@@ -2117,6 +2118,24 @@ $(document).ready(function () {
 
 		$(fslSortedArray).each(function () {
 			let labelVal = $(this).siblings('label').html();
+			switch (labelVal) {
+				case 'Bedrooms':
+					$(tbody).append('<tr class="rpm_heading"><td>Rooms</td><td></td></tr>');
+					break;
+				case 'Above Grade Square Footage':
+					$(tbody).append('<tr class="rpm_heading"><td>Square Footage</td><td></td></tr>');
+					break;
+				case 'Water Heater 1 Manufactured Year':
+					$(tbody).append('<tr class="rpm_heading"><td>Water Heaters</td><td></td></tr>');
+					break;
+				case 'Furnace 1 Manufactured Year':
+					$(tbody).append('<tr class="rpm_heading"><td>HVAC</td><td></td></tr>');
+					break;
+				default:
+					break;
+			}
+
+
 			let value = localStorage.getItem($(this).attr('data-property-name'));
 			value = value ? value : '';
 			let row = `<tr><td>${labelVal}</td><td>${value}</td></tr>`
