@@ -111,12 +111,10 @@
 				<button type="button" id="clear_cat_button_all" class="btn btn-danger btn-xs">CA</button>
 			</div>
 
-			<!-- <div>
+			<div>
 				<select id="sub_category_select">
-					<option value="toilet">Toilet</option>
-					<option value="faucet">Faucet</option>
 				</select>
-			</div> -->
+			</div>
 
 			<div>
 				<input autocomplete="off" type="text" id="lookupText" class="search_input" name="lookupText">
@@ -496,7 +494,7 @@
 				</div>
 				<div class="form-group">
 					<label for="outside_temp">Outside Temperature:</label>
-					<input data-property-name="outsideTemp" type="text" class="form-control comment_input"
+					<input data-property-name="outsideTemp" data-sort="190" type="text" class="form-control comment_input fsl_input"
 						id="outside_temp">
 				</div>
 
@@ -585,7 +583,13 @@
 				<div class="checkbox checklist_checkbox">
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_pre"
-							data-property-name="checkOutsideTemp">Check Outside Temp
+							data-property-name="checkSpecLevel">Update Spec Level in Comments
+					</label>
+				</div>
+				<div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+						<input type="checkbox" class="checklist_checkbox_input checklist_pre"
+							data-property-name="checkOutsideTemp">Update Outside Temp in Comments
 					</label>
 				</div>
 				<div class="checkbox checklist_checkbox">
@@ -767,6 +771,12 @@
 					<label class="checklist_checkbox_label">
 						<input type="checkbox" class="checklist_checkbox_input checklist_main"
 							data-property-name="reviewRoofMain">Review Roof Pics
+					</label>
+				</div>
+				<div class="checkbox checklist_checkbox">
+					<label class="checklist_checkbox_label">
+						<input type="checkbox" class="checklist_checkbox_input checklist_main"
+							data-property-name="reviewRoofHorizon">Check for Horizon or Atlas
 					</label>
 				</div>
 				<div class="checkbox checklist_checkbox">

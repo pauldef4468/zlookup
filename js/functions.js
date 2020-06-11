@@ -1,4 +1,130 @@
 
+class Filter{
+	constructor(){
+
+		this.categoryID = '';
+		this.subCategoryString = '';
+		this.lookupText = '';
+
+		this.allItems = [];
+		this.categoryItems = [];
+		this.subCategoryItems = [];
+	}
+	filter(fullRefresh){
+		const categoryID = getCategoryID();
+		const lookupText = getLookupText();
+		const subCategoryString = getSubCategoryValue();
+		//If categoryID has changed then do a full filter
+		//If doing a full filter then we must also get the sub categories
+		let subCategories = [];
+		if(categoryID !== this.categoryID || fullRefresh){
+			//This sets this.categoryItems
+			console.log('loaded by category');
+
+			this.filterCategoryItems(categoryID);
+			subCategories = buildSubComponentsArray(this.categoryItems);
+			this.categoryID = categoryID;
+
+			this.filterSubCategoryItems(subCategories[0]);
+			this.subCategoryString = subCategories[0];
+
+			const subComponents = buildSubComponentsArray(this.categoryItems);
+			loadSubComponentSelect(subComponents);
+
+			this.filterByKeywords(this.subCategoryItems, lookupText);
+			this.lookupText = lookupText;
+
+			return this.subCategoryItems;
+		}
+		if(subCategoryString !== this.subCategoryString){
+			console.log('loaded by sub cat');
+
+			this.filterSubCategoryItems(subCategoryString);
+			this.subCategoryString = subCategoryString;
+
+			this.filterByKeywords(this.subCategoryItems, lookupText);
+			this.lookupText = lookupText;
+
+			return this.subCategoryItems;
+		}
+		if(lookupText !== this.lookupText){
+			console.log('loaded by keyword');
+
+			this.filterSubCategoryItems(subCategoryString);
+
+			this.filterByKeywords(this.subCategoryItems, lookupText);
+			this.lookupText = lookupText;
+			return this.subCategoryItems;
+		}
+
+		return this.subCategoryItems;
+
+	}
+	clearAll(){
+		this.allItems = [];
+		this.categoryItems = [];
+		this.subCategoryItems = [];
+	}
+	filterCategoryItems(categoryID){
+		this.categoryItems = this.allItems.filter(item => {
+			if (categoryID !== item.category._id){
+				return false;
+			}else{
+				return true;
+			}
+		})
+	}
+	filterSubCategoryItems(subCategoryName){
+		this.subCategoryItems = this.categoryItems.filter(item => {
+			//
+			if (subCategoryName !== item.subComponentName){
+				return false;
+			}else{
+				return true;
+			}
+		})
+	}
+	filterByKeywords(itemsToSort, lookupText){
+		if (lookupText == "") {
+			this.subCategoryItems = itemsToSort;
+			return;
+		}
+		const lookupWords = lookupText.split(" ");
+	
+		let newArray = itemsToSort.filter(item => {
+			const comment = item.comment;
+			const name = item.name;
+			let found;
+			for (let icount = 0; icount < lookupWords.length; icount++) {
+				let combined = name + " " + comment;
+				var n = combined.toLowerCase().indexOf(lookupWords[icount].toLowerCase());
+				if (n == -1) {
+					//Not found (remove the element)
+					found = false;
+				} else {
+					//Found so keep the element
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				return false;
+			}else{
+				return true;
+			}
+		})
+		this.subCategoryItems = newArray;
+	}
+
+}
+
+var filter = (function (){
+	let filterUtility = new Filter();
+	return function(){
+		return filterUtility;
+	}
+})();
+
 
 function commentClick2(par, text) {
 
@@ -81,6 +207,7 @@ function ajaxItems() {
 					//Get the created by user name
 					// var createdByUserName = this.firstName + " " + this.lastName;
 					let item = new Item(this.componentName,
+						this.subComponentName,
 						this.itemName,
 						this.comment,
 						this.price,
@@ -108,18 +235,19 @@ function loadInitialData() {
 
 	//*** Load data from server ***
 
+	const filterUtility = filter();
+	filterUtility.clearAll(); //Clears main item array and filter arrays
+
 	//Initialize these global arrays
-	items = [];
 	categories = [];
-	resultItems = [];
 	selectedParId = '';
 
 	return new Promise((resolve, reject) => {
 
 		async function submitAjaxRequests() {
 			try {
-				//Load items and category arrays
-				items = await ajaxItems();
+				//Load all items and category arrays
+				filterUtility.allItems = await ajaxItems();
 				categories = await ajaxCategories();
 				resolve();
 			}
@@ -191,6 +319,10 @@ function ajaxCategories() {
 
 }
 
+function loadSubCategories() {
+
+}
+
 function loadCategories() {
 	let option = '';
 	$('#category_select').empty();
@@ -205,9 +337,9 @@ function loadCategories() {
 function updateCategoryCounts() {
 	$("#category_select > option").each(function () {
 		let category = getCategoryByID(this.value);
-		let itemCount = getItemCountPerCategory(category);
-		this.text = `${category.name} - ${itemCount}`;
-
+		//let itemCount = getItemCountPerCategory(category);
+		//this.text = `${category.name} - ${itemCount}`;
+		this.text = category.name;
 	});
 }
 
@@ -218,8 +350,10 @@ function getCategoryByID(id) {
 
 function getItemCountPerCategory(category) {
 	let count = 0;
-	for (let i = 0; i < items.length; i++) {
-		if (items[i].category._id === category._id) count++;
+	const filterUtility = filter();
+	const allItems = filterUtility.allItems;
+	for (let i = 0; i < allItems.length; i++) {
+		if (allItems[i].category._id === category._id) count++;
 	}
 	return count;
 }
@@ -244,6 +378,7 @@ function notReadyFunction() {
 }
 
 function categoryLookup() {
+	const originalCategory = $('#category_select').val();
 	const lookupText = $('#category_lookup').val().toLowerCase();
 	const cat = categories.find((category) => {
 		let n = category.name.toLowerCase().indexOf(lookupText);
@@ -251,9 +386,13 @@ function categoryLookup() {
 	})
 	if (cat) {
 		$('#category_select').val(cat._id);
-		lookupFunction();
+		//lookupFunction();
 	} else {
 		$('#category_select').val('');
+	}
+	//Only do a lookup if the category has changed
+	if (originalCategory !== $('#category_select').val()) {
+		$("#category_select").trigger("change");
 	}
 }
 
@@ -379,11 +518,41 @@ function stripPlaceHolderBraces(text) {
 	return text.replace(/{|}/gi, '');
 }
 
-function lookupFunction() {
 
-	const categoryID = $('#category_select option:selected').val();
+function buildSubComponentsArray(itemsArray) {
+	//Build an array of sub component names from the array list passed in
+	let subComponents = [];
+	for (let i = 0; i < itemsArray.length; i++) {
+		//if (!itemsArray[i].subComponentName) { continue }; //This is to keep out the blank
+		if (subComponents.indexOf(itemsArray[i].subComponentName) === -1) {
+			subComponents.push(itemsArray[i].subComponentName);
+		}
+	}
+	subComponents.sort();
+	return subComponents;
 
-	if (!Array.isArray(items) || !items.length) {
+}
+
+function loadSubComponentSelect(subComponents) {
+	let option = '';
+	$('#sub_category_select').empty();
+	for (let i = 0; i < subComponents.length; i++) {
+		// let itemCount = getItemCountPerCategory(categories[i]);
+		// option += `<option value="${categories[i]._id}">${categories[i].name} - ${itemCount}</option>`;
+		option += `<option value="${subComponents[i]}">${subComponents[i]}</option>`;
+
+	}
+	$('#sub_category_select').append(option);
+
+}
+
+function lookupStart(){
+	//If there are no items in the master all items array then show a message
+	//Otherwise clear any message
+	const filterUtility = filter();
+	const allItems = filterUtility.allItems;
+
+	if (!Array.isArray(allItems) || !allItems.length) {
 		// array does not exist, is not an array, or is empty
 		$("#lookup_error").css("display", "block");
 		$("#lookup_error").html("No items. You probably need to login?");
@@ -392,79 +561,19 @@ function lookupFunction() {
 		$("#lookup_error").css("display", "none");
 		$("#lookup_error").html("");
 	}
-
 	//Clean up any open edit forms
 	$(".pad_form").remove();
-	//Empty the result array
-	resultItems = [];
 	//Clear results in the result table
 	$('#tbody').html('');
 	//Clear the result count display
 	$("#result_count").html("");
+}
 
-
-	//See if the all checkbox is checked.
-	//var allChecked = document.getElementById("all_checkbox").checked;
-
-	//Get the lookup textbox value for each key stroke
-	//var lookupText = document.getElementById("lookupText").value;
-	const lookupText = $('#lookupText').val();
-
-	//We should have a bunch of "items" at this time
-	let lookupWords = lookupText.split(" ");
-
-	//Loop the items array and add to the resultItems array if not filtered out
-	var i;
-	for (i = 0; i < items.length; i++) {
-
-		var componentName = items[i].componentName;
-		var comment = items[i].comment;
-		var name = items[i].name;
-		var originalFlag = items[i].originalFlag;
-
-		if (categoryID != items[i].category._id) { continue };
-
-		//If not an original or custom comment then don't include
-		//*** THIS WILL BE A CHECKBOX LATER OR SOMETHING ***
-		//if(originalFlag == "0"){continue;}
-
-		//If the original flag is zero and all checked 
-		//if(!allChecked && originalFlag == "0"){continue;}
-
-		//Lookup everything if nothing there 
-		if (lookupText == "") {
-			resultItems.push(items[i]);
-			continue;
-		}
-
-		//Loop for each lookup word and ignore empty string in case of double spaces
-		var found = false;
-		var icount;
-		for (icount = 0; icount < lookupWords.length; icount++) {
-			if (!lookupWords[icount]) { continue; } //Check for empty string
-
-			//Search for this lookup word case insensitive
-			//var combined = name + " " + comment + " " + componentName;
-			var combined = name + " " + comment;
-
-			//var n = combined.toLowerCase().search(lookupWords[icount].toLowerCase()); //I took this out (looks for regular expression
-			var n = combined.toLowerCase().indexOf(lookupWords[icount].toLowerCase());
-			//if(n == -1){continue};
-			if (n == -1) {
-				found = false;
-				break;
-			}
-			found = true;
-		}
-		if (!found) { continue; }
-
-		resultItems.push(items[i]);
-
-	}
-
+function loadResultsTable(resultItems) {
 
 	// *** LOAD THE TABLE ***
-	//var table = $("#resultTable");
+
+	const lookupWords = getLookupWords();
 
 	//Clear results in the result table
 	var tableBody = document.getElementById("tbody");
@@ -474,7 +583,6 @@ function lookupFunction() {
 	//Clear the selected paragraph 
 	selectedParId = '';
 
-	var i;
 	var rowCount = 0;
 
 	//Set the count span element 
@@ -585,6 +693,12 @@ function lookupFunction() {
 
 }
 
+// function loadSubComponentsForSearch(subComponents, item){
+// 	if(subComponents.indexOf(item.subComponentName) === -1){
+// 		subComponents.push(item.subComponentName);
+// 	}
+// }
+
 function highlight(textToProcess, lookupWordsArray) {
 	//Highlight the search words in the par element
 	var icount;
@@ -597,65 +711,6 @@ function highlight(textToProcess, lookupWordsArray) {
 		newText = newText.replace(regex, '<span class="highlight">$&</span>');
 	}
 	return newText;
-}
-
-function editFunction() {
-
-	//*** DO NOT DELETE YET ***
-
-	//See if any rows have checkmarks checked. We should only have one.
-	//When we have a single checked checkmark then get the row element.
-
-
-	//Loop all checkboxes and build array of checked = true only
-	var checkboxes = $(".row_checkbox").get();
-
-	var i;
-	var checkedBoxesArr = [];
-	for (i = 0; i < checkboxes.length; i++) {
-		if (checkboxes[i].checked) {
-			checkedBoxesArr.push(checkboxes[i]);
-		}
-	}
-
-	//Make sure we only have one
-	if (checkedBoxesArr.length == 0) {
-		alert('None selected');
-		return;
-	} else if (checkedBoxesArr.length > 1) {
-		alert('Please select only one');
-		return;
-	}
-
-
-	//Get this checkboxes parent table row
-	var checkbox = checkedBoxesArr[0];
-	var row = $(checkbox).parents(".result_row");
-	var rowIdStr = $(row).attr('id');
-
-
-	//Get the number only from the id
-	var str = rowIdStr.replace(/[^\d.]/g, '');
-	var resultItemIndex = parseInt(str);
-
-	//Set global selectedItem
-	selectedItem = resultItems[resultItemIndex];
-
-	//Load a form with 
-	showEditForm();
-
-}
-
-function showEditForm() {
-
-	/* 	//Show the form
-		$('#pad_form').slideDown();
-		
-		//Fill in the form 
-		$('#component_name').val(selectedItem.componentName);
-		$('#item_name').val(selectedItem.name);
-		$('#item_comment').html(selectedItem.comment); */
-
 }
 
 function showEditForm2(spanElement) {
@@ -692,7 +747,8 @@ function showEditForm2(spanElement) {
 	var str = rowIdStr.replace(/[^\d.]/g, '');
 	var resultItemIndex = parseInt(str);
 	//The current Item 
-	var selectedItem2 = resultItems[resultItemIndex];
+	const filterUtility = filter();
+	var selectedItem2 = filterUtility.subCategoryItems[resultItemIndex];
 
 	// TODO2 - Add an additional comment option to the form
 
@@ -715,6 +771,17 @@ function showEditForm2(spanElement) {
 		'<label for="item_comment">Comment:</label>' +
 		'<textarea class="form-control rounded-0 item_comment" id="item_comment" rows="4"></textarea>' +
 		'</div>' +
+
+		'<div id="sub_component_group" class="form-group">' +
+		'<label for="sub_component_input">Sub-Component:</label>' +
+		'<input type="text" class="form-control sub_component_input" id="sub_component_input">' +
+		'</div>' +
+
+		'<div id="defects_group" class="form-group">' +
+		'<label for="defects_input">Defects:</label>' +
+		'<input type="text" class="form-control defects_input" id="defects_input">' +
+		'</div>' +
+
 		'<div id="item_price_group" class="form-group">' +
 		'<label for="item_price">Price:</label>' +
 		'<input type="tel" class="form-control item_price" id="item_price">' +
@@ -761,6 +828,10 @@ function showEditForm2(spanElement) {
 	//Fill in the form 
 	var componentName = $(editFormDiv).find(".component_name");
 	componentName.val(selectedItem2.componentName);
+
+	const subComponentName = $(editFormDiv).find(".sub_component_input");
+	subComponentName.val(selectedItem2.subComponentName);
+
 	var name = $(editFormDiv).find(".comment_name");
 	name.val(selectedItem2.name);
 	var comment = $(editFormDiv).find(".item_comment");
@@ -793,11 +864,6 @@ function showEditForm2(spanElement) {
 	const fullName = selectedItem2.createdByUser.firstName + ' ' + selectedItem2.createdByUser.lastName;
 	$(editFormDiv).find(".created_by").html('Created By: ' + htmlspecialchars(fullName));
 
-	/* 	//Register the cancel button click event
-		var cancelButton = $(row).find(".cancel_button");
-		$(cancelButton).on('click', function(e){
-			closeEditFormDiv(e);
-		}); */
 
 	var cancelButton = $(row).find(".cancel_button");
 	$(cancelButton).on('click', function (e) {
@@ -822,16 +888,24 @@ function setFormDataObj(row, selectedItem) {
 	//The categoryID is stored in the value of the category Select element
 	const formCategorySelectValue = $(row).find(".form_category_select").val();
 
+	//Create array from comma delimited defects
+	const defects = $(row).find(".defects_input").val();
+	const defectsArray = defects.split(',').map((item) => {
+		return item.trim();
+	});
+
+	const subComponentName = $(row).find(".sub_component_input").val().trim();
+
 	//Set the formData object to send to server
-	return {
+	const obj = {
 		'componentName': $(row).find(".component_name").val(),
+		'subComponentName': $(row).find(".sub_component_input").val().trim(),
 		'itemName': $(row).find(".comment_name").val(),
 		'comment': $(row).find(".item_comment").val(),
 		'price': anRawPrice,
 		'categoryID': formCategorySelectValue,
-		//'createdByUserID':user.id,
-		//'modifiedByUserID': user.id
 	}
+	return obj;
 }
 
 function setFormSubmitSaveAsObj(row, selectedItem) {
@@ -846,6 +920,7 @@ function setFormSubmitSaveAsObj(row, selectedItem) {
 	//Set the formData object to send to server
 	return {
 		'componentName': $(row).find(".component_name").val(),
+		'subComponentName': $(row).find(".sub_component_input").val().trim(),
 		'itemName': $(row).find(".comment_name").val(),
 		'comment': $(row).find(".item_comment").val(),
 		'price': anRawPrice,
@@ -870,22 +945,33 @@ function showHideEditFormSpinner(el, showSpinner) {
 
 function showEditFormInputErrors(row, inputKey, errorMessage) {
 
-	var componentNameGroup = $(row).find("#component_name_group");
+	const componentNameGroup = $(row).find("#component_name_group");
+	const commentNameGroup = $(row).find("#comment_name_group");
+	const itemCommentGroup = $(row).find("#item_comment_group");
+	const itemPriceGroup = $(row).find('#item_price_group');
+	const subComponentGroup = $(row).find('#sub_component_group');
+	//sub_component_input
+
 	if (inputKey === 'componentName') {
 		$(componentNameGroup).addClass('has-error');
 		$(componentNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
 	}
-	var commentNameGroup = $(row).find("#comment_name_group");
 	if (inputKey === 'itemName') {
 		$(commentNameGroup).addClass('has-error');
 		$(commentNameGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
 	}
-	var itemCommentGroup = $(row).find("#item_comment_group");
 	if (inputKey === 'comment') {
 		$(itemCommentGroup).addClass('has-error');
 		$(itemCommentGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
 	}
-	var itemPriceGroup = $(row).find('#item_price_group');
+	// if (inputKey === 'comment') {
+	// 	$(itemCommentGroup).addClass('has-error');
+	// 	$(itemCommentGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
+	// }
+	if (inputKey === 'subComponentName') {
+		$(subComponentGroup).addClass('has-error');
+		$(subComponentGroup).append('<div class="help-block">' + errorMessage + '</div>'); // add the actual error message under our input
+	}
 	if (inputKey === 'price') {
 		$(itemPriceGroup).addClass('has-error');
 		$(itemPriceGroup).append('<div class="help-block">' + errorMessage + '</div>');
@@ -895,7 +981,8 @@ function showEditFormInputErrors(row, inputKey, errorMessage) {
 function formSubmitSaveAs(row, selectedItem) {
 
 	//*** Save new record based on existing selected record ***
-
+	const filterUtility = filter();
+	const allItems = filterUtility.allItems;
 	//Remove any error displays if there are some
 	clearElementErrors(row);
 	//get reference this edit form
@@ -910,6 +997,7 @@ function formSubmitSaveAs(row, selectedItem) {
 			const item = await ajaxPostNewItem(formDataItem);
 			let newItem = new Item(
 				item.componentName,
+				item.subComponentName,
 				item.itemName,
 				item.comment,
 				item.price,
@@ -920,8 +1008,8 @@ function formSubmitSaveAs(row, selectedItem) {
 				item.createdByUserID,
 				item.createdDateTime
 			)
-			items.push(newItem);
-
+			allItems.push(newItem);
+			filterUtility.filter(true);
 			//Close the edit form and then re-filter and display 
 			closeEditFormDiv('', form);
 
@@ -995,11 +1083,12 @@ function ajaxPostNewItem(formDataItem) {
 }
 
 function deleteItemByRecordID(id) {
-
+	const filterUtility = filter();
+	const allItems = filterUtility.allItems;
 	//Find the item and remove from the array
-	for (let i = 0; i < items.length; i++) {
-		if (items[i].id == id) {
-			items.splice(i, 1);
+	for (let i = 0; i < allItems.length; i++) {
+		if (allItems[i].id == id) {
+			allItems.splice(i, 1);
 		}
 	}
 
@@ -1058,6 +1147,8 @@ function deleteItem(row, selectedItem) {
 			await ajaxDeleteItem(id);
 			deleteItemByRecordID(id);
 			//Close the edit form and then re-filter and display
+			const filterUtility = filter();
+			filterUtility.filter(true);
 			closeEditFormDiv('', form);
 		}
 		catch (err) {
@@ -1126,6 +1217,7 @@ function formSubmitUpdate(e, row, selectedItem) {
 			selectedItem.comment = item.comment;
 			selectedItem.price = item.price;
 			selectedItem.category = item.categoryID;
+			selectedItem.subComponentName = item.subComponentName;
 
 			//Update the item display html 
 			$(row).find(".component").html(htmlspecialchars(selectedItem.componentName));
@@ -1161,7 +1253,11 @@ function closeEditFormDiv(e, editFormDiv) {
 		//loadCategories();
 		updateCategoryCounts();
 		//Re-run the lookup 
-		lookupFunction();
+		lookupStart();
+		const filterUtility = filter();
+
+		loadResultsTable(filterUtility.subCategoryItems);
+
 	});
 
 
@@ -1169,8 +1265,13 @@ function closeEditFormDiv(e, editFormDiv) {
 }
 
 class Item {
-	constructor(componentName, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime) {
+	constructor(componentName, subComponentName, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime) {
 		this.componentName = componentName;
+		if (typeof subComponentName === 'undefined') {
+			this.subComponentName = '';
+		} else {
+			this.subComponentName = subComponentName;
+		}
 		this.name = name;
 		this.comment = comment;
 		this.price = price;
@@ -1182,6 +1283,8 @@ class Item {
 		this.createdDateTime = createdDateTime;
 	}
 }
+
+
 
 class View {
 
@@ -1342,8 +1445,7 @@ function hideSearchBlock() {
 	$('#lookupText').val("");
 	//Clean up any open edit forms
 	$(".pad_form").remove();
-	//Empty the result array
-	resultItems = [];
+
 	//Clear results in the result table
 	$('#tbody').html('');
 	//Clear the result count display
@@ -1568,7 +1670,8 @@ function submitLoginForm() {
 		}
 
 		loadCategories();
-		lookupFunction();
+
+		filterAndLoadByCategorySelected();
 
 		//Show logout menu button
 		$('#logout_menu_item').css("display", "block");
@@ -1582,6 +1685,25 @@ function submitLoginForm() {
 
 	submitAjaxRequests();
 
+}
+
+function getCategoryID(){
+	return $('#category_select option:selected').val();
+}
+
+function filterAndLoadByCategorySelected(){
+	const filterUtility = filter();
+	//Form stuff
+	lookupStart();
+	//Filter based on form values
+	const filteredItems = filterUtility.filter();
+	
+	loadResultsTable(filteredItems);
+
+}
+
+function getLookupText(){
+	return $('#lookupText').val().trim();
 }
 
 
@@ -1648,15 +1770,15 @@ function submitResetPasswordForm() {
 }
 
 function logout() {
+	
 	//Null out the user object
 	user = null;
 	//Clean up any open edit forms in the search block
 	//Delete any data downloaded when logging in and / or loading data
 	$(".pad_form").remove();
-	//Empty the result array
-	resultItems = [];
-	//Empty the main items array
-	items = [];
+
+	//Empty the items arrays
+	filter().clearAll();
 	//Empty the categories array and select list
 	categories = [];
 	$('#category_select').empty();
@@ -1698,19 +1820,16 @@ var htmlspecialchars = function (string) {
 };
 
 function clearLookupText() {
-	//If already empty then don't do anything
-	if (!$('#lookupText').val().length) return;
-	//Clear out the text and run the lookup
 	$('#lookupText').val('');
-	lookupFunction();
+	filterAndLoadByCategorySelected();
+
 }
 
 function clearCatLookup() {
-	//If already empty then don't do anything
-	if (!$('#category_lookup').val().length) return;
-	//Clear out the text and run the lookup
 	$('#category_lookup').val('');
-	lookupFunction();
+	filterAndLoadByCategorySelected();
+	
+
 }
 
 // A collection of special characters and their entities.
@@ -1767,7 +1886,19 @@ function clearLocalStorage(elementClass) {
 	}
 }
 
+function getLookupWords(){
+	const lookupText = getLookupText();
+	const lookupWords = lookupText.split(" ");
+	return lookupWords;
+}
+
+function getSubCategoryValue(){
+	return $('#sub_category_select option:selected').val();
+}
+
 $(document).ready(function () {
+
+
 
 	//$('.alert-fixed').hide();
 	$('#myalert').hide();
@@ -1780,8 +1911,6 @@ $(document).ready(function () {
 
 	selectedItem = '';
 
-	//Items array to hold all comment items
-	items = [];
 	//Categories array. IE. Electrical, Plumbing, Paint, etc. 
 	categories = [];
 
@@ -1818,7 +1947,10 @@ $(document).ready(function () {
 				showHideEditFormSpinner(null, true);
 				await loadInitialData();
 				loadCategories();
-				lookupFunction();
+				lookupStart();
+				const filterUtility = filter();
+				filterUtility.filter(true);
+				loadResultsTable(filterUtility.subCategoryItems);
 			}
 			catch (err) {
 				showLoginForm();
@@ -1840,20 +1972,25 @@ $(document).ready(function () {
 
 	});
 
-	$('#all_checkbox').on('click', function (e) {
-		lookupFunction();
+	// *** THE FILTER STUFF ***
+	$('#category_select').change(function () {
+		filterAndLoadByCategorySelected();
 	});
-	$('#lookupText').on('keyup', function (e) {
-		lookupFunction();
-	});
-
 	$('#category_lookup').on('keyup', function () {
+		
 		categoryLookup();
 	});
+	$('#sub_category_select').change(function () {
 
-	$('#category_select').change('keyup', function (e) {
-		lookupFunction();
+		filterAndLoadByCategorySelected();
+
+
 	});
+	$('#lookupText').on('keyup', function (e) {
+		filterAndLoadByCategorySelected();
+
+	});
+
 
 	$('#clear_button').on('click', function (e) {
 		clearLookupText();
@@ -1871,7 +2008,6 @@ $(document).ready(function () {
 
 	$('#edit_menu_item').on('click', function (e) {
 		alert('Temporarily disabled');
-		//editFunction();
 	})
 
 	$('#refresh_menu_item').on('click', function (e) {
@@ -2092,9 +2228,8 @@ $(document).ready(function () {
 		const newValue = $('#modal_text_input').val();
 		//Get a stringify version of the Item
 		const itemAsString = $('#item_object_stringify').html();
-		//console.log(itemAsString);
 		const item = JSON.parse(itemAsString);
-		//console.log(item);
+
 		//updateClipboard(newValue);
 		updateLocalStorage(item.category, newValue);
 		//showMyAlert();
