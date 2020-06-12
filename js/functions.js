@@ -78,6 +78,7 @@ class Filter {
 		this.allItems = [];
 		this.categoryItems = [];
 		this.subCategoryItems = [];
+		this.keywordItems = [];
 	}
 	filterCategoryItems(categoryID) {
 		this.categoryItems = this.allItems.filter(item => {
@@ -802,7 +803,8 @@ function showEditForm2(spanElement) {
 	var resultItemIndex = parseInt(str);
 	//The current Item 
 	const filterUtility = myFilter();
-	var selectedItem2 = filterUtility.subCategoryItems[resultItemIndex];
+	// var selectedItem2 = filterUtility.subCategoryItems[resultItemIndex];
+	var selectedItem2 = filterUtility.keywordItems[resultItemIndex];
 
 	// TODO2 - Add an additional comment option to the form
 
@@ -1264,8 +1266,6 @@ function formSubmitUpdate(e, row, selectedItem) {
 		try {
 			const item = await ajaxItemUpdate(selectedItem.id, formDataItem);
 
-			alert('Success here');
-
 			//Success
 			selectedItem.componentName = item.componentName;
 			selectedItem.defect = item.defect;
@@ -1292,7 +1292,7 @@ function formSubmitUpdate(e, row, selectedItem) {
 			closeEditFormDiv('', form);
 		}
 		catch (err) {
-			alert('got here');
+
 			processAndDisplayError(err, row, form);
 		}
 	}
@@ -2019,7 +2019,8 @@ $(document).ready(function () {
 				$('#category_lookup').val('');
 				const filterUtility = myFilter();
 				filterUtility.runFilter(true);
-				loadResultsTable(filterUtility.subCategoryItems);
+				//loadResultsTable(filterUtility.subCategoryItems);
+				loadResultsTable(filterUtility.keywordItems);
 			}
 			catch (err) {
 				showLoginForm();
