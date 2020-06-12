@@ -1,9 +1,10 @@
 
-class Filter{
-	constructor(){
+class Filter {
+	constructor() {
 
 		this.categoryID = '';
 		this.subCategoryString = '';
+		this.defectString = '';
 		this.lookupText = '';
 
 		this.allItems = [];
@@ -11,50 +12,58 @@ class Filter{
 		this.subCategoryItems = [];
 		this.keywordItems = [];
 	}
-	runFilter(fullRefresh){
+	runFilter(fullRefresh) {
 		const categoryID = getCategoryID();
 		const lookupText = getLookupText();
 		const subCategoryString = getSubCategoryValue();
-		
-		if(categoryID !== this.categoryID || fullRefresh){
+		const defectString = getDefectValue();
+
+		if (categoryID !== this.categoryID || fullRefresh) {
 
 			let subCategories = [];
+			let defects = [];
 
 			//Loop allItems and filter by the selected categoryID
-			this.filterCategoryItems(categoryID);
-			//Build array of sub categories (ie. Toilet) based on the filtered list
-			subCategories = buildSubComponentsArray(this.categoryItems);
+			this.filterCategoryItems(categoryID); // = this.categoryItems
 			//Store this latest category ID
 			this.categoryID = categoryID;
 
+			//Build array of sub categories (ie. Toilet) based on the filtered list
+			subCategories = buildSubComponentsArray(this.categoryItems);
+			//Build array of defect (ie. Loose, Missing) based on the filtered list
+			defects = buildDefectsArray(this.categoryItems);
+
 			//Loop categoryItems and build a filtered list of items
 			//based on the first sub category (ie. Toilet)
-			this.filterSubCategoryItems(subCategories[0]);
+			this.filterSubCategoryItems(subCategories[0],defects[0]); // = this.subCategoryItems
 			//Store this latest sub category (ie. Toilet)
 			this.subCategoryString = subCategories[0];
+			this.defectString = defects[0];
 
 			//Load the sub categories select list with values (ie Toilet)
 			loadSubComponentSelect(subCategories);
 
+			loadDefectSelect(defects);
+
 			//Filter by keywords
-			this.filterByKeywords(this.subCategoryItems, lookupText);
+			this.filterByKeywords(this.subCategoryItems, lookupText); // = this.keywordItems
 			this.lookupText = lookupText;
 
 			return this.keywordItems;
 		}
-		if(subCategoryString !== this.subCategoryString){
-
+		if (subCategoryString !== this.subCategoryString || defectString !== this.defectString) {
 			//Filter based on the new sub category string
-			this.filterSubCategoryItems(subCategoryString);
+			this.filterSubCategoryItems(subCategoryString, defectString);
 			//Store the new sub category
 			this.subCategoryString = subCategoryString;
+			this.defectString = defectString;
 
 			this.filterByKeywords(this.subCategoryItems, lookupText);
 			this.lookupText = lookupText;
 
 			return this.keywordItems;
 		}
-		if(lookupText !== this.lookupText){
+		if (lookupText !== this.lookupText) {
 
 			this.filterByKeywords(this.subCategoryItems, lookupText);
 			this.lookupText = lookupText;
@@ -65,39 +74,51 @@ class Filter{
 		return this.keywordItems;
 
 	}
-	clearAll(){
+	clearAll() {
 		this.allItems = [];
 		this.categoryItems = [];
 		this.subCategoryItems = [];
 	}
-	filterCategoryItems(categoryID){
+	filterCategoryItems(categoryID) {
 		this.categoryItems = this.allItems.filter(item => {
-			if (categoryID !== item.category._id){
+			if (categoryID !== item.category._id) {
 				return false;
-			}else{
+			} else {
 				return true;
 			}
 		})
 	}
-	filterSubCategoryItems(subCategoryName){
+	filterSubCategoryItems(subCategoryName, defectString) {
 		this.subCategoryItems = this.categoryItems.filter(item => {
-			//If the sub category is empty or undefined then no filter
-			if(!subCategoryName) return true;
+			//If query words empty or undefined then no filter
+			if (!subCategoryName && !defectString){
+				return true;
+			} 
 
-			if (subCategoryName !== item.subComponentName){
-				return false;
-			}else{
+			if (defectString === item.defect && !subCategoryName){
+				return true;
+			} 
+
+			if (subCategoryName === item.subComponentName && !defectString) {
 				return true;
 			}
+
+			if (subCategoryName !== item.subComponentName || defectString !== item.defect){
+				return false;
+			}
+
+			return true;
+
 		})
 	}
-	filterByKeywords(itemsToSort, lookupText){
+
+	filterByKeywords(itemsToSort, lookupText) {
 		if (lookupText == "") {
 			this.keywordItems = itemsToSort;
 			return;
 		}
 		const lookupWords = lookupText.split(" ");
-	
+
 		let newArray = itemsToSort.filter(item => {
 			const comment = item.comment;
 			const name = item.name;
@@ -116,7 +137,7 @@ class Filter{
 			}
 			if (!found) {
 				return false;
-			}else{
+			} else {
 				return true;
 			}
 		})
@@ -125,9 +146,9 @@ class Filter{
 
 }
 
-var myFilter = (function (){
+var myFilter = (function () {
 	let filterUtility = new Filter();
-	return function(){
+	return function () {
 		return filterUtility;
 	}
 })();
@@ -215,6 +236,7 @@ function ajaxItems() {
 					// var createdByUserName = this.firstName + " " + this.lastName;
 					let item = new Item(this.componentName,
 						this.subComponentName,
+						this.defect,
 						this.itemName,
 						this.comment,
 						this.price,
@@ -536,18 +558,30 @@ function buildSubComponentsArray(itemsArray) {
 			subComponents.push(itemsArray[i].subComponentName);
 		}
 	}
-	if(!hasBlank) subComponents.push('');
+	if (!hasBlank) subComponents.push('');
 	subComponents.sort();
 	return subComponents;
 
+}
+
+function buildDefectsArray(itemsArray) {
+	let defects = [];
+	let hasBlank = false;
+	for (let i = 0; i < itemsArray.length; i++) {
+		if (!itemsArray[i].defect) hasBlank = true; //This is to keep out the blank
+		if (defects.indexOf(itemsArray[i].defect) === -1) {
+			defects.push(itemsArray[i].defect);
+		}
+	}
+	if (!hasBlank) defects.push('');
+	defects.sort();
+	return defects;
 }
 
 function loadSubComponentSelect(subComponents) {
 	let option = '';
 	$('#sub_category_select').empty();
 	for (let i = 0; i < subComponents.length; i++) {
-		// let itemCount = getItemCountPerCategory(categories[i]);
-		// option += `<option value="${categories[i]._id}">${categories[i].name} - ${itemCount}</option>`;
 		option += `<option value="${subComponents[i]}">${subComponents[i]}</option>`;
 
 	}
@@ -555,7 +589,18 @@ function loadSubComponentSelect(subComponents) {
 
 }
 
-function lookupStart(){
+function loadDefectSelect(subComponents) {
+	let option = '';
+	$('#defect_select').empty();
+	for (let i = 0; i < subComponents.length; i++) {
+		option += `<option value="${subComponents[i]}">${subComponents[i]}</option>`;
+
+	}
+	$('#defect_select').append(option);
+
+}
+
+function lookupStart() {
 	//If there are no items in the master all items array then show a message
 	//Otherwise clear any message
 	const filterUtility = myFilter();
@@ -787,8 +832,8 @@ function showEditForm2(spanElement) {
 		'</div>' +
 
 		'<div id="defects_group" class="form-group">' +
-		'<label for="defects_input">Defects:</label>' +
-		'<input type="text" class="form-control defects_input" id="defects_input">' +
+		'<label for="defect_input">Defect:</label>' +
+		'<input type="text" class="form-control defect_input" id="defect_input">' +
 		'</div>' +
 
 		'<div id="item_price_group" class="form-group">' +
@@ -840,6 +885,9 @@ function showEditForm2(spanElement) {
 
 	const subComponentName = $(editFormDiv).find(".sub_component_input");
 	subComponentName.val(selectedItem2.subComponentName);
+
+	const defect = $(editFormDiv).find(".defect_input");
+	defect.val(selectedItem2.defect);
 
 	var name = $(editFormDiv).find(".comment_name");
 	name.val(selectedItem2.name);
@@ -897,18 +945,17 @@ function setFormDataObj(row, selectedItem) {
 	//The categoryID is stored in the value of the category Select element
 	const formCategorySelectValue = $(row).find(".form_category_select").val();
 
-	//Create array from comma delimited defects
-	const defects = $(row).find(".defects_input").val();
-	const defectsArray = defects.split(',').map((item) => {
-		return item.trim();
-	});
-
-	const subComponentName = $(row).find(".sub_component_input").val().trim();
+	// //Create array from comma delimited defects
+	// const defects = $(row).find(".defect_input").val();
+	// const defectsArray = defects.split(',').map((item) => {
+	// 	return item.trim();
+	// });
 
 	//Set the formData object to send to server
 	const obj = {
 		'componentName': $(row).find(".component_name").val(),
 		'subComponentName': $(row).find(".sub_component_input").val().trim(),
+		'defect': $(row).find(".defect_input").val().trim(),
 		'itemName': $(row).find(".comment_name").val(),
 		'comment': $(row).find(".item_comment").val(),
 		'price': anRawPrice,
@@ -923,17 +970,15 @@ function setFormSubmitSaveAsObj(row, selectedItem) {
 	let anRawPrice = AutoNumeric.getAutoNumericElement('.item_price').getNumericString();
 	anRawPrice = parseFloat(anRawPrice);
 
-	//The categoryID is stored in the value of the category Select element
-	const formCategorySelectValue = $(row).find(".form_category_select").val();
-
 	//Set the formData object to send to server
 	return {
 		'componentName': $(row).find(".component_name").val(),
 		'subComponentName': $(row).find(".sub_component_input").val().trim(),
+		'defect': $(row).find(".defect_input").val().trim(),
 		'itemName': $(row).find(".comment_name").val(),
 		'comment': $(row).find(".item_comment").val(),
 		'price': anRawPrice,
-		'categoryID': formCategorySelectValue,
+		'categoryID': $(row).find(".form_category_select").val()
 		//'createdByUserID':selectedItem.createdByUser._id,
 		//'createdByUserID':user.id,
 		//'modifiedByUserID': user.id
@@ -1007,6 +1052,7 @@ function formSubmitSaveAs(row, selectedItem) {
 			let newItem = new Item(
 				item.componentName,
 				item.subComponentName,
+				item.defect,
 				item.itemName,
 				item.comment,
 				item.price,
@@ -1220,6 +1266,7 @@ function formSubmitUpdate(e, row, selectedItem) {
 
 			//Success
 			selectedItem.componentName = item.componentName;
+			selectedItem.defect = item.defect;
 			selectedItem.name = item.itemName;
 			selectedItem.comment = item.comment;
 			selectedItem.price = item.price;
@@ -1275,12 +1322,17 @@ function closeEditFormDiv(e, editFormDiv) {
 }
 
 class Item {
-	constructor(componentName, subComponentName, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime) {
+	constructor(componentName, subComponentName, defect, name, comment, price, originalFlag, id, category, modifiedByUser, createdByUser, createdDateTime) {
 		this.componentName = componentName;
 		if (typeof subComponentName === 'undefined') {
 			this.subComponentName = '';
 		} else {
 			this.subComponentName = subComponentName;
+		}
+		if (typeof defect === 'undefined') {
+			this.defect = '';
+		} else {
+			this.defect = defect;
 		}
 		this.name = name;
 		this.comment = comment;
@@ -1696,22 +1748,22 @@ function submitLoginForm() {
 
 }
 
-function getCategoryID(){
+function getCategoryID() {
 	return $('#category_select option:selected').val();
 }
 
-function filterAndLoadByCategorySelected(){
+function filterAndLoadByCategorySelected() {
 	const filterUtility = myFilter();
 	//Form stuff
 	lookupStart();
 	//Filter based on form values
 	const filteredItems = filterUtility.runFilter();
-	
+
 	loadResultsTable(filteredItems);
 
 }
 
-function getLookupText(){
+function getLookupText() {
 	return $('#lookupText').val().trim();
 }
 
@@ -1779,7 +1831,7 @@ function submitResetPasswordForm() {
 }
 
 function logout() {
-	
+
 	//Null out the user object
 	user = null;
 	//Clean up any open edit forms in the search block
@@ -1837,7 +1889,7 @@ function clearLookupText() {
 function clearCatLookup() {
 	$('#category_lookup').val('');
 	filterAndLoadByCategorySelected();
-	
+
 
 }
 
@@ -1895,14 +1947,18 @@ function clearLocalStorage(elementClass) {
 	}
 }
 
-function getLookupWords(){
+function getLookupWords() {
 	const lookupText = getLookupText();
 	const lookupWords = lookupText.split(" ");
 	return lookupWords;
 }
 
-function getSubCategoryValue(){
+function getSubCategoryValue() {
 	return $('#sub_category_select option:selected').val();
+}
+
+function getDefectValue() {
+	return $('#defect_select option:selected').val();
 }
 
 $(document).ready(function () {
@@ -1987,14 +2043,14 @@ $(document).ready(function () {
 		filterAndLoadByCategorySelected();
 	});
 	$('#category_lookup').on('keyup', function () {
-		
+
 		categoryLookup();
 	});
 	$('#sub_category_select').change(function () {
-
 		filterAndLoadByCategorySelected();
-
-
+	});
+	$('#defect_select').change(function () {
+		filterAndLoadByCategorySelected();
 	});
 	$('#lookupText').on('keyup', function (e) {
 		filterAndLoadByCategorySelected();
