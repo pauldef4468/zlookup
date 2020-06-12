@@ -101,6 +101,12 @@ hr {
 	padding-bottom: 4px;
 }
 
+#sub_category_select{
+	margin-bottom: 5px;
+	padding-top: 3px;
+	padding-bottom: 4px;
+}
+
 #lookupText{
 	margin-bottom: 5px;
 }

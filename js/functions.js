@@ -9,55 +9,60 @@ class Filter{
 		this.allItems = [];
 		this.categoryItems = [];
 		this.subCategoryItems = [];
+		this.keywordItems = [];
 	}
-	filter(fullRefresh){
+	runFilter(fullRefresh){
 		const categoryID = getCategoryID();
 		const lookupText = getLookupText();
 		const subCategoryString = getSubCategoryValue();
-		//If categoryID has changed then do a full filter
-		//If doing a full filter then we must also get the sub categories
-		let subCategories = [];
+		
 		if(categoryID !== this.categoryID || fullRefresh){
-			//This sets this.categoryItems
-			console.log('loaded by category');
 
+			let subCategories = [];
+
+			//Loop allItems and filter by the selected categoryID
 			this.filterCategoryItems(categoryID);
+			//Build array of sub categories (ie. Toilet) based on the filtered list
 			subCategories = buildSubComponentsArray(this.categoryItems);
+			//Store this latest category ID
 			this.categoryID = categoryID;
 
+			//Loop categoryItems and build a filtered list of items
+			//based on the first sub category (ie. Toilet)
 			this.filterSubCategoryItems(subCategories[0]);
+			//Store this latest sub category (ie. Toilet)
 			this.subCategoryString = subCategories[0];
 
-			const subComponents = buildSubComponentsArray(this.categoryItems);
-			loadSubComponentSelect(subComponents);
+			//Load the sub categories select list with values (ie Toilet)
+			loadSubComponentSelect(subCategories);
 
+			//Filter by keywords
 			this.filterByKeywords(this.subCategoryItems, lookupText);
 			this.lookupText = lookupText;
 
-			return this.subCategoryItems;
+			return this.keywordItems;
 		}
 		if(subCategoryString !== this.subCategoryString){
-			console.log('loaded by sub cat');
 
+			//Filter based on the new sub category string
 			this.filterSubCategoryItems(subCategoryString);
+			//Store the new sub category
 			this.subCategoryString = subCategoryString;
 
 			this.filterByKeywords(this.subCategoryItems, lookupText);
 			this.lookupText = lookupText;
 
-			return this.subCategoryItems;
+			return this.keywordItems;
 		}
 		if(lookupText !== this.lookupText){
-			console.log('loaded by keyword');
-
-			this.filterSubCategoryItems(subCategoryString);
 
 			this.filterByKeywords(this.subCategoryItems, lookupText);
 			this.lookupText = lookupText;
-			return this.subCategoryItems;
-		}
 
-		return this.subCategoryItems;
+			return this.keywordItems;
+		}
+		//Nothing changed
+		return this.keywordItems;
 
 	}
 	clearAll(){
@@ -76,7 +81,9 @@ class Filter{
 	}
 	filterSubCategoryItems(subCategoryName){
 		this.subCategoryItems = this.categoryItems.filter(item => {
-			//
+			//If the sub category is empty or undefined then no filter
+			if(!subCategoryName) return true;
+
 			if (subCategoryName !== item.subComponentName){
 				return false;
 			}else{
@@ -86,7 +93,7 @@ class Filter{
 	}
 	filterByKeywords(itemsToSort, lookupText){
 		if (lookupText == "") {
-			this.subCategoryItems = itemsToSort;
+			this.keywordItems = itemsToSort;
 			return;
 		}
 		const lookupWords = lookupText.split(" ");
@@ -113,12 +120,12 @@ class Filter{
 				return true;
 			}
 		})
-		this.subCategoryItems = newArray;
+		this.keywordItems = newArray;
 	}
 
 }
 
-var filter = (function (){
+var myFilter = (function (){
 	let filterUtility = new Filter();
 	return function(){
 		return filterUtility;
@@ -235,7 +242,7 @@ function loadInitialData() {
 
 	//*** Load data from server ***
 
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	filterUtility.clearAll(); //Clears main item array and filter arrays
 
 	//Initialize these global arrays
@@ -350,7 +357,7 @@ function getCategoryByID(id) {
 
 function getItemCountPerCategory(category) {
 	let count = 0;
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	const allItems = filterUtility.allItems;
 	for (let i = 0; i < allItems.length; i++) {
 		if (allItems[i].category._id === category._id) count++;
@@ -522,12 +529,14 @@ function stripPlaceHolderBraces(text) {
 function buildSubComponentsArray(itemsArray) {
 	//Build an array of sub component names from the array list passed in
 	let subComponents = [];
+	let hasBlank = false;
 	for (let i = 0; i < itemsArray.length; i++) {
-		//if (!itemsArray[i].subComponentName) { continue }; //This is to keep out the blank
+		if (!itemsArray[i].subComponentName) hasBlank = true; //This is to keep out the blank
 		if (subComponents.indexOf(itemsArray[i].subComponentName) === -1) {
 			subComponents.push(itemsArray[i].subComponentName);
 		}
 	}
+	if(!hasBlank) subComponents.push('');
 	subComponents.sort();
 	return subComponents;
 
@@ -549,7 +558,7 @@ function loadSubComponentSelect(subComponents) {
 function lookupStart(){
 	//If there are no items in the master all items array then show a message
 	//Otherwise clear any message
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	const allItems = filterUtility.allItems;
 
 	if (!Array.isArray(allItems) || !allItems.length) {
@@ -747,7 +756,7 @@ function showEditForm2(spanElement) {
 	var str = rowIdStr.replace(/[^\d.]/g, '');
 	var resultItemIndex = parseInt(str);
 	//The current Item 
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	var selectedItem2 = filterUtility.subCategoryItems[resultItemIndex];
 
 	// TODO2 - Add an additional comment option to the form
@@ -981,7 +990,7 @@ function showEditFormInputErrors(row, inputKey, errorMessage) {
 function formSubmitSaveAs(row, selectedItem) {
 
 	//*** Save new record based on existing selected record ***
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	const allItems = filterUtility.allItems;
 	//Remove any error displays if there are some
 	clearElementErrors(row);
@@ -1009,8 +1018,8 @@ function formSubmitSaveAs(row, selectedItem) {
 				item.createdDateTime
 			)
 			allItems.push(newItem);
-			filterUtility.filter(true);
-			//Close the edit form and then re-filter and display 
+			filterUtility.runFilter(true);
+			//Close the edit form 
 			closeEditFormDiv('', form);
 
 		}
@@ -1083,7 +1092,7 @@ function ajaxPostNewItem(formDataItem) {
 }
 
 function deleteItemByRecordID(id) {
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	const allItems = filterUtility.allItems;
 	//Find the item and remove from the array
 	for (let i = 0; i < allItems.length; i++) {
@@ -1147,8 +1156,8 @@ function deleteItem(row, selectedItem) {
 			await ajaxDeleteItem(id);
 			deleteItemByRecordID(id);
 			//Close the edit form and then re-filter and display
-			const filterUtility = filter();
-			filterUtility.filter(true);
+			const filterUtility = myFilter();
+			filterUtility.runFilter(true);
 			closeEditFormDiv('', form);
 		}
 		catch (err) {
@@ -1196,8 +1205,6 @@ function ajaxItemUpdate(itemID, formDataItem) {
 
 function formSubmitUpdate(e, row, selectedItem) {
 
-	//*** UPDATE THE ITEM COMMENT ***
-
 	//Remove any error displays if there are some
 	clearElementErrors(row);
 	//get reference this edit form
@@ -1228,6 +1235,10 @@ function formSubmitUpdate(e, row, selectedItem) {
 			// TODO2 this next line should really produce properly formatted currency
 			$(row).find(".money").html(selectedItem.price);
 
+			const filterUtility = myFilter();
+			filterUtility.runFilter(true);
+			loadResultsTable(filterUtility.keywordItems);
+
 			//Close the edit form and then re-filter and display 
 			closeEditFormDiv('', form);
 		}
@@ -1251,12 +1262,11 @@ function closeEditFormDiv(e, editFormDiv) {
 		$(this).remove();
 		//Reload categories so the counts are updated
 		//loadCategories();
-		updateCategoryCounts();
+		//updateCategoryCounts();
 		//Re-run the lookup 
 		lookupStart();
-		const filterUtility = filter();
-
-		loadResultsTable(filterUtility.subCategoryItems);
+		const filterUtility = myFilter();
+		loadResultsTable(filterUtility.keywordItems);
 
 	});
 
@@ -1438,7 +1448,6 @@ function hideSearchBlock() {
 	$("#lookup_error").css("display", "none");
 	$("#lookup_error").html("");
 	$("#search_block").css("display", "none");
-	$('#lookupText').val("");
 
 	//***Clean up any search stuff***
 	//Clear lookup text
@@ -1692,11 +1701,11 @@ function getCategoryID(){
 }
 
 function filterAndLoadByCategorySelected(){
-	const filterUtility = filter();
+	const filterUtility = myFilter();
 	//Form stuff
 	lookupStart();
 	//Filter based on form values
-	const filteredItems = filterUtility.filter();
+	const filteredItems = filterUtility.runFilter();
 	
 	loadResultsTable(filteredItems);
 
@@ -1778,7 +1787,7 @@ function logout() {
 	$(".pad_form").remove();
 
 	//Empty the items arrays
-	filter().clearAll();
+	myFilter().clearAll();
 	//Empty the categories array and select list
 	categories = [];
 	$('#category_select').empty();
@@ -1948,8 +1957,9 @@ $(document).ready(function () {
 				await loadInitialData();
 				loadCategories();
 				lookupStart();
-				const filterUtility = filter();
-				filterUtility.filter(true);
+				$('#category_lookup').val('');
+				const filterUtility = myFilter();
+				filterUtility.runFilter(true);
 				loadResultsTable(filterUtility.subCategoryItems);
 			}
 			catch (err) {
