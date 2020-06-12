@@ -1264,6 +1264,8 @@ function formSubmitUpdate(e, row, selectedItem) {
 		try {
 			const item = await ajaxItemUpdate(selectedItem.id, formDataItem);
 
+			alert('Success here');
+
 			//Success
 			selectedItem.componentName = item.componentName;
 			selectedItem.defect = item.defect;
@@ -1290,6 +1292,7 @@ function formSubmitUpdate(e, row, selectedItem) {
 			closeEditFormDiv('', form);
 		}
 		catch (err) {
+			alert('got here');
 			processAndDisplayError(err, row, form);
 		}
 	}
