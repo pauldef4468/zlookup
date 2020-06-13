@@ -1891,8 +1891,9 @@ function clearLookupText() {
 
 function clearCatLookup() {
 	$('#category_lookup').val('');
+	$('#sub_category_select').val('');
+	$('#defect_select').val('');
 	filterAndLoadByCategorySelected();
-
 
 }
 
