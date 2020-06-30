@@ -19,6 +19,7 @@ class Filter {
 
     if (categoryID !== this.categoryID || fullRefresh) {
       let subCategories = [];
+      //Clear out the defects select
       let defects = [];
       $("#defect_select").val("");
       loadDefectSelect(defects);
@@ -34,7 +35,9 @@ class Filter {
 
       //Loop categoryItems and build a filtered list of items
       //based on the first sub category (ie. Toilet)
-      this.filterSubCategoryItems(subCategories[0], defects[0]); // = this.subCategoryItems
+      // this.filterSubCategoryItems(subCategories[0], defects[0]); // = this.subCategoryItems
+      this.filterSubCategoryItemsNew(subCategories[0]);
+      this.defectItems = [...this.subCategoryItems];
       //Store this latest sub category (ie. Toilet)
       this.subCategoryString = subCategories[0];
       //this.defectString = defects[0];
@@ -58,11 +61,15 @@ class Filter {
 
       $("#defect_select").val("");
       let defects = [];
+      //console.log(this.subCategoryItems);
       defects = buildDefectsArray(this.subCategoryItems);
+      //console.log(defects);
       loadDefectSelect(defects);
       this.defectString = "";
 
-      this.filterByKeywords(this.subCategoryItems, lookupText);
+      this.defectItems = [...this.subCategoryItems];
+
+      this.filterByKeywords(this.defectItems, lookupText);
       this.lookupText = lookupText;
 
       return this.keywordItems;
@@ -76,7 +83,8 @@ class Filter {
       return this.keywordItems;
     }
     if (lookupText !== this.lookupText) {
-      this.filterByKeywords(this.subCategoryItems, lookupText);
+      //this.filterByKeywords(this.subCategoryItems, lookupText);
+      this.filterByKeywords(this.defectItems, lookupText);
       this.lookupText = lookupText;
 
       return this.keywordItems;
@@ -89,6 +97,7 @@ class Filter {
     this.categoryItems = [];
     this.subCategoryItems = [];
     this.keywordItems = [];
+    this.defectItems = [];
   }
   filterCategoryItems(categoryID) {
     this.categoryItems = this.allItems.filter((item) => {
@@ -142,13 +151,24 @@ class Filter {
 
   filterDefects(defectName) {
     this.defectItems = this.subCategoryItems.filter((item) => {
+      // let defectsCommaArray = [];
       //If query words empty or undefined then no filter
       if (!defectName) {
         return true;
       }
-      if (defectName !== item.defect) {
+
+      // if (defectName !== item.defect) {
+      //   return false;
+      // }
+      if (item.defect.indexOf(defectName) === -1) {
         return false;
       }
+      // defectsCommaArray = item.defect.split(",");
+      // defectsCommaArray.forEach((defect) => {
+      //   if (defects.indexOf(defect) === -1) {
+      //     defects.push(defect);
+      //   }
+      // });
 
       return true;
     });
@@ -582,11 +602,19 @@ function buildSubComponentsArray(itemsArray) {
 function buildDefectsArray(itemsArray) {
   let defects = [];
   let hasBlank = false;
+  let defectsCommaArray = [];
   for (let i = 0; i < itemsArray.length; i++) {
     if (!itemsArray[i].defect) hasBlank = true; //This is to keep out the blank
-    if (defects.indexOf(itemsArray[i].defect) === -1) {
-      defects.push(itemsArray[i].defect);
-    }
+    //If defect already added don't add it again
+    defectsCommaArray = itemsArray[i].defect.split(",");
+    defectsCommaArray.forEach((defect) => {
+      if (defects.indexOf(defect) === -1) {
+        defects.push(defect);
+      }
+    });
+    // if (defects.indexOf(itemsArray[i].defect) === -1) {
+    //   defects.push(itemsArray[i].defect);
+    // }
   }
   if (!hasBlank) defects.push("");
   defects.sort();
@@ -1935,11 +1963,17 @@ function getLookupWords() {
 }
 
 function getSubCategoryValue() {
-  return $("#sub_category_select option:selected").val();
+  let value = $("#sub_category_select option:selected").val();
+  if (!value) value = "";
+  value = value.trim();
+  return value;
 }
 
 function getDefectValue() {
-  return $("#defect_select option:selected").val();
+  let value = $("#defect_select option:selected").val();
+  if (!value) value = "";
+  value = value.trim();
+  return value;
 }
 
 $(document).ready(function () {
