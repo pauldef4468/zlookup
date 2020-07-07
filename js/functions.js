@@ -93,6 +93,11 @@ class Filter {
     return this.keywordItems;
   }
   clearAll() {
+    this.categoryID = "";
+    this.subCategoryString = "";
+    this.defectString = "";
+    this.lookupText = "";
+
     this.allItems = [];
     this.categoryItems = [];
     this.subCategoryItems = [];
@@ -1742,7 +1747,6 @@ function submitLoginForm() {
     }
 
     loadCategories();
-
     filterAndLoadByCategorySelected();
 
     //Show logout menu button
