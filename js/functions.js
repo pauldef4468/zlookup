@@ -2184,6 +2184,58 @@ $(document).ready(function () {
       formattedComment = formattedComment.concat(
         `[Spec Level: ${commentObj.specLevel}]`
       );
+    if (commentObj.crawlSpace)
+      formattedComment = formattedComment.concat(
+        ` - [Crawl Space: ${commentObj.crawlSpace}]`
+      );
+    if (commentObj.hvacInput)
+      formattedComment = formattedComment.concat(
+        ` - [HVAC: ${commentObj.hvacInput}]`
+      );
+    if (commentObj.fireplaceInput)
+      formattedComment = formattedComment.concat(
+        ` - [Fireplace: ${commentObj.fireplaceInput}]`
+      );
+    if (commentObj.woodWindows)
+      formattedComment = formattedComment.concat(
+        ` - [Wood Windows Present?: ${commentObj.woodWindows}]`
+      );
+
+    if (commentObj.sidingCondition)
+      formattedComment = formattedComment.concat(
+        ` - [Siding: ${commentObj.sidingCondition}]`
+      );
+
+    if (commentObj.landscapeCondition)
+      formattedComment = formattedComment.concat(
+        ` - [Landscape Condition: ${commentObj.landscapeCondition}]`
+      );
+
+    if (commentObj.roofCondition)
+      formattedComment = formattedComment.concat(
+        ` - [Roof Condition: ${commentObj.roofCondition}]`
+      );
+
+    if (commentObj.wallsCondition)
+      formattedComment = formattedComment.concat(
+        ` - [Walls Condition: ${commentObj.wallsCondition}]`
+      );
+
+    if (commentObj.flooringCondition)
+      formattedComment = formattedComment.concat(
+        ` - [Flooring Condition: ${commentObj.flooringCondition}]`
+      );
+
+    if (commentObj.safetyValue)
+      formattedComment = formattedComment.concat(
+        ` - [Safety Issues: ${commentObj.safetyValue}]`
+      );
+
+    if (commentObj.discardValue)
+      formattedComment = formattedComment.concat(
+        ` - [Discard?: ${commentObj.discardValue}]`
+      );
+
     if (commentObj.squareFeetListed)
       formattedComment = formattedComment.concat(
         ` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured}]`
@@ -2201,10 +2253,7 @@ $(document).ready(function () {
       formattedComment = formattedComment.concat(
         ` - [Temp split (3rd floor): ${commentObj.deltaT3}]`
       );
-    if (commentObj.woodWindows)
-      formattedComment = formattedComment.concat(
-        ` - [Wood Windows Present?: ${commentObj.woodWindows}]`
-      );
+
     if (commentObj.gas)
       formattedComment = formattedComment.concat(
         ` - [Gas on/off: ${commentObj.gas}]`
