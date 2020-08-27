@@ -509,6 +509,7 @@ function addToListOnClick(item) {
   //Get array of curly brace matches (see if there are curly braces)
   if (!getPlaceHolders(comment)) {
     //No placeholders so just add to the list
+    //console.log(item.category);
     updateLocalStorage(item.category, comment);
     showMyAlert("Item added successfully!", "success");
   } else {
@@ -547,15 +548,10 @@ function showMyAlert(message, alertType) {
 }
 
 function updateLocalStorage(category, newText) {
-  if (category.addToLocation === "externalities") {
-    let externalitiesValue = localStorage.getItem("externalities");
-    if (!externalitiesValue) {
-      localStorage.setItem("externalities", newText);
-    } else {
-      externalitiesValue = externalitiesValue.concat("\n" + newText);
-      localStorage.setItem("externalities", externalitiesValue);
-    }
-  } else if (category.addToLocation === "notes") {
+  if (
+    category.addToLocation === "externalities" ||
+    category.addToLocation === "notes"
+  ) {
     let externalitiesValue = localStorage.getItem("notes");
     if (!externalitiesValue) {
       localStorage.setItem("notes", newText);
@@ -564,6 +560,24 @@ function updateLocalStorage(category, newText) {
       localStorage.setItem("notes", externalitiesValue);
     }
   }
+
+  // if (category.addToLocation === "externalities") {
+  //   let externalitiesValue = localStorage.getItem("externalities");
+  //   if (!externalitiesValue) {
+  //     localStorage.setItem("externalities", newText);
+  //   } else {
+  //     externalitiesValue = externalitiesValue.concat("\n" + newText);
+  //     localStorage.setItem("externalities", externalitiesValue);
+  //   }
+  // } else if (category.addToLocation === "notes") {
+  //   let externalitiesValue = localStorage.getItem("notes");
+  //   if (!externalitiesValue) {
+  //     localStorage.setItem("notes", newText);
+  //   } else {
+  //     externalitiesValue = externalitiesValue.concat("\n" + newText);
+  //     localStorage.setItem("notes", externalitiesValue);
+  //   }
+  // }
 }
 
 function showEditItemModal(item) {
@@ -2180,50 +2194,50 @@ $(document).ready(function () {
     }
 
     let formattedComment = "";
-    if (commentObj.specLevel)
-      formattedComment = formattedComment.concat(
-        `[Spec Level: ${commentObj.specLevel}]`
-      );
-    if (commentObj.crawlSpace)
-      formattedComment = formattedComment.concat(
-        ` - [Crawl Space: ${commentObj.crawlSpace}]`
-      );
-    if (commentObj.hvacInput)
-      formattedComment = formattedComment.concat(
-        ` - [HVAC: ${commentObj.hvacInput}]`
-      );
-    if (commentObj.fireplaceInput)
-      formattedComment = formattedComment.concat(
-        ` - [Fireplace: ${commentObj.fireplaceInput}]`
-      );
-    if (commentObj.woodWindows)
-      formattedComment = formattedComment.concat(
-        ` - [Wood Windows Present?: ${commentObj.woodWindows}]`
-      );
+    // if (commentObj.specLevel)
+    //   formattedComment = formattedComment.concat(
+    //     `[Spec Level: ${commentObj.specLevel}]`
+    //   );
+    // if (commentObj.crawlSpace)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Crawl Space: ${commentObj.crawlSpace}]`
+    //   );
+    // if (commentObj.hvacInput)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [HVAC: ${commentObj.hvacInput}]`
+    //   );
+    // if (commentObj.fireplaceInput)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Fireplace: ${commentObj.fireplaceInput}]`
+    //   );
+    // if (commentObj.woodWindows)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Wood Windows Present?: ${commentObj.woodWindows}]`
+    //   );
 
     if (commentObj.sidingCondition)
       formattedComment = formattedComment.concat(
-        ` - [Siding: ${commentObj.sidingCondition}]`
+        `[Siding: ${commentObj.sidingCondition}]`
       );
 
     if (commentObj.landscapeCondition)
       formattedComment = formattedComment.concat(
-        ` - [Landscape Condition: ${commentObj.landscapeCondition}]`
+        ` - [Landscape: ${commentObj.landscapeCondition}]`
       );
 
     if (commentObj.roofCondition)
       formattedComment = formattedComment.concat(
-        ` - [Roof Condition: ${commentObj.roofCondition}]`
+        ` - [Roof: ${commentObj.roofCondition}]`
       );
 
     if (commentObj.wallsCondition)
       formattedComment = formattedComment.concat(
-        ` - [Walls Condition: ${commentObj.wallsCondition}]`
+        ` - [Walls: ${commentObj.wallsCondition}]`
       );
 
     if (commentObj.flooringCondition)
       formattedComment = formattedComment.concat(
-        ` - [Flooring Condition: ${commentObj.flooringCondition}]`
+        ` - [Flooring: ${commentObj.flooringCondition}]`
       );
 
     if (commentObj.safetyValue)
@@ -2241,54 +2255,54 @@ $(document).ready(function () {
         ` - [Sq ft: ${commentObj.squareFeetListed}/${commentObj.squareFeetMeasured}]`
       );
     //if (commentObj.beds) formattedComment = formattedComment.concat(` - [Bed/bath: ${commentObj.beds}/${commentObj.baths}]`);
-    if (commentObj.deltaT1)
-      formattedComment = formattedComment.concat(
-        ` - [Temp split (1st floor): ${commentObj.deltaT1}]`
-      );
-    if (commentObj.deltaT2)
-      formattedComment = formattedComment.concat(
-        ` - [Temp split (2nd floor): ${commentObj.deltaT2}]`
-      );
-    if (commentObj.deltaT3)
-      formattedComment = formattedComment.concat(
-        ` - [Temp split (3rd floor): ${commentObj.deltaT3}]`
-      );
+    // if (commentObj.deltaT1)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Temp split (1st floor): ${commentObj.deltaT1}]`
+    //   );
+    // if (commentObj.deltaT2)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Temp split (2nd floor): ${commentObj.deltaT2}]`
+    //   );
+    // if (commentObj.deltaT3)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Temp split (3rd floor): ${commentObj.deltaT3}]`
+    //   );
 
     if (commentObj.gas)
       formattedComment = formattedComment.concat(
         ` - [Gas on/off: ${commentObj.gas}]`
       );
-    if (commentObj.heatTested)
-      formattedComment = formattedComment.concat(
-        ` - [Heat Tested?: ${commentObj.heatTested}]`
-      );
-    if (commentObj.coolTested)
-      formattedComment = formattedComment.concat(
-        ` - [Cool Tested?: ${commentObj.coolTested}]`
-      );
-    if (commentObj.appliancesTaken)
-      formattedComment = formattedComment.concat(
-        ` - [Appliances Being Taken: ${commentObj.appliancesTaken}]`
-      );
-    if (commentObj.garageRemotes)
-      formattedComment = formattedComment.concat(
-        ` - [Garage Remotes: ${commentObj.garageRemotes}]`
-      );
+    // if (commentObj.heatTested)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Heat Tested?: ${commentObj.heatTested}]`
+    //   );
+    // if (commentObj.coolTested)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Cool Tested?: ${commentObj.coolTested}]`
+    //   );
+    // if (commentObj.appliancesTaken)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Appliances Being Taken: ${commentObj.appliancesTaken}]`
+    //   );
+    // if (commentObj.garageRemotes)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Garage Remotes: ${commentObj.garageRemotes}]`
+    //   );
     if (commentObj.inAttendance)
       formattedComment = formattedComment.concat(
         ` - [In Attendance: ${commentObj.inAttendance}]`
       );
-    if (commentObj.outsideTemp)
-      formattedComment = formattedComment.concat(
-        ` - [Outside Temp: ${commentObj.outsideTemp}]`
-      );
-    if (commentObj.externalities)
-      formattedComment = formattedComment.concat(
-        ` - [Noted externalities: ${commentObj.externalities}]`
-      );
+    // if (commentObj.outsideTemp)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Outside Temp: ${commentObj.outsideTemp}]`
+    //   );
+    // if (commentObj.externalities)
+    //   formattedComment = formattedComment.concat(
+    //     ` - [Noted externalities: ${commentObj.externalities}]`
+    //   );
     if (commentObj.notes)
       formattedComment = formattedComment.concat(
-        ` - [Add Notes: ${commentObj.notes}]`
+        ` - [Notes: ${commentObj.notes}]`
       );
 
     if (!hasErrors) {
@@ -2396,6 +2410,7 @@ $(document).ready(function () {
     const newValue = $("#modal_text_input").val();
     //Get a stringify version of the Item
     const itemAsString = $("#item_object_stringify").html();
+
     const item = JSON.parse(itemAsString);
 
     //updateClipboard(newValue);
