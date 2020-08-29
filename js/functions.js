@@ -2245,6 +2245,11 @@ $(document).ready(function () {
         ` - [Safety Issues: ${commentObj.safetyValue}]`
       );
 
+    if (commentObj.structuralValue)
+      formattedComment = formattedComment.concat(
+        ` - [Structural Issues: ${commentObj.structuralValue}]`
+      );
+
     if (commentObj.discardValue)
       formattedComment = formattedComment.concat(
         ` - [Discard?: ${commentObj.discardValue}]`
