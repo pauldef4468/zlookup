@@ -1509,6 +1509,40 @@ function numberLinesofText(text) {
   return formattedText;
 }
 
+function formatRoomComment(category, text) {
+  if (!(category.name === "**COMMENTS")) return text;
+  let textLines = text.split("\n");
+  //Make sure to trim each line
+  let formattedText = "";
+  let lineNumber = 0;
+  let lineValue = "";
+  let itemCount = 0;
+  for (let i = 0; i < textLines.length; i++) {
+    lineValue = `${textLines[i].trim()}\n`;
+    // Split by a colon and
+    let n = lineValue.indexOf(":");
+    if (n !== -1) {
+      // See if anything to the right side of the colon
+      // If nothing then we are ommiting this line
+      var res = lineValue.substr(n + 1).trim();
+      if (res) {
+        lineNumber++;
+        formattedText = formattedText.concat(`${lineNumber}. ${lineValue}`);
+      }
+    } else {
+      lineNumber++;
+      // No colon or delimiter in string
+      formattedText = formattedText.concat(`${lineNumber}. ${lineValue}`);
+    }
+  }
+  if (!formattedText) formattedText = "NA";
+  formattedText.trim();
+  console.log(formattedText);
+  //
+
+  return formattedText;
+}
+
 function showLoginForm() {
   View.clearView("#login_form");
   View.showView("#login_form");
@@ -2406,7 +2440,10 @@ $(document).ready(function () {
   $("#copy_item_button").on("click", function () {
     //Copy text to clipboard
     const newValue = $("#modal_text_input").val();
-    updateClipboard(newValue);
+    const itemAsString = $("#item_object_stringify").html();
+    const item = JSON.parse(itemAsString);
+    const newVal = formatRoomComment(item.category, newValue);
+    updateClipboard(newVal);
   });
 
   //Modal Add to List button
