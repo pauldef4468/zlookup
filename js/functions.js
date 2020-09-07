@@ -1524,10 +1524,14 @@ function formatRoomComment(category, text) {
     if (n !== -1) {
       // See if anything to the right side of the colon
       // If nothing then we are ommiting this line
-      var res = lineValue.substr(n + 1).trim();
-      if (res) {
+      let rightSide = lineValue.substr(n + 1).trim();
+      rightSide = jsUcfirst(rightSide);
+      let leftSide = lineValue.substring(0, n + 1).trim();
+      if (rightSide) {
         lineNumber++;
-        formattedText = formattedText.concat(`${lineNumber}. ${lineValue}`);
+        let joined = `${leftSide} ${rightSide}`;
+        formattedText = formattedText.concat(`${lineNumber}. ${joined}\n`);
+        // formattedText = formattedText.concat(`${lineNumber}. ${lineValue}`);
       }
     } else {
       lineNumber++;
@@ -1541,6 +1545,10 @@ function formatRoomComment(category, text) {
   //
 
   return formattedText;
+}
+
+function jsUcfirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function showLoginForm() {
